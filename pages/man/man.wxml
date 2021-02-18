@@ -1,0 +1,59 @@
+<view>
+  <view class="titleCss">
+    <text class="titleTextCss">{{titleInfo}}</text>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label labelCss">
+              <image src="/images/man_h.png" class="iconCss"></image>
+              <text class="textCss">用户名:</text>
+            </view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入用户名"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label labelCss">
+              <image src="/images/man_h.png" class="iconCss"></image>
+              <text class="textCss">密码:</text>
+            </view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入密码" password bindinput="passwordInput" focus="{{password_show}}"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-label labelCss">
+          <image src="/images/man_h.png" class="iconCss"></image>
+          <text class="textCss">确认密码:</text>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请确认密码" password bindinput="passwordCheckInput"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-label labelCss">
+          <image src="/images/man_h.png" class="iconCss"></image>
+          <text class="textCss">真实姓名:</text>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入用户姓名"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-label labelCss">
+          <image src="/images/man_h.png" class="iconCss"></image>
+          <text class="textCss">手机号:</text>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入用户手机号" type="number"/>
+        </view>
+    </view>
+  </view>
+  <view class="page__bd page__bd_spacing addBnCss">
+      <button class="weui-btn" type="primary" bindtap="addUser">确定</button>
+  </view>
+</view>
