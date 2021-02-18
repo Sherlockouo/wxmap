@@ -43,7 +43,16 @@ Page({
       })
     }
   },
+  
   getUserInfo(e) {
+    wx.login({
+      success(res){
+        console.log(res.code)
+      },
+      fail(res){
+        console.log("shit")
+      }
+    })
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
