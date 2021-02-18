@@ -1,7 +1,8 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/chooseAddress/chooseAddress",
+    "pages/share/share",
     "pages/man/man"
   ],
   "permission": {
@@ -9,25 +10,25 @@
       "desc": "请求获取您的位置信息"
     }
   },
-  "window":{
-    "backgroundTextStyle":"dark",
+  "window": {
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color":"#929292",
-    "selectedColor":"#fb9527",
-    "borderStyle":"white",
+    "color": "#929292",
+    "selectedColor": "#fb9527",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"/img/map.png",
-        "selectedIconPath":"/img/map_h.png"
-     },
+        "iconPath": "/img/map.png",
+        "selectedIconPath": "/img/map_h.png"
+      },
       {
-        "pagePath": "pages/chooseAddress/chooseAddress",
+        "pagePath": "pages/share/share",
         "text": "分享趣事",
         "iconPath": "/img/add.png",
         "selectedIconPath": "/img/add_h.png"

@@ -4,12 +4,12 @@
   <!--地图-->
   <view class='map-wrapper' style='height:{{mapHeight}}'>
     <map class='map' id='myMap' longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" show-location="true" markers="{{markers}}" bindmarkertap="bindMakertap" bindcontroltap='controlTap' bindregionchange='regionChange' controls='{{controls}}'
-      bindtap='bindMapTap'>
+      bindtap='bindMapTap' style="position: relative; left: -20rpx; top: -50rpx">
       <!--顶部提示-->
       <cover-view class='cover-tip-wrapper' wx:if='{{showTopTip}}' bindtap='showNewMarkerClick'>
         <cover-image class='tip-bg' src='../../img/tip-bg.png'>
         </cover-image>
-        <cover-view class='cover-tip-content'>
+        <cover-view class='cover-tip-content' style="position: absolute; left: 26rpx; top: 0rpx">
           <cover-image class='trumpet-icon' src='../../img/notification.png'>
           </cover-image>
           <cover-view class='tip-text'>{{warningText}}</cover-view>
