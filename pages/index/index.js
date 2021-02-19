@@ -186,7 +186,7 @@ Page({
   },
 
   /**
-   * 设置上传情报按钮的左边距
+   * 设置上传按钮的左边距
    */
   setHomeActionLeftDistance: function () {
     var that = this;
@@ -430,11 +430,11 @@ Page({
   adjustViewStatus: function (uploadStatus, confirmStatus, commentStatus) {
     var that = this;
     that.setData({
-      //显示上传情报按钮
+      //显示上传按钮
       showUpload: uploadStatus,
-      //开始上传情报
+      //开始上传
       showConfirm: confirmStatus,
-      //显示情报详情
+      //显示详情
       showComment: commentStatus,
     })
     that.changeMapHeight();
