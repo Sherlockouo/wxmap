@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/chooseAddress/chooseAddress",
     "pages/share/share",
-    "pages/man/man"
+    "pages/man/man",
+    "pages/myinfo/myinfo",
+    "pages/message/message"
   ],
   "permission": {
     "scope.userLocation": {
