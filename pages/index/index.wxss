@@ -74,7 +74,7 @@
 }
 
 .trumpet-icon {
-  margin: 10rpx;
+  margin: 10px;
 }
 
 .tip-text {
