@@ -48,15 +48,14 @@
   width: 100rpx;
   height: 100rpx;
   position: absolute;
-  bottom: 20;
-  left: 0;
-  display: flex;
+  bottom: 20px;
+  left: 20px;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .self-location {
-
   width: 76rpx;
   height: 76rpx;
 }
