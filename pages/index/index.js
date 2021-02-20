@@ -62,8 +62,10 @@ Page({
         height: 50
       }
     ],
+    vaHe:0,  //导航菜单高度
+    inputHe:0,  //输入框高度
     showTopTip: true,
-    warningText: '顶部提示',
+    warningText: '搜索发现更多地方的故事',
     showUpload: true,
     showConfirm: false,
     showComment: false,
@@ -115,8 +117,12 @@ Page({
     userNickname: '芜湖',
     uploadTime: '一分钟前',
   },
-
   onLoad: function (options) {
+    var data = wx.getMenuButtonBoundingClientRect()
+    this.setData({
+      vaHe:data.bottom+10,
+      inputHe:data.bottom-data.top,
+    })
     var that = this;
     //检测更新
     that.checkUpdate();
@@ -141,6 +147,7 @@ Page({
     }
     that.scopeSetting();
   },
+  
 
   onShow: function () {
     consoleUtil.log('onShow--------------------->');

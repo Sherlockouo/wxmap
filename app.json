@@ -5,7 +5,9 @@
     "pages/share/share",
     "pages/man/man",
     "pages/myinfo/myinfo",
-    "pages/message/message"
+    "pages/message/message",
+    "components/login",
+    "pages/login/login"
   ],
   "permission": {
     "scope.userLocation": {

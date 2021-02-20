@@ -1,4 +1,4 @@
-// pages/share.js
+// pages/message/message.js
 Page({
 
   /**

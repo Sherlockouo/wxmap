@@ -1,35 +1,28 @@
-<!--index.wxml-->
+
+<view class="top" style="height:{{vaHe}}px">
+    <!--顶部提示-->
+  <view class='cover-tip-wrapper' wx:if='{{showTopTip}}' style='height:{{inputHe}}px;  margin-top: {{vaHe-inputHe-10}}px;'>
+    <view class='cover-tip-content' >
+    <view><image  class='trumpet-icon' src='/img/notification.png' style="width:{{inputHe-8}}px;height:{{inputHe-8}}px"></image></view>
+    <input placeholder-style='font-size:12px;' placeholder='{{warningText}}'></input>
+   </view>   
+  </view>
+</view>
 <view class="container-layout">
 
   <!--地图-->
   <view class='map-wrapper' style='height:{{mapHeight}}'>
     <map class='map' id='myMap' longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" show-location="true" markers="{{markers}}" bindmarkertap="bindMakertap" bindcontroltap='controlTap' bindregionchange='regionChange' controls='{{controls}}'
       bindtap='bindMapTap' style="position: relative;">
-      <!--顶部提示-->
-      <cover-view class='cover-tip-wrapper' wx:if='{{showTopTip}}' bindtap='showNewMarkerClick'>
-        <cover-image class='tip-bg' src='/img/tip-bg.png'>
-        </cover-image>
-        <cover-view class='cover-tip-content' style="position: absolute; left: 26rpx; top: 0rpx">
-          <cover-image class='trumpet-icon' src='/img/notification.png'>
-          </cover-image>
-          <cover-view class='tip-text'>{{warningText}}</cover-view>
-          <cover-image class='right-arrow' src='/img/right-arrow.png'></cover-image>
-        </cover-view>
-      </cover-view>
     </map>
     <!--定位当前位置-->
     <cover-view class='cover-layout' bindtap='selfLocationClick'>
       <cover-image class='self-location' src='/img/self-location.png'></cover-image>
     </cover-view>
-    <!--上传信息按钮-->
-    <cover-view wx:if='{{showUpload}}' class='home-btn-layout' style='left:{{homeActionLeftDistance}}' id='home-action-wrapper'>
-      <cover-image class='home-action-btn' src='/img/home-btn.png' bindtap='uploadInfoClick'>
-      </cover-image>
-    </cover-view>
   </view>
 
-  <!--底部布局-->
-  <view class='bottom-layout' id='bottom-layout'>
+    <!--底部布局-->
+    <view class='bottom-layout' id='bottom-layout'>
     <view class='bottom-wrapper'>
       <view upload-wrapper wx:if='{{showConfirm}}'>
         <!--点击上传信息-->
@@ -60,7 +53,6 @@
           </view>
         </form>
       </view>
-
     </view>
   </view>
 </view>

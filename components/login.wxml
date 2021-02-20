@@ -1,6 +1,5 @@
 <view wx:if="{{isHide}}">
   <view wx:if="{{canIUse}}">
-    <view wx:if="{{canIUse}}">
     <view class='header'>
       <image src='/img/default-avatar.png'></image>
     </view>
@@ -22,6 +21,3 @@
   </view>
   <view wx:else>请升级微信版本</view>
 </view>
-</view>
-<view wx:else>
-</view> 
