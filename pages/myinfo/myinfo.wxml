@@ -1,57 +1,53 @@
+<!-- 用户信息界面 -->
 <view>
   <view class="titleCss">
-    <text class="titleTextCss">{{titleInfo}}</text>
+   <view class="Bac"><image src="/img/bacimg.jpg" mode="heightFix"></image></view>
+   <view class="setBac">
+      <view class="head box" ><image src="/img/head.png" mode="widthFix" class="headimg"></image></view>
+       <view class="btn box">设置背景</view>
+   </view>
+  
   </view>
-  <view class="weui-cells weui-cells_after-title">
+
+
+  <!-- 是一个提交表单 -->
+  <view class="weui-cells weui-cells_after-title mbody">
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
             <view class="weui-label labelCss">
-              <image src="/img/name.png" class="iconCss"></image>
-              <text class="textCss">用户名:</text>
+              <text class="textCss">昵称:</text>
             </view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入用户名"/>
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入您的昵称"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
             <view class="weui-label labelCss">
-              <image src="/img/mail.png" class="iconCss"></image>
-              <text class="textCss">邮箱:</text>
+              <text class="textCss">性别:</text>
             </view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入邮箱号"/>
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="未设置"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
             <view class="weui-label labelCss">
-              <image src="/img/key.png" class="iconCss"></image>
-              <text class="textCss">密码:</text>
+              <text class="textCss">生日:</text>
             </view>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入密码" password bindinput="passwordInput" focus="{{password_show}}"/>
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="2000.03.02" password bindinput="passwordInput" focus="{{password_show}}"/>
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
         <view class="weui-label labelCss">
-          <image src="/img/key.png" class="iconCss"></image>
-          <text class="textCss">确认密码:</text>
+          <text class="textCss">签名:</text>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请确认密码" password bindinput="passwordCheckInput"/>
-        </view>
-    </view>
-    <view class="weui-cell weui-cell_input">
-        <view class="weui-label labelCss">
-          <image src="/img/phone.png" class="iconCss"></image>
-          <text class="textCss">手机号:</text>
-        </view>
-        <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入用户手机号" type="number"/>
+            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="留下点你的痕迹吧" type="number"/>
         </view>
     </view>
   </view>
