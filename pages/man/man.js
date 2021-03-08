@@ -10,6 +10,13 @@ Page({
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false,
+    navbar: ['我的分享', '失物招领'],
+    currentTab: 0,
+  },
+  navbarTap: function(e){
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx
+    })
   },
   //事件处理函数
   bindViewTap: function() {

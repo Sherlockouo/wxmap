@@ -9,7 +9,7 @@ var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
 var wxMarkerData = [];
 var bottomHeight = 0;
 var windowHeight = 0;
-var windowWidth = 0;
+var windowWidth = 10;
 var mapId = 'myMap';
 var qqmapsdk;
 var sourceType = [
@@ -210,9 +210,9 @@ Page({
         query.select('#home-action-wrapper').boundingClientRect()
         query.exec(function (res) {
           //res就是 所有标签为mjltest的元素的信息 的数组
-          consoleUtil.log(res);
+          consoleUtil.log(res+"sdfsdf");
           that.setData({
-            homeActionLeftDistance: ((windowWidth - res[0].width) / 2) + 'px'
+            homeActionLeftDistance: ((windowWidth - res.windowWidth) / 2) + 'px'
           })
         })
       }

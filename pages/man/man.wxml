@@ -1,5 +1,27 @@
 <view wx:if="{{isHide}}">
- 
+  <view wx:if="{{canIUse}}">
+    <view wx:if="{{canIUse}}">
+    <view class='header'>
+      <image src='/img/name.png'></image>
+    </view>
+
+    <view class='content'>
+      <view>申请获取以下权限</view>
+      <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+
+    <view>
+      <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="wxlogin">
+      登录
+    </button>
+    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+      注册
+    </button>
+    </view>
+  
+  </view>
+  <view wx:else>请升级微信版本</view>
+</view>
 </view>
 
 <view wx:else class="container">
@@ -7,9 +29,10 @@
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
      <view class="userinfo2">
        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-       <view class='message' bindtap="myinfopage">
-      <!-- <navigator url="/pages/myinfo/myinfo" >我的信息</navigator> -->
-      我的信息
+       <view class='message' >  
+        <!-- //bindtap="myinfopage" -->
+      <navigator url="/pages/myinfo/myinfo?userinfoimg={{userInfo.avatarUrl}}" >我的信息</navigator>
+      <!-- 我的信息 -->
        </view>
       </view>   
   </view>
@@ -34,8 +57,22 @@
     </view>
   </view>
 
-  <view class="hr"></view>
-  <view class="bottombox">
-    
+ <view class="hr"></view>
+
+ <view class="bottombox">
+    <!--导航条-->
+  <view class="navbar">
+       <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view>
+  </view>
+ 
+<!--我的分享-->
+<view hidden="{{currentTab!==0}}" class="tab1">
+  我的分享还未发布任何内容哦~
+</view>
+ 
+<!--失物招领-->
+  <view hidden="{{currentTab!==1}}" class="tab2">
+    失物招领还未发布任何内容哦~
+</view>
   </view>
 </view>

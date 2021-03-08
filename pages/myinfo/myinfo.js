@@ -8,14 +8,18 @@ Page({
     titleInfo: "添加用户信息",
     password: "",
     password_check: "",
-    password_show: false
+    password_show: false,
+    userhead:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+       userhead:options.userinfoimg,
+    })
+    
   },
 
   /**

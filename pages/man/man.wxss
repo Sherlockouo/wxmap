@@ -62,11 +62,9 @@
 .bottombox{
   width: 90%;
   margin-left: 5%;
-  height:340px;
+  height:50%;
   background-color: white;
   border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
   font-size: 13px;
 }
 .userinfo-avatar {
@@ -143,4 +141,65 @@
 .line {
   border: 1px solid #ccc;
   opacity: 0.2;
+}
+
+
+/* 
+page{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+} */
+
+/* 底部框框内部样式 */
+.navbar{
+  padding-top: 10px;
+  flex: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  text-align: center;
+  font-size: 16px;
+}
+/* .navbar .item{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 80rpx;
+} */
+.item{
+  position: relative;
+  /* flex: auto; */
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  line-height: 80rpx;
+}
+.navbar .item.active{
+  color: #fb9527;
+}
+.navbar .item.active:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom:0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  border-radius: 10px 10px 0 0 ;
+  background: #fb9527;
+}
+.tab1
+{
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+.tab2
+{
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
 }

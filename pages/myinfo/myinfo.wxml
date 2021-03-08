@@ -3,7 +3,7 @@
   <view class="titleCss">
    <view class="Bac"><image src="/img/bacimg.jpg" mode="heightFix"></image></view>
    <view class="setBac">
-      <view class="head box" ><image src="/img/head.png" mode="widthFix" class="headimg"></image></view>
+      <view class="head box" ><image src="{{userhead}}" mode="widthFix" class="headimg"></image></view>
        <view class="btn box">设置背景</view>
    </view>
   
@@ -38,8 +38,12 @@
               <text class="textCss">生日:</text>
             </view>
         </view>
+       
         <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="2000.03.02" password bindinput="passwordInput" focus="{{password_show}}"/>
+            <picker mode="date" disabled value="{{material.arriveToDate}}" bindchange="changeDate1">
+                  <input class="weui-input inputCss" placeholder="2000-03-02" name="arriveToDate" value="{{material.arriveToDate}}" disabled/>
+            </picker>
+            <!-- <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="2000.03.02" password bindinput="passwordInput" focus="{{password_show}}"/> -->
         </view>
     </view>
     <view class="weui-cell weui-cell_input">
