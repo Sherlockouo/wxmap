@@ -1,7 +1,9 @@
 <!-- 用户信息界面 -->
 <view>
   <view class="titleCss">
-   <view class="Bac"><image src="/img/bacimg.jpg" mode="heightFix"></image></view>
+   <view class="Bac">
+       <image src="/img/bacimg.jpg" mode="heightFix"></image>
+   </view>
    <view class="setBac">
       <view class="head box" ><image src="{{userhead}}" mode="widthFix" class="headimg"></image></view>
        <view class="btn box">设置背景</view>

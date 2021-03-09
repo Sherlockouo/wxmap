@@ -64,6 +64,12 @@
         {
           "name": "mymessage",
           "pathName": "pages/myinfo/myinfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "分享页面",
+          "pathName": "pages/share/share",
           "scene": null
         }
       ]
