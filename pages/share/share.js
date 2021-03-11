@@ -1,5 +1,9 @@
 // pages/message/message.js
 const app = getApp()
+var consoleUtil = require('../../utils/consoleUtil.js');
+var constant = require('../../utils/constant.js');
+var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
+var qqmapsdk;
 Page({
 
   /**
@@ -10,6 +14,14 @@ Page({
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false,
+    region:[],
+    province: '',
+    city: '',
+    latitude: '',
+    longitude: '',
+    shareTitle:"",
+    shareText:"",
+    shareLocal:"成都市郫都区红光镇红光大道9999号"
   },
 
   /**
@@ -17,13 +29,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // 查看是否授权
-    wx.getSetting({
+     // 查看是否授权
+     wx.getSetting({
       success: function(res) {
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: function(res) {
-          
               app.globalData.userInfo = res.userInfo
               that.setData({
                 userInfo: res.userInfo,
@@ -44,7 +55,8 @@ Page({
       }
     });
   },
-  wxlogin: function(e){
+
+wxlogin: function(e){
     if(e.detail.userInfo){
       var that = this
       wx.login({

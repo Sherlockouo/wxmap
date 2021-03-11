@@ -24,22 +24,54 @@
 <!-- 如果处于登录状态 -->
 <view wx:else class="container">
 <view class="shareTop">
-  <view class="shareBtn2 btn">发布</view>
+  <view class="shareBtn2 btn"> 发布</view>
   <view class="shareBnt1 btn">存草稿</view>
 </view>
 <!-- 分享，带标题，内容，图片 -->
 <view class="shareBody">
-  <text>这是分享内容</text>
+  <view class="shareBB">
+    <view class="shareTitle">
+        <input class="shareTT" focus placeholder="标题" value="{{shareTitle}}"/>
+    </view>
+    <view class="divLine"></view>
+    <view class="shareText">
+       <textarea bindblur="bindTextAreaBlur" auto-height placeholder="分享你在这个地方的故事..."  value="{{shareText}}"/>
+     </view>
+  </view>
+ 
 </view>
 
 <!-- 地址信息显示 -->
 <view class="shareLocal">
-
+  <view class="shareLL">
+   <view class="Limg">
+     <view><image src="/img/location-icon.png"></image></view>
+   </view>
+   <view class="Ltext">
+     <input class="weui-input" placeholder="{{shareLocal}}"  disabled	/>
+    </view>
+    <view class="Rimg">
+     <view><image src="/img/right-arrow.png"></image></view>
+   </view>
+  </view>
 </view>
 
 <!-- 添加标签 -->
 <view class="shareTable">
-  
+  <view class="shareTab">
+    <!-- 类似标题 -->
+  <view class="Taltext">
+    <view class="Tbtitle"><view class="tbb">#添加话题（推荐）</view></view>
+    <view class="Tbimg">
+     <view><image src="/img/right-arrow2.png"></image></view>
+   </view>
+  </view>
+  <view class="divLine"></view>
+   <!-- 话题模块提供选择 -->
+   <view class="table">
+
+   </view>
+  </view>
 </view>
 
 </view>

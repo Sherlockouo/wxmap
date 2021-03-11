@@ -7,7 +7,8 @@
     "pages/myinfo/myinfo",
     "pages/message/message",
     "components/login",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/test/test"
   ],
   "permission": {
     "scope.userLocation": {

@@ -88,13 +88,128 @@
   height: 8%;
   background-color: white;
   border-radius: 8px;
+  /* background-image: url("/img/location-icon.png"); */
+  display: flex;
+  line-height: 8%;
+}
+.shareLL{
+  display: flex;
+  margin: 0 auto;
+  width: 94%;
+  height: 100%;
+}
+.Limg
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  line-height: 100%;
+  /* margin:2%; */
+}
+.Ltext{
+  width: 85%;
+}
+.Rimg{
+  float:right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  line-height: 100%;
+  /* margin:2%; */
+}
+.Rimg image
+{
+  width: 15px;
+  height:15px;
+}
+.Limg image
+{
+  width: 25px;
+  height:25px;
+}
+.weui-input
+{
+  font-size: 14px;
+  height: 100%;
+  width: 100%;
 }
 
 .shareTable
 {
   margin: 3% auto;
   width: 98%;
-  height: 15%;
+  height: 18%;
   background-color: white;
   border-radius: 8px;
+}
+
+/* 中间输入内容的样式 */
+.shareBB
+{
+  margin: 0 auto;
+  width: 94%;
+  height: 100%;
+  /* background: chartreuse; */
+}
+.shareTitle input
+{
+  height: 50px;
+  font-weight: 600;
+  font-size: 22px;
+  color:#424242;
+}
+.shareText
+{
+  /* background: chocolate; */
+  padding-top: 10px;
+  height: 40%;
+  color: #424242;
+}
+.divLine
+{
+  background: #d6d6d6;
+  width: 100%;
+  height: 5rpx;
+}
+
+/* 标签模块 */
+.shareTab
+{
+  margin: 0 auto;
+  width: 94%;
+  height: 100%;
+}
+.Taltext
+{
+  display: flex;
+  padding: 5px ;
+  height:30%;
+}
+.Tbtitle
+{
+  /* background: chocolate; */
+  width: 91%;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+}
+.Tbtitle .tbb
+{
+  float: left;
+}
+.Tbimg
+{
+  float:right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 9%;
+  line-height: 100%;
+}
+.Tbimg image
+{
+  width: 15px;
+  height: 15px;
 }
