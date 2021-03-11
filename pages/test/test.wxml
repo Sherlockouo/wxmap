@@ -1,8 +1,0 @@
-<!--index.wxml-->
-<view class="retailStore">
-   <view class="cnaps  borderBottom">
-    <text>所在城市</text>
-    <input class='m-bbt' placeholder-class='plhStyle' type='number' maxlength='50' placeholder='' bindinput="bindKeyInput" value='{{province}} {{city}}' disabled></input>
-  </view>
-</view>
- 

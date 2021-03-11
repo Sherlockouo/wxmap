@@ -8,8 +8,14 @@
     "pages/message/message",
     "components/login",
     "pages/login/login",
+<<<<<<< HEAD
     "pages/test/test",
     "pages/detail/detail"
+=======
+    "pages/hoard/hoard",
+    "pages/like/like",
+    "pages/concern/concern"
+>>>>>>> 6b7954deea79b9d89d48a8029cc31c8e8274f8ba
   ],
   "permission": {
     "scope.userLocation": {
