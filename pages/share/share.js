@@ -13,7 +13,7 @@ Page({
     userInfo: {},
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    isHide: true,
+    isHide: false,
     region:[],
     province: '',
     city: '',
@@ -35,20 +35,20 @@ Page({
   onImageLoad: function (e) {
     
   },
-  
-  changeView: function(e){
-    var that = this
-    if(that.data.isHide==true){
-      that.setData({
-        isHide:false
-      })
-    }else{
-      that.setData({
-        isHide:true
-      })
-    }
-    console.log("clicked change view :",that.data.isHide)
-  },
+  // 使页面显现的函数
+  // changeView: function(e){
+  //   var that = this
+  //   if(that.data.isHide==true){
+  //     that.setData({
+  //       isHide:false
+  //     })
+  //   }else{
+  //     that.setData({
+  //       isHide:true
+  //     })
+  //   }
+  //   console.log("clicked change view :",that.data.isHide)
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
