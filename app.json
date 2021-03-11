@@ -10,7 +10,8 @@
     "pages/login/login",
     "pages/hoard/hoard",
     "pages/like/like",
-    "pages/concern/concern"
+    "pages/concern/concern",
+    "pages/table/table"
   ],
   "permission": {
     "scope.userLocation": {
