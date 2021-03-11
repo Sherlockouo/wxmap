@@ -33,28 +33,28 @@ Page({
     scale: defaultScale,
     markers: [
       {
-        iconPath: "/resources/others.png",
+        iconPath: "/img/drag-icon.png",
         id: 0,
         latitude: 23.099994,
         longitude: 113.324520,
         width: 50,
         height: 50
       },{
-        iconPath: "/resources/others.png",
+        iconPath: "/img/drag-icon.png",
         id: 0,
         latitude: 30.099994,
         longitude: 103.324520,
         width: 50,
         height: 50
       },{
-        iconPath: "/resources/others.png",
+        iconPath: "/img/drag-icon.png",
         id: 0,
         latitude: 30.399994,
         longitude: 103.324520,
         width: 50,
         height: 50
       },{
-        iconPath: "/resources/others.png",
+        iconPath: "/img/drag-icon.png",
         id: 0,
         latitude: 30.019994,
         longitude: 103.324520,
@@ -347,10 +347,14 @@ Page({
         })
       }
     }
+
     wx.showModal({
       title: '提示',
       content: '你点击了marker',
       showCancel: false,
+    })
+    wx.navigateTo({
+      url: '/pages/detail/detail',
     })
   },
 
@@ -418,7 +422,11 @@ Page({
       // return;
     }
   },
-
+  // 跳转到分享界面
+  toShare :function(e)
+  {
+    wx.navigateTo({url:'/pages/share/share'});
+  },
   /**
    * 点击控件时触发
    */

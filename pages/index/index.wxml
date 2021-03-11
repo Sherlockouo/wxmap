@@ -18,10 +18,14 @@
     <!--定位当前位置-->
     <cover-view class='cover-layout' bindtap='selfLocationClick'>
       <cover-image class='self-location' src='/img/self-location.png'></cover-image>
-    </cover-view>
+    </cover-view> 
+   
   </view>
-
-    <!--底部布局-->
+  <view class="share-btn" >
+      <view bindtap="toShare"><image  src="/img/home-btn.png"></image></view>
+   </view>
+ 
+    <!-- 底部布局 -->
     <view class='bottom-layout' id='bottom-layout'>
     <view class='bottom-wrapper'>
       <view upload-wrapper wx:if='{{showConfirm}}'>
@@ -54,5 +58,5 @@
         </form>
       </view>
     </view>
-  </view>
+</view>
 </view>

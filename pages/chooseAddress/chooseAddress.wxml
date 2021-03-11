@@ -1,7 +1,7 @@
 <!--pages/chooseAddress/chooseAddress.wxml-->
 <view class='search-address-container'>
   <view class='input-address-wrapper' id='input-address-layout'>
-    <image class='address-image' src='../../img/location-icon.png'></image>
+    <image class='address-image' src='/img/location-icon.png'></image>
     <input class='input-address gray-text' placeholder='您要在哪儿上报' bindinput='bindAddressInput' value='{{inputAddress}}' placeholder-style='color:#999'></input>
     <view class='cancel-wrapper' bindtap='deleteInput' wx:if='{{inputAddress}}'>
       <image class='delete-input' src='../../img/delete.png'></image>

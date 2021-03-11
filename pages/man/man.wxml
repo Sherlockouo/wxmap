@@ -35,26 +35,22 @@
       </view>   
   </view>
   <view class="stare"> 
-    <view class="hoard usercare">
-      <navigator url="/pages/hoard/hoard">
+    <view class="hoard usercare" bindtap="toH">
       <view><image class="usericon" src="/img/hoard.png">
       </image></view>
       <text>收藏</text>
-      </navigator>
     </view>
-    <view class="concern usercare">
-      <navigator url="/pages/concern/concern">
+    <view class="concern usercare" bindtap="toC">
+     
       <view><image class="usericon" src="/img/concern.png">
       </image></view>
       <text>关注</text>
-    </navigator>
     </view>
-    <view class="like usercare">
-      <navigator url="/pages/like/like">
+    <view class="like usercare" bindtap="toL">
+
       <view><image class="usericon" src="/img/like.png">
       </image></view>
       <text>点赞</text>
-    </navigator>
     </view>
   </view>
 

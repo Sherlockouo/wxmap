@@ -161,6 +161,7 @@ page{
   background: #fff;
   text-align: center;
   font-size: 16px;
+  border-bottom: #cecece 3rpx solid;
 }
 /* .navbar .item{
   position: relative;

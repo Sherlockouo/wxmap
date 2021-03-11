@@ -6,12 +6,13 @@
     "pages/man/man",
     "pages/myinfo/myinfo",
     "pages/message/message",
-    "components/login",
-    "pages/login/login",
+    "pages/test/test",
+    "pages/detail/detail",
     "pages/hoard/hoard",
     "pages/like/like",
     "pages/concern/concern",
-    "pages/table/table"
+    "pages/table/table",
+    "pages/trends/trends"
   ],
   "permission": {
     "scope.userLocation": {
@@ -36,8 +37,8 @@
         "selectedIconPath": "/img/map_h.png"
       },
       {
-        "pagePath": "pages/share/share",
-        "text": "分享趣事",
+        "pagePath": "pages/trends/trends",
+        "text": "发现附近",
         "iconPath": "/img/add.png",
         "selectedIconPath": "/img/add_h.png"
       },
@@ -50,5 +51,6 @@
     ]
   },
   "style": "v2",
+  "plugins": {},
   "sitemapLocation": "sitemap.json"
 }

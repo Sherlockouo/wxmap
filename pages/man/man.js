@@ -12,6 +12,7 @@ Page({
     isHide: false,
     navbar: ['我的分享', '失物招领'],
     currentTab: 0,
+    tal:0
   },
   navbarTap: function(e){
     this.setData({
@@ -194,6 +195,25 @@ Page({
   myinfopage:function(){
     wx.navigateTo({
       url: '/pages/myinfo/myinfo',
+    })
+  },
+  toH :function(e)
+  {
+    wx.navigateTo({
+      url: '/pages/hoard/hoard'
+    })
+   
+  },
+  toC :function(e)
+  {
+    wx.navigateTo({
+      url: '/pages/concern/concern'
+    })
+  },
+  toL :function(e)
+  {
+    wx.navigateTo({
+      url: '/pages/like/like'
     })
   },
 
