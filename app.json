@@ -8,7 +8,9 @@
     "pages/message/message",
     "components/login",
     "pages/login/login",
-    "pages/test/test"
+    "pages/hoard/hoard",
+    "pages/like/like",
+    "pages/concern/concern"
   ],
   "permission": {
     "scope.userLocation": {
