@@ -213,3 +213,25 @@
   width: 15px;
   height: 15px;
 }
+
+/* buttom layout */
+.bottom-layout {
+  width: 100%;
+}
+
+.bottom-wrapper {
+  width: 100%;
+}
+
+#share-icon {
+  width: 100rpx;
+  height: 100rpx;
+}
+#share-icon{
+  position: absolute;
+  /* width: 210rpx; */
+  /* height: 210rpx; */
+  left: 40%;
+  /* right: 50%; */
+  bottom: 30rpx;
+}
