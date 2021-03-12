@@ -64,6 +64,9 @@ Page({
     ],
     vaHe:0,  //导航菜单高度
     inputHe:0,  //输入框高度
+    Sheight:0,
+    Swidth:0,
+    ssw:0,
     showTopTip: true,
     warningText: '搜索发现更多地方的故事',
     showUpload: true,
@@ -119,10 +122,18 @@ Page({
   },
   onLoad: function (options) {
     var data = wx.getMenuButtonBoundingClientRect()
+    var WH=wx.getSystemInfoSync()
     this.setData({
+      // 获取导航栏高度
       vaHe:data.bottom+10,
       inputHe:data.bottom-data.top,
+      Sheight: (WH.windowHeight),
+      Swidth: (WH.windowWidth)
     })
+    this.setData({
+      ssw: (this.data.Swidth/2)-68
+    })
+    console.log("123 "+this.data.ssw);
     var that = this;
     //检测更新
     that.checkUpdate();
@@ -210,7 +221,7 @@ Page({
         query.select('#home-action-wrapper').boundingClientRect()
         query.exec(function (res) {
           //res就是 所有标签为mjltest的元素的信息 的数组
-          consoleUtil.log(res+"sdfsdf");
+          consoleUtil.log(res);
           that.setData({
             homeActionLeftDistance: ((windowWidth - res.windowWidth) / 2) + 'px'
           })
