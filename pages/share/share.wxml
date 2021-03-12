@@ -37,6 +37,10 @@
     <view class="shareText">
        <textarea bindblur="bindTextAreaBlur" auto-height placeholder="分享你在这个地方的故事..."  value="{{shareText}}"/>
      </view>
+     <view class="shareImg">
+       <view class="imgbox"><image src="/img/add-img1.png"></image></view>
+       <view class="imgbox"><image src="/img/add-img.png"></image></view>
+     </view>
   </view>
  
 </view>
@@ -51,7 +55,7 @@
      <input class="weui-input" placeholder="{{shareLocal}}"  disabled	/>
     </view>
     <view class="Rimg">
-      <navigator url="/pages/chooseAddress/chooseAddress"><view><image src="/img/right-arrow.png"></image></view></navigator>
+      <view bindtap="Slocal"><image src="/img/right-arrow.png"></image></view>
    </view>
   </view>
 </view>
@@ -63,7 +67,7 @@
   <view class="Taltext">
     <view class="Tbtitle"><view class="tbb">#添加话题（推荐）</view></view>
     <view class="Tbimg">
-    <navigator url="/pages/table/table"><view><image src="/img/right-arrow2.png"></image></view></navigator>
+    <view bindtap="Stable"><image src="/img/right-arrow2.png"></image></view>
    </view>
   </view>
   <view class="divLine"></view>

@@ -227,11 +227,18 @@
   width: 100rpx;
   height: 100rpx;
 }
-#share-icon{
-  position: absolute;
-  /* width: 210rpx; */
-  /* height: 210rpx; */
-  left: 40%;
-  /* right: 50%; */
-  bottom: 30rpx;
+
+
+.shareImg{
+  /* background: #fb9d39; */
+  height: 38%;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+
+}
+.imgbox image
+{
+  width: 240rpx;
+  height: 240rpx;
 }

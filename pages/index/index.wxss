@@ -49,7 +49,7 @@
   width: 100rpx;
   height: 100rpx;
   position: absolute;
-  bottom: 20px;
+  bottom: 160px;
   left: 20px;
   /* display: flex;
   justify-content: center;
@@ -746,7 +746,7 @@ button::after {
    justify-content: center;
    justify-items: center;
 }
-.share-btn image{
+.share-btn cover-image{
   width: 230rpx;
   height: 230rpx;
 }

@@ -31,9 +31,17 @@ Page({
     var that = this;
      
   },
-
-  onImageLoad: function (e) {
-    
+  Stable :function(e)
+  {
+    wx.navigateTo({
+      url: '/pages/table/table'
+    })
+  },
+  Slocal :function(e)
+  {
+    wx.navigateTo({
+      url: '/pages/chooseAddress/chooseAddress'
+    })
   },
   // 使页面显现的函数
   // changeView: function(e){

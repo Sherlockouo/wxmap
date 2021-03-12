@@ -16,14 +16,14 @@
       bindtap='bindMapTap' style="position: relative;">
     </map>
     <!--定位当前位置-->
-    <cover-view class='cover-layout' bindtap='selfLocationClick'>
-      <cover-image class='self-location' src='/img/self-local.png'></cover-image>
+    <cover-view class='cover-layout' >
+      <cover-image bindtap='selfLocationClick' class='self-location' src='/img/self-local.png'></cover-image>
     </cover-view> 
+    <cover-view class="share-btn" >
+     <cover-view><cover-image bindtap="toShare"  src="/img/share.png"></cover-image></cover-view>
+    </cover-view>
   </view>
-  <view class="share-btn" >
-     <view><image bindtap="toShare"  src="/img/share.png"></image></view>
-    </view>
- 
+  
  
     <!-- 底部布局 -->
     <view class='bottom-layout' id='bottom-layout'>

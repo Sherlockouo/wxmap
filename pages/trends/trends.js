@@ -5,9 +5,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    navbar: [{
+      id:1,
+      imgurl:"https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00528-2613.jpg",
+      title:"这是title",
+      handimg:"",
+      content:"天天啊天台吐奶塔内",
+      like:10,
+      concern:10
+    },
+    {
+      id:2,
+      imgurl:"https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00523-2175.jpg",
+      title:"这是title",
+      handimg:"",
+      content:"天天啊天台吐奶塔内",
+      like:10,
+      concern:10
+    }
+    ],
+    currentTab: 0,
+    tal:0,
+    ac1:1,
+    ac2:0,
+    shareCount:5,
+    lostCount:0
   },
-
+  navbarTap: function(e){
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx
+    })
+  },
+  active1:function(e)
+  {
+    this.setData({
+      ac1:1,
+      ac2:0,
+      currentTab: 0
+    })
+  },
+  active2:function(e)
+  {
+    this.setData({
+      ac1:0,
+      ac2:1,
+      currentTab: 1
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

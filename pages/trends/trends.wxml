@@ -1,2 +1,31 @@
-<!--pages/trends/trends.wxml-->
-<text>发现附近的一些记录，和失物招领信息</text>
+<view class="bottombox">
+    <!--导航条-->
+  <view class="navbar">
+       <!-- <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view> -->
+       <view class="item title1  {{ac1==1 ? 'activeL' : ''}}" bindtap="active1" >附近分享</view>
+       <view class="item title2 {{ac2==1 ? 'activeR' : ''}}"  bindtap="active2">失物信息</view>
+  </view>
+ 
+<!--附近分享-->
+<view hidden="{{currentTab!==0}}" class="tab1">
+  <view wx:if="{{!shareCount}}">附近未发布任何内容哦，快来发送吧！</view>
+  <view wx:else class="conter">
+    终于有内容了
+    <view wx:for="{{navbar}}" data-idx="{{index}}" class="item" wx:key="id" bindtap="navbarTap">
+      {{item.title}}
+    </view>
+  </view>
+</view>
+ 
+<!--失物信息-->
+  <view hidden="{{currentTab!==1}}" class="tab2">
+    <view wx:if="{{!lostCount}}">失物招领还未发布任何内容哦~</view>
+  <view wx:else class="conter">
+    终于有内容了
+    <view wx:for="{{navbar}}" data-idx="{{index}}" class="item" wx:key="id" bindtap="navbarTap">
+      {{item.title}}
+    </view>
+  </view>
+    
+</view>
+</view>

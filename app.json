@@ -39,8 +39,8 @@
       {
         "pagePath": "pages/trends/trends",
         "text": "发现附近",
-        "iconPath": "/img/add.png",
-        "selectedIconPath": "/img/add_h.png"
+        "iconPath": "/img/search2.png",
+        "selectedIconPath": "/img/search2_h.png"
       },
       {
         "pagePath": "pages/man/man",

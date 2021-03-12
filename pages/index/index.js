@@ -401,6 +401,7 @@ Page({
     })
     //必须请求定位，改变中心点坐标
     that.requestLocation();
+    console.log("点击");
   },
 
   /**
