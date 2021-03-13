@@ -8,19 +8,19 @@ Page({
     navbar: [{
       id:1,
       imgurl:"https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00528-2613.jpg",
-      title:"这是title",
-      handimg:"",
-      content:"天天啊天台吐奶塔内",
-      like:10,
+      title:"这是title1",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog9.jpg",
+      username:"Frightly",
+      like:1034,
       concern:10
     },
     {
       id:2,
       imgurl:"https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00523-2175.jpg",
-      title:"这是title",
-      handimg:"",
-      content:"天天啊天台吐奶塔内",
-      like:10,
+      title:"这是title2",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      username:"Brank",
+      like:112,
       concern:10
     }
     ],
@@ -35,6 +35,7 @@ Page({
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     })
+    console.log(e.currentTarget.dataset);
   },
   active1:function(e)
   {
@@ -50,6 +51,12 @@ Page({
       ac1:0,
       ac2:1,
       currentTab: 1
+    })
+  },
+  goDetail:function(e)
+  {
+    wx.navigateTo({
+      url: '/pages/detail/detail',
     })
   },
   /**

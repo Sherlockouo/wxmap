@@ -1,3 +1,35 @@
-<!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
-<text>这个页面写 发布的动态的详情页面 逻辑是这个样子的 点击地图上的marker 跳转到详情页展示出来。</text>
+<view class="top" style="height:{{vaHe}}px">
+  <view class="deBack">
+    <view bindtap="deback">
+      <image src="/img/left-arrow.png" ></image>
+    </view>
+  </view>
+  <view class="deMessage">
+    <view class="outimg" style="height:{{vaHe}}px">
+      <view class="inimg" mode="widthFix">
+        <image src="/img/fu.png"></image>
+      </view>
+    </view>
+    <view class="dname" style="height:{{vaHe}}px; line-height:{{vaHe}}px;text-align:center">{{myname}}</view>
+  </view>
+  <view class="concern">
+    <view class="inconcern">+关注</view>
+  </view>
+</view>
+
+<view class="container-layout">
+  <view>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" bindtap="preview" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="container-text">
+    <view class="title">{{essay_title}}</view>
+    <view class="divLine"></view>
+    <view class="essay" >{{essay_text}}</view>
+  </view>
+</view>

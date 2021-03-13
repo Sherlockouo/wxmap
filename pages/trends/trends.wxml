@@ -7,23 +7,41 @@
   </view>
  
 <!--附近分享-->
-<view hidden="{{currentTab!==0}}" class="tab1">
+<view hidden="{{currentTab==1}}" class="tab1">
   <view wx:if="{{!shareCount}}">附近未发布任何内容哦，快来发送吧！</view>
   <view wx:else class="conter">
-    终于有内容了
-    <view wx:for="{{navbar}}" data-idx="{{index}}" class="item" wx:key="id" bindtap="navbarTap">
-      {{item.title}}
+    <view wx:for="{{navbar}}" data-idx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+           <view class="wenzhang">
+             <view class="myimg"><image src="{{item.imgurl}}" mode="scaleToFill" bindtap="goDetail"></image></view>
+             <view class="mytitle">{{item.title}}</view>
+             <view class="mymessage">
+               <view class="myhand"><image src="{{item.handimg}}" mode="scaleToFill"></image></view>
+               <view class="myname">{{item.username}}</view>
+               <view class="hart"><view><image src="/img/bottom-unpraise.png"></image></view></view>
+               <view class="like">{{item.like}}</view>
+             </view>
+           </view>
+           <view class="wenzhang">
+            <view class="myimg"><image src="{{item.imgurl}}" mode="scaleToFill" bindtap="goDetail"></image></view>
+             <view class="mytitle">{{item.title}}</view>
+             <view class="mymessage">
+               <view class="myhand"><image src="{{item.handimg}}" mode="scaleToFill"></image></view>
+               <view class="myname">{{item.username}}</view>
+               <view class="hart"><view><image src="/img/bottom-unpraise.png"></image></view></view>
+               <view class="like">{{item.like}}</view>
+             </view>
+       
+           </view>
     </view>
   </view>
 </view>
  
 <!--失物信息-->
-  <view hidden="{{currentTab!==1}}" class="tab2">
+  <view hidden="{{currentTab==0}}" class="tab2">
     <view wx:if="{{!lostCount}}">失物招领还未发布任何内容哦~</view>
   <view wx:else class="conter">
-    终于有内容了
-    <view wx:for="{{navbar}}" data-idx="{{index}}" class="item" wx:key="id" bindtap="navbarTap">
-      {{item.title}}
+    <view wx:for="{{navbar}}" data-idx="{{index}}" class="text-item" wx:key="id" bindtap="navbarTap">
+      <view class="wenzhang"></view>
     </view>
   </view>
     

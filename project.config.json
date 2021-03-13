@@ -82,6 +82,12 @@
         {
           "name": "发现附近界面",
           "pathName": "pages/trends/trends",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "页面结点，显示文章",
+          "pathName": "pages/detail/detail",
           "scene": null
         }
       ]

@@ -12,7 +12,8 @@
     "pages/like/like",
     "pages/concern/concern",
     "pages/table/table",
-    "pages/trends/trends"
+    "pages/trends/trends",
+    "pages/preview/preview"
   ],
   "permission": {
     "scope.userLocation": {
