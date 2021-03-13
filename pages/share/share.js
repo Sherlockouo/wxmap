@@ -17,6 +17,7 @@ Page({
     region:[],
     province: '',
     city: '',
+    street: '',
     latitude: '',
     longitude: '',
     shareTitle:"",
@@ -29,7 +30,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-     
+    that.setData({
+      shareLocal:options.address,
+      city: options.city,
+      street: options.street
+    })
   },
   Stable :function(e)
   {
@@ -40,7 +45,7 @@ Page({
   Slocal :function(e)
   {
     wx.navigateTo({
-      url: '/pages/chooseAddress/chooseAddress'
+      url: '/pages/chooseAddress/chooseAddress?city='+this.data.city+'&street='+this.data.street
     })
   },
   // 使页面显现的函数
@@ -104,5 +109,57 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 预览图片
+   */
+  previewImage: function () {
+    var that = this;
+    wx.previewImage({
+      urls: [that.data.warningIconUrl],
+    })
+  },
+
+  /**
+   * 选择照片
+   */
+  takePhoto: function () {
+    var that = this;
+    wx.chooseImage({
+      sizeType: sizeType[1],
+      count: 1,
+      success: function (res) {
+        that.setData({
+          uploadImagePath: res.tempFilePaths[0],
+        })
+        that.adjustViewStatus(false, true, false);
+      },
+    })
+  },
+
+  /**
+   * 删除已选照片
+   */
+  deleteSelectImage: function () {
+    this.resetPhoto();
+  },
+
+  /**
+   * 重置照片
+   */
+  resetPhoto: function () {
+    var that = this;
+    that.setData({
+      uploadImagePath: '',
+    })
+  },
+
+  previewSelectImage: function () {
+    var that = this;
+    wx.previewImage({
+      urls: [that.data.uploadImagePath],
+    })
   }
+
 })

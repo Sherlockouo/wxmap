@@ -108,6 +108,7 @@
   /* margin:2%; */
 }
 .Ltext{
+  padding-left: 10px;
   width: 85%;
 }
 .Rimg{

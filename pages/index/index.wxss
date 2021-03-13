@@ -13,7 +13,10 @@
 .map-wrapper {
   width: 100%;
 }
-
+.delete-input{
+  width: 50rpx;
+  height: 50rpx;
+}
 .map {
    
   height: 100%;
@@ -73,10 +76,12 @@
   height: 210rpx;
 }
 
-.trumpet-icon {
+.input-address gray-text {
   margin: 10px;
 }
-
+.input-address gray-text input{
+  width: max-content;
+}
 .tip-text {
   flex: 1;
   color: #666;

@@ -25,6 +25,13 @@ var sizeType = [
 
 Page({
   data: {
+    searchContentHeight: '0px',
+    resultList: [],
+    //输入绑定同时显示隐藏删除按钮
+    inputAddress: '',
+    gpsAddress: '',
+    city: '',
+    street: '',
     userInfo: {},
     hasUserInfo: false,
     longitude: '',
@@ -157,6 +164,13 @@ Page({
       }
     }
     that.scopeSetting();
+    this.setData({
+      city: options.city,
+      street: options.street
+    })
+    consoleUtil.log('city--->' + this.data.city + '---street--->' + this.data.street);
+    this.getSearchContentHeight();
+    this.loadSdk();
   },
   
 
@@ -190,6 +204,11 @@ Page({
    */
   onHide: function () {
 
+  },
+
+  onReady: function(){
+    //默认按照当前street(街道)搜索
+    this.suggestionSearch(this.data.street);
   },
 
   /**
@@ -437,7 +456,15 @@ Page({
   // 跳转到分享界面
   toShare :function(e)
   {
-    wx.navigateTo({url:'/pages/share/share'});
+    var that = this;
+    // that.adjustViewStatus(false, true, false);
+    that.updateCenterLocation(that.data.latitude, that.data.longitude);
+    that.regeocodingAddress();
+    console.log('shit ',that.data.centerAddressBean)
+    wx.navigateTo({
+      // url:'/pages/share/share?city='
+      url:'/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street+'&address='+that.data.centerAddressBean.address,
+  });
   },
   /**
    * 点击控件时触发
@@ -469,57 +496,6 @@ Page({
 
   onShareAppMessage: function (res) {
     
-  },
-
-  /**
-   * 预览图片
-   */
-  previewImage: function () {
-    var that = this;
-    wx.previewImage({
-      urls: [that.data.warningIconUrl],
-    })
-  },
-
-  /**
-   * 选择照片
-   */
-  takePhoto: function () {
-    var that = this;
-    wx.chooseImage({
-      sizeType: sizeType[1],
-      count: 1,
-      success: function (res) {
-        that.setData({
-          uploadImagePath: res.tempFilePaths[0],
-        })
-        that.adjustViewStatus(false, true, false);
-      },
-    })
-  },
-
-  /**
-   * 删除已选照片
-   */
-  deleteSelectImage: function () {
-    this.resetPhoto();
-  },
-
-  /**
-   * 重置照片
-   */
-  resetPhoto: function () {
-    var that = this;
-    that.setData({
-      uploadImagePath: '',
-    })
-  },
-
-  previewSelectImage: function () {
-    var that = this;
-    wx.previewImage({
-      urls: [that.data.uploadImagePath],
-    })
   },
 
   /**
@@ -555,18 +531,14 @@ Page({
    */
   regeocodingAddress: function () {
     var that = this;
-    //不在发布页面，不进行逆地址解析，节省调用次数，腾讯未申请额度前一天只有10000次
-    if (!that.data.showConfirm) {
-      return;
-    }
+    //不在发布页面，不进行逆地址解析，节省调用次数，腾讯未申请额度前一天只有10000次    
     //通过经纬度解析地址
     qqmapsdk.reverseGeocoder({
       location: {
         latitude: that.data.centerLatitude,
         longitude: that.data.centerLongitude
       },
-      success: function (res) {
-        console.log(res);
+      success: function (res,data) {
         that.setData({
           centerAddressBean: res.result,
           selectAddress: res.result.formatted_addresses.recommend,
@@ -666,5 +638,106 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+
+  /**
+   * 初始化sdk
+   */
+  loadSdk: function () {
+    qqmapsdk = new QQMapWX({
+      key: constant.tencentAk
+    });
+  },
+
+  /**
+   * 获取内容视图高度
+   */
+  getSearchContentHeight: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        windowHeight = res.windowHeight;
+        //创建节点选择器
+        var query = wx.createSelectorQuery();
+        //选择id
+        query.select('#input-address-layout').boundingClientRect();
+        query.exec(function (res) {
+          //res就是 所有标签为mjltest的元素的信息 的数组
+          that.setData({
+            searchContentHeight: (windowHeight - res[0].height) + 'px'
+          })
+        })
+      },
+    })
+  },
+
+  /**
+   * 绑定输入框
+   */
+  bindAddressInput: function (e) {
+    var that = this;
+    consoleUtil.log(e.detail.value);
+    that.setData({
+      inputAddress: e.detail.value,
+    })
+    if (e.detail.value){
+      that.suggestionSearch(e.detail.value);
+    }else{
+      that.suggestionSearch(that.data.street);
+    }
+  },
+
+  /**
+   * 热词检索
+   */
+  suggestionSearch: function (searchValue) {
+    var that = this;
+    consoleUtil.log(qqmapsdk);
+    qqmapsdk.getSuggestion({
+      keyword: searchValue,
+      region: that.data.city,
+      region_fix: 1,
+      policy: 1,
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          resultList: res.data
+        })
+      },
+      fail: function (res) {
+        console.log(res);
+      }
+    });
+  },
+
+  /**
+   * 删除输入内容
+   */
+  deleteInput: function () {
+    that = this
+    this.setData({
+      inputAddress: '',
+    })
+    that.suggestionSearch(that.data.street);
+  },
+
+  /**
+   * item点击事件,将地址回调到地图页面
+   */
+  itemAddressClick: function(e){
+    var that = this;
+    consoleUtil.log(e);
+    consoleUtil.log(e.currentTarget.id);
+    var item = that.data.resultList[Number(e.currentTarget.id)];
+    consoleUtil.log(item);
+    //将数据设置到地图页面
+    var pages = getCurrentPages();
+    var prePage = pages[pages.length - 2];
+    prePage.setData({
+      callbackAddressInfo: item
+    })
+    wx.navigateBack({
+      
+    })
+  },
 })

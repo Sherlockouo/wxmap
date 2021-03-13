@@ -100,10 +100,11 @@ Page({
    */
   suggestionSearch: function (searchValue) {
     var that = this;
-    consoleUtil.log(qqmapsdk);
+    // consoleUtil.log(qqmapsdk);
     qqmapsdk.getSuggestion({
       keyword: searchValue,
       region: that.data.city,
+      // region: "四川省成都市郫都区",
       region_fix: 1,
       policy: 1,
       success: function (res) {
@@ -133,15 +134,15 @@ Page({
    */
   itemAddressClick: function(e){
     var that = this;
-    consoleUtil.log(e);
-    consoleUtil.log(e.currentTarget.id);
+    // consoleUtil.log(e);
+    // consoleUtil.log(e.currentTarget.id);
     var item = that.data.resultList[Number(e.currentTarget.id)];
-    consoleUtil.log(item);
+    // consoleUtil.log('item ',item.address);
     //将数据设置到地图页面
     var pages = getCurrentPages();
     var prePage = pages[pages.length - 2];
     prePage.setData({
-      callbackAddressInfo: item
+      shareLocal: item.address
     })
     wx.navigateBack({
       
