@@ -1,49 +1,110 @@
 <view class="bottombox">
-    <!--导航条-->
+  <!--导航条-->
   <view class="navbar">
-       <!-- <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view> -->
-       <view class="item title1  {{ac1==1 ? 'activeL' : ''}}" bindtap="active1" >附近分享</view>
-       <view class="item title2 {{ac2==1 ? 'activeR' : ''}}"  bindtap="active2">失物信息</view>
+    <!-- <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view> -->
+    <view class="item title1  {{ac1==1 ? 'activeL' : ''}}" bindtap="active1">附近分享</view>
+    <view class="item title2 {{ac2==1 ? 'activeR' : ''}}" bindtap="active2">失物信息</view>
   </view>
- 
-<!--附近分享-->
-<view hidden="{{currentTab==1}}" class="tab1">
-  <view wx:if="{{!shareCount}}">附近未发布任何内容哦，快来发送吧！</view>
-  <view wx:else class="conter">
-    <view wx:for="{{navbar}}" data-idx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
-           <view class="wenzhang">
-             <view class="myimg"><image src="{{item.imgurl}}" mode="scaleToFill" bindtap="goDetail"></image></view>
-             <view class="mytitle">{{item.title}}</view>
-             <view class="mymessage">
-               <view class="myhand"><image src="{{item.handimg}}" mode="scaleToFill"></image></view>
-               <view class="myname">{{item.username}}</view>
-               <view class="hart"><view><image src="/img/bottom-unpraise.png"></image></view></view>
-               <view class="like">{{item.like}}</view>
-             </view>
-           </view>
-           <view class="wenzhang">
-            <view class="myimg"><image src="{{item.imgurl}}" mode="scaleToFill" bindtap="goDetail"></image></view>
-             <view class="mytitle">{{item.title}}</view>
-             <view class="mymessage">
-               <view class="myhand"><image src="{{item.handimg}}" mode="scaleToFill"></image></view>
-               <view class="myname">{{item.username}}</view>
-               <view class="hart"><view><image src="/img/bottom-unpraise.png"></image></view></view>
-               <view class="like">{{item.like}}</view>
-             </view>
-       
-           </view>
+
+  <!--附近分享-->
+  <view hidden="{{cTab==1}}" class="tab1">
+    <view wx:if="{{!shareCount}}" class="conter">附近未发布任何内容哦，快来发送吧！</view>
+    <view wx:else class="container">
+      <view class="conterL">
+        <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2==0}}">
+            <view class="myimg" style="height:auto">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+            </view>
+            <view class="mytitle">{{item.title}}</view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="conterR">
+        <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2!=0}}">
+            <view class="myimg" style="height:auto">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+            </view>
+            <view class="mytitle">{{item.title}}</view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
     </view>
   </view>
-</view>
- 
-<!--失物信息-->
-  <view hidden="{{currentTab==0}}" class="tab2">
-    <view wx:if="{{!lostCount}}">失物招领还未发布任何内容哦~</view>
-  <view wx:else class="conter">
-    <view wx:for="{{navbar}}" data-idx="{{index}}" class="text-item" wx:key="id" bindtap="navbarTap">
-      <view class="wenzhang"></view>
+
+  <!--失物信息-->
+  <view hidden="{{cTab==0}}" class="tab2">
+    <view wx:if="{{!lostCount}}" class="conter">失物招领还未发布任何内容哦~</view>
+    <view wx:else class="container">
+      <view class="conterL">
+        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2==0}}">
+            <view class="myimg" style="height:auto">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+            </view>
+            <view class="mytitle">{{item.title}}</view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="conterR">
+        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2!=0}}">
+            <view class="myimg" style="height:auto">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+            </view>
+            <view class="mytitle">{{item.title}}</view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
     </view>
   </view>
-    
-</view>
 </view>

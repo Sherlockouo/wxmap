@@ -2,7 +2,7 @@
 .top{
   width: 100%;
   display: flex;
-  background: yellow;
+  background-color: #40aef0;
 }
 .deBack
 {
