@@ -18,17 +18,27 @@
 </view>
 
 <view class="container-layout">
-  <scroll-view scroll-x="true">
-    <view class="banner" scroll-x="true">
-      <block wx:for="{{ essayall.imgUrls}}">
-        <view class="banner_Item">
-         <view><image src="{{item}}" class="slide-image" bindtap='imgClick' mode="widthFix" /></view> 
+  <swiper class="container" indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" interval="{{interval}}"
+    duration="{{duration}}" bindchange='onSlideChange'>
+    <block wx:for="{{essayall.imgUrls}}" wx:key="index">
+      <swiper-item class="vol-swiper-item" bindchange="">
+        <view class="vol-card">
+          <image class="vol-picture" src="{{item}}" mode="aspectFill" bindtap='imgClick' data-num="{{index}}"></image>
         </view>
-      </block>
-    </view>
-  </scroll-view>
+      </swiper-item>
+    
+    </block>
+  </swiper>
+  <view class='bannerNum'>{{(current+1)}}/{{essayall.imgUrls.length}}</view>
   <view class="container-text">
     <view class="title">{{essayall.essay_title}}</view>
+    <scroll-view scroll-x="true">
+      <view class="tabel" scroll-x="true">
+        <block wx:for="{{essayall.tabel}}">
+          <view class="tabeltext"><view>{{item}}</view></view>
+        </block>
+      </view>
+    </scroll-view>
     <view class="divLine"></view>
     <view class="essay">{{essayall.essay_text}}</view>
   </view>

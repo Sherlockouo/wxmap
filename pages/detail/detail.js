@@ -24,7 +24,10 @@ Page({
           'http://www.fjtbkyc.net/mywx/sunny5.jpg'
         ],
         essay_title:"这就是标题啦",
-        essay_text:"花香四溢的春天来了，我的家乡到处是一片欣欣向荣的景象。石川河的柳树开始发芽了，鸡子山的草儿也偷偷地钻了出来，各种各样的花儿也悄悄地开放 了。你看那河的沿岸和山脚下：粉红的桃花、雪白的梨花、娇艳的海棠花......都开得笑盈盈的。",
+        essay_text:"花香四溢的春天来了，我的家乡到处是一片欣欣向荣的景象。石川河的柳树开始发芽了，鸡子山的草儿也偷偷地钻了出来，各种各样的花儿也悄悄地开放 了。你看那河的沿岸和山脚下：粉红的桃花、雪白的梨花、娇艳的海棠花......都开得笑盈盈的。"+
+        "一场春雨过后，柳枝绿了，桃花笑了。山溪水满，水面上时而飘过一二片桃花瓣。天色像玻璃一样嫩碧中透亮。太阳喜眉笑眼地从东半天升腾起来，红得像少女的脸膛，盈盈动人。如诗如画的春色和壮丽多姿的山川，使人感到舒畅，生气勃勃。"+
+        "小园已经有点春意了，首先是荡漾在杨柳枝头的绿雾，其次是清晨飞来的莺声；下过几阵细雨，荒坪又给涂上一层浅浅的颜色，青油油的地，如沙漠上的绿洲，难道这不就是黯淡欲绝的人生里一线生机吗？",
+        tabel:['西华','湖面','秋天','秋风落叶','自然','宁静','成都']
       },
     links: [
       '/pages/preview/preview',
@@ -34,15 +37,22 @@ Page({
   // 点击图片进行预览函数
    //预览图片，放大预览
    imgClick:function(e){
-    var src = e.currentTarget.dataset.src    // 图片路径
+    var src = e.currentTarget.dataset.num  // 图片路径
     var imgList = this.data.essayall.imgUrls // 图片数组
     wx.previewImage({
-      current: src,
+      current: imgList[src],
       urls: imgList
-    // console.log(e.currentTarget.dataset.list);
-    })
+    }) 
   },
+  onSlideChange: function (event) { 
+    var postId = event.detail.current; 
+    // console.log(postId);
+    this.setData({
+      current: event.detail.current
+    })
 
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -93,13 +103,6 @@ Page({
 
     })
 
-  },
-  preview:function(e)
-  {
-    wx.navigateTo({
-      url: '/pages/preview/preview?imgurl='+this.data.imgUrls[0]
-    })
-    console.log(e);
   },
   deback:function(e){
 
