@@ -12,7 +12,8 @@ Page({
     isHide: false,
     navbar: ['我的分享', '失物招领'],
     currentTab: 0,
-    tal:0
+    tal:0,
+    shareCount:5,   //分享的数量
   },
   navbarTap: function(e){
     this.setData({

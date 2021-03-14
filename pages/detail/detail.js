@@ -10,24 +10,37 @@ Page({
     inputHe:0,  //输入框高度
     myname:'Another Drmension',
     current: 0,  //当前所在页面的 index
-    indicatorDots: true, //是否显示面板指示点
-    autoplay: true, //是否自动切换
-    interval: 3000, //自动切换时间间隔
-    duration: 800, //滑动动画时长
-    circular: true, //是否采用衔接滑动
-    imgUrls: [
-      'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',
-
-      'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio3.jpg',
-
-      'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio5.jpg'
-
-    ],
+    // indicatorDots: true, //是否显示面板指示点
+    // autoplay: false, //是否自动切换
+    // interval: 3000, //自动切换时间间隔
+    // duration: 800, //滑动动画时长
+    // circular: true, //是否采用衔接滑动
+    essayall:
+      {
+        imgUrls: [
+          'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',
+          'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio3.jpg',
+          'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio5.jpg',
+          'http://www.fjtbkyc.net/mywx/sunny5.jpg'
+        ],
+        essay_title:"这就是标题啦",
+        essay_text:"花香四溢的春天来了，我的家乡到处是一片欣欣向荣的景象。石川河的柳树开始发芽了，鸡子山的草儿也偷偷地钻了出来，各种各样的花儿也悄悄地开放 了。你看那河的沿岸和山脚下：粉红的桃花、雪白的梨花、娇艳的海棠花......都开得笑盈盈的。",
+      },
     links: [
       '/pages/preview/preview',
     ],
-    essay_title:"这就是标题啦",
-    essay_text:"我特别喜欢春天，春天到了，万物复苏！",
+   
+  },
+  // 点击图片进行预览函数
+   //预览图片，放大预览
+   imgClick:function(e){
+    var src = e.currentTarget.dataset.src    // 图片路径
+    var imgList = this.data.essayall.imgUrls // 图片数组
+    wx.previewImage({
+      current: src,
+      urls: imgList
+    // console.log(e.currentTarget.dataset.list);
+    })
   },
 
   /**

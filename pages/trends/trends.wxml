@@ -14,9 +14,18 @@
         <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail">
+              </image>
+              <cover-view class="inlocal">
+                <cover-view class="localimg">
+                  <cover-image src="/img/location-icon2.png"></cover-image>
+                </cover-view>
+                <cover-view class="localname">
+                  <cover-view class="inlocalname">{{item.local}}</cover-view>
+                </cover-view>
+              </cover-view>
             </view>
-            <view class="mytitle">{{item.title}}</view>
+            <view class="mytitle"><view>{{item.title}}</view></view>
             <view class="mymessage">
               <view class="myhand">
                 <image src="{{item.handimg}}" mode="scaleToFill"></image>
@@ -37,8 +46,16 @@
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+              <cover-view class="inlocal">
+                <cover-view class="localimg">
+                  <cover-image src="/img/location-icon2.png"></cover-image>
+                </cover-view>
+                <cover-view class="localname">
+                  <cover-view class="inlocalname">{{item.local}}</cover-view>
+                </cover-view>
+              </cover-view>
             </view>
-            <view class="mytitle">{{item.title}}</view>
+            <view class="mytitle"><view>{{item.title}}</view></view>
             <view class="mymessage">
               <view class="myhand">
                 <image src="{{item.handimg}}" mode="scaleToFill"></image>
@@ -66,11 +83,20 @@
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+              <cover-view class="inlocal">
+                <cover-view class="localimg">
+                  <cover-image src="/img/location-icon2.png"></cover-image>
+                </cover-view>
+                <cover-view class="localname">
+                  <cover-view class="inlocalname">{{item.local}}</cover-view>
+                </cover-view>
+              </cover-view>
             </view>
-            <view class="mytitle">{{item.title}}</view>
+            <view class="mytitle"><view>{{item.title}}</view></view>
             <view class="mymessage">
               <view class="myhand">
                 <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">
@@ -88,8 +114,16 @@
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+              <cover-view class="inlocal">
+                <cover-view class="localimg">
+                  <cover-image src="/img/location-icon2.png"></cover-image>
+                </cover-view>
+                <cover-view class="localname">
+                  <cover-view class="inlocalname">{{item.local}}</cover-view>
+                </cover-view>
+              </cover-view>
             </view>
-            <view class="mytitle">{{item.title}}</view>
+            <view class="mytitle"><view>{{item.title}}</view></view>
             <view class="mymessage">
               <view class="myhand">
                 <image src="{{item.handimg}}" mode="scaleToFill"></image>

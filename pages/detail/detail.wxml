@@ -1,7 +1,7 @@
 <view class="top" style="height:{{vaHe}}px">
   <view class="deBack">
     <view bindtap="deback">
-      <image src="/img/left-arrow.png" ></image>
+      <image src="/img/left-arrow.png"></image>
     </view>
   </view>
   <view class="deMessage">
@@ -18,18 +18,18 @@
 </view>
 
 <view class="container-layout">
-  <view>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{imgUrls}}">
-        <swiper-item>
-          <image src="{{item}}" class="slide-image" bindtap="preview" />
-        </swiper-item>
+  <scroll-view scroll-x="true">
+    <view class="banner" scroll-x="true">
+      <block wx:for="{{ essayall.imgUrls}}">
+        <view class="banner_Item">
+         <view><image src="{{item}}" class="slide-image" bindtap='imgClick' mode="widthFix" /></view> 
+        </view>
       </block>
-    </swiper>
-  </view>
+    </view>
+  </scroll-view>
   <view class="container-text">
-    <view class="title">{{essay_title}}</view>
+    <view class="title">{{essayall.essay_title}}</view>
     <view class="divLine"></view>
-    <view class="essay" >{{essay_text}}</view>
+    <view class="essay">{{essayall.essay_text}}</view>
   </view>
 </view>

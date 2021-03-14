@@ -1,5 +1,5 @@
 <view wx:if="{{isHide}}">
-    <view wx:if="{{canIUse}}">
+  <view wx:if="{{canIUse}}">
     <view class='header'>
       <image src='/img/name.png'></image>
     </view>
@@ -11,65 +11,73 @@
 
     <view>
       <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="wxlogin">
-      登录
-    </button>
-    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-      注册
-    </button>
+        登录
+      </button>
+      <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+        注册
+      </button>
     </view>
-  
+
   </view>
   <view wx:else>请升级微信版本</view>
 </view>
 
 <view wx:else class="container">
   <view class="userinfo">
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-     <view class="userinfo2">
-       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-       <view class='message' >  
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <view class="userinfo2">
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view class='message'>
         <!-- //bindtap="myinfopage" -->
-      <navigator url="/pages/myinfo/myinfo?userinfoimg={{userInfo.avatarUrl}}" >我的信息</navigator>
-      <!-- 我的信息 -->
-       </view>
-      </view>   
+        <navigator url="/pages/myinfo/myinfo?userinfoimg={{userInfo.avatarUrl}}">我的信息</navigator>
+        <!-- 我的信息 -->
+      </view>
+    </view>
   </view>
-  <view class="stare"> 
+  <view class="stare">
     <view class="hoard usercare" bindtap="toH">
-      <view><image class="usericon" src="/img/hoard.png">
-      </image></view>
+      <view>
+        <image class="usericon" src="/img/hoard.png">
+        </image>
+      </view>
       <text>收藏</text>
     </view>
     <view class="concern usercare" bindtap="toC">
-     
-      <view><image class="usericon" src="/img/concern.png">
-      </image></view>
+
+      <view>
+        <image class="usericon" src="/img/concern.png">
+        </image>
+      </view>
       <text>关注</text>
     </view>
     <view class="like usercare" bindtap="toL">
 
-      <view><image class="usericon" src="/img/like.png">
-      </image></view>
+      <view>
+        <image class="usericon" src="/img/like.png">
+        </image>
+      </view>
       <text>点赞</text>
     </view>
   </view>
 
- <view class="hr"></view>
-
- <view class="bottombox">
+  <view class="hr"></view>
+  <view class="bottombox">
     <!--导航条-->
-  <view class="navbar">
-       <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view>
+    <view class="navbar">
+      <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique"
+        bindtap="navbarTap">{{item}}</view>
+    </view>
+
+    <!--我的分享-->
+    <view hidden="{{currentTab!==0}}" class="tab1">
+      我的分享还未发布任何内容哦
+     
+    </view>
+
+    <!--失物招领-->
+    <view hidden="{{currentTab!==1}}" class="tab2">
+      失物招领还未发布任何内容哦~
+    </view>
   </view>
- 
-<!--我的分享-->
-<view hidden="{{currentTab!==0}}" class="tab1">
-  我的分享还未发布任何内容哦~
-</view>
- 
-<!--失物招领-->
-  <view hidden="{{currentTab!==1}}" class="tab2">
-    失物招领还未发布任何内容哦~
-</view>
-  </view>
+  
 </view>
