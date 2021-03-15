@@ -1,11 +1,10 @@
+<!--导航条-->
+<view class="navbar">
+  <!-- <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view> -->
+  <view class="item title1  {{ac1==1 ? 'activeL' : ''}}" bindtap="active1">附近分享</view>
+  <view class="item title2 {{ac2==1 ? 'activeR' : ''}}" bindtap="active2">失物信息</view>
+</view>
 <view class="bottombox">
-  <!--导航条-->
-  <view class="navbar">
-    <!-- <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view> -->
-    <view class="item title1  {{ac1==1 ? 'activeL' : ''}}" bindtap="active1">附近分享</view>
-    <view class="item title2 {{ac2==1 ? 'activeR' : ''}}" bindtap="active2">失物信息</view>
-  </view>
-
   <!--附近分享-->
   <view hidden="{{cTab==1}}" class="tab1">
     <view wx:if="{{!shareCount}}" class="conter">附近未发布任何内容哦，快来发送吧！</view>
@@ -15,18 +14,19 @@
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail">
-             </image>
+              </image>
             </view>
-              <cover-view class="inlocal">
-                <cover-view class="localimg">
-                  <cover-image src="/img/location-icon2.png"></cover-image>
-                </cover-view>
-                <cover-view class="localname">
-                  <cover-view class="inlocalname">{{item.local}}</cover-view>
-                </cover-view>
-              </cover-view>
-      
-            <view class="mytitle"><view>{{item.title}}</view></view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
             <view class="mymessage">
               <view class="myhand">
                 <image src="{{item.handimg}}" mode="scaleToFill"></image>
@@ -47,17 +47,19 @@
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
-            </view>             
-              <cover-view class="inlocal">
-                <cover-view class="localimg">
-                  <cover-image src="/img/location-icon2.png"></cover-image>
-                </cover-view>
-                <cover-view class="localname">
-                  <cover-view class="inlocalname">{{item.local}}</cover-view>
-                </cover-view>
-              </cover-view>
-           
-            <view class="mytitle"><view>{{item.title}}</view></view>
+            </view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
+
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
             <view class="mymessage">
               <view class="myhand">
                 <image src="{{item.handimg}}" mode="scaleToFill"></image>
@@ -84,15 +86,83 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail">
+              </image>
+            </view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="conterR">
+        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2!=0}}">
+            <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
-              <cover-view class="inlocal">
-                <cover-view class="localimg">
-                  <cover-image src="/img/location-icon2.png"></cover-image>
-                </cover-view>
-                <cover-view class="localname">
-                  <cover-view class="inlocalname">{{item.local}}</cover-view>
-                </cover-view>
-              </cover-view>
+            </view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
+
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- <view wx:else class="container">
+      <view class="conterL">
+        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2==0}}">
+            <view class="myimg" style="height:auto">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+              <view class="inlocal">
+                <view class="localimg">
+                  <image src="/img/location-icon2.png"></image>
+                </view>
+                <view class="localname">
+                  <view class="inlocalname">{{item.local}}</view>
+                </view>
+              </view>
             </view>
             <view class="mytitle"><view>{{item.title}}</view></view>
             <view class="mymessage">
@@ -116,14 +186,14 @@
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
-              <cover-view class="inlocal">
-                <cover-view class="localimg">
-                  <cover-image src="/img/location-icon2.png"></cover-image>
-                </cover-view>
-                <cover-view class="localname">
-                  <cover-view class="inlocalname">{{item.local}}</cover-view>
-                </cover-view>
-              </cover-view>
+              <view class="inlocal">
+                <view class="localimg">
+                  <image src="/img/location-icon2.png"></image>
+                </view>
+                <view class="localname">
+                  <view class="inlocalname">{{item.local}}</view>
+                </view>
+              </view>
             </view>
             <view class="mytitle"><view>{{item.title}}</view></view>
             <view class="mymessage">
@@ -141,6 +211,6 @@
           </view>
         </block>
       </view>
-    </view>
+    </view> -->
   </view>
 </view>

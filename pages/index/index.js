@@ -128,6 +128,7 @@ Page({
     uploadTime: '一分钟前',
   },
   onLoad: function (options) {
+    this.selfLocationClick();
     var data = wx.getMenuButtonBoundingClientRect()
     var WH=wx.getSystemInfoSync()
     this.setData({
@@ -140,7 +141,6 @@ Page({
     this.setData({
       ssw: (this.data.Swidth/2)-68
     })
-    console.log("123 "+this.data.ssw);
     var that = this;
     //检测更新
     that.checkUpdate();
@@ -413,6 +413,7 @@ Page({
    * 回到定位点
    */
   selfLocationClick: function () {
+    // console.log("调用这个函数成功");
     var that = this;
     //还原默认缩放级别
     that.setData({
@@ -420,7 +421,6 @@ Page({
     })
     //必须请求定位，改变中心点坐标
     that.requestLocation();
-    console.log("点击");
   },
 
   /**

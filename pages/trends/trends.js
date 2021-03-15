@@ -69,7 +69,7 @@ Page({
     lostnavbar:[
       {
       id:1,
-      imgurl:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1750936640,4186342694&fm=26&gp=0.jpg",
+      imgurl:"http://www.fjtbkyc.net/mywx/umber.jpg",
       title:"丢失一把雨伞",
       handimg:"http://www.fjtbkyc.net/mywx/services1.png",
       username:"bigSur",
@@ -79,7 +79,7 @@ Page({
       },
       {
         id:1,
-      imgurl:"http://www.fjtbkyc.net/mywx/phonegp.jpg",
+      imgurl:"http://www.fjtbkyc.net/mywx/phone17.jpg",
       title:"捡到一部手机",
       handimg:"http://www.fjtbkyc.net/mywx/konjian.png",
       username:"Jone",

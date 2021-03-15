@@ -752,6 +752,6 @@ button::after {
    justify-items: center;
 }
 .share-btn cover-image{
-  width: 230rpx;
-  height: 230rpx;
+  width: 180rpx;
+  height: 180rpx;
 }

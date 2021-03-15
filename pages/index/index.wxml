@@ -25,7 +25,7 @@
       <cover-image bindtap='selfLocationClick' class='self-location' src='/img/self-local.png'></cover-image>
     </cover-view> 
     <cover-view class="share-btn" >
-     <cover-view><cover-image bindtap="toShare"  src="/img/share.png"></cover-image></cover-view>
+     <cover-view><cover-image bindtap="toShare"  src="/img/addshare.png"></cover-image></cover-view>
     </cover-view>
   </view>
   
