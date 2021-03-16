@@ -24,22 +24,26 @@
 
 <view wx:else class="container">
 <view class="shareTop">
-  <view class="shareBtn2 btn"> 发布</view>
+  <view class="shareBtn2 btn" bindtap="post"> 发布</view>
   <view class="shareBnt1 btn">存草稿</view>
 </view>
 <!-- 分享，带标题，内容，图片 -->
 <view class="shareBody">
   <view class="shareBB">
     <view class="shareTitle">
-        <input class="shareTT" focus placeholder="标题" value="{{shareTitle}}"/>
+        <input class="shareTT" focus placeholder="标题" model:value="{{shareTitle}}"/>
     </view>
     <view class="divLine"></view>
     <view class="shareText">
-       <textarea bindblur="bindTextAreaBlur" auto-height placeholder="分享你在这个地方的故事..."  value="{{shareText}}"/>
+       <textarea bindblur="bindTextAreaBlur" auto-height placeholder="分享你在这个地方的故事..."  model:value="{{shareText}}"/>
      </view>
      <view class="shareImg">
-       <view class="imgbox"><image src="/img/add-img1.png"></image></view>
-       <view class="imgbox"><image src="/img/add-img.png"></image></view>
+      <scroll-view class="scroll-view" scroll-x="true" wx:if="{{toupload}}">
+      <view wx:for="{{pics}}" wx:for-item="img" wx:key="key">
+       <view class="imgbox" bindtap="previewImage" wx:if="{{toupload}}"><image src="{{img}}" mode="heightFix"></image></view>
+      </view>
+      </scroll-view>
+       <view class="imgbox" bindtap="takePhoto"><image src="/img/add-img.png"></image></view>
      </view>
   </view>
  

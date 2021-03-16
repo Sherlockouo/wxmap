@@ -382,7 +382,7 @@ Page({
     }
 
     wx.navigateTo({
-      url: '/pages/detail/detail',
+      url: '/pages/detail/detail'
     })
   },
 

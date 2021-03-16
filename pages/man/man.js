@@ -86,11 +86,19 @@ Page({
                     isHide: false,
                     userInfo: e.detail.userInfo
                   });
+                  console.log(res)
                   // 获取到用户的 openid
-                  if(res.code==0){
-                  console.log("用户的token " + res.token);
+                  if(res.data.code==0){
+                    app.globalData.token = res.data.token;
+                    wx.setStorage({
+                      data: res.data.token,
+                      key: 'token',
+                    })
+                    // app.globalData.token = res.data.token;
+                  console.log("用户的token " + app.globalData.token);
                   }else{
-                    console.log("msg ",res.data.msg);
+                    
+                    console.log(" something goes wrong msg ",res.data.msg);
                   }
               },
               fail: res=>{

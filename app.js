@@ -32,9 +32,11 @@ App({
         }
       }
     })
+    app.globalData.token = wx.getStorageSync('token')
   },
   globalData: {
     userInfo: null,
-    currentMarkerId:0
+    currentMarkerId:0,
+    token:'',
   }
 })
