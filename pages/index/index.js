@@ -197,6 +197,8 @@ Page({
         callbackAddressInfo: null
       })
     }
+    //获取marker信息
+    this.queryMarkerInfo()
   },
 
   /**
@@ -211,7 +213,8 @@ Page({
     this.suggestionSearch(this.data.street);
   },
 
-  /**
+  /** 
+   * deprecated
    * 点击顶部横幅提示  */
   showNewMarkerClick: function () {
     var that = this;
@@ -378,11 +381,6 @@ Page({
       }
     }
 
-    wx.showModal({
-      title: '提示',
-      content: '你点击了marker',
-      showCancel: false,
-    })
     wx.navigateTo({
       url: '/pages/detail/detail',
     })
@@ -560,6 +558,19 @@ Page({
     var that = this;
     consoleUtil.log('查询当前坐标 marker 点信息')
     //调用请求 marker 点的接口就好了
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/all', //仅为示例，并非真实的接口地址
+      data: {
+        pageNum: 1,
+        pageSize: 100
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' 
+      },
+      success (res) {
+        console.log('markers',res.data)
+      }
+    })
   },
 
   /**
