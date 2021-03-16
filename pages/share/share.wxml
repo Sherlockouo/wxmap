@@ -1,49 +1,59 @@
 <view wx:if="{{isHide}}">
-    <view wx:if="{{canIUse}}">
-    <view class='header'>
-      <image src='/img/name.png'></image>
-    </view>
+	<view wx:if="{{canIUse}}">
+		<view class='header'>
+			<image src='/img/name.png'></image>
+		</view>
 
-    <view class='content'>
-      <view>申请获取以下权限</view>
-      <text>获得你的公开信息(昵称，头像等)</text>
-    </view>
+		<view class='content'>
+			<view>申请获取以下权限</view>
+			<text>获得你的公开信息(昵称，头像等)</text>
+		</view>
 
-    <view>
-      <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="wxlogin">
-      登录
-    </button>
-    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-      注册
-    </button>
-    </view>
-  
-  </view>
-  <view wx:else>请升级微信版本</view>
+		<view>
+			<button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="wxlogin">
+				登录
+			</button>
+			<button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+				注册
+			</button>
+		</view>
+
+	</view>
+	<view wx:else>请升级微信版本</view>
 </view>
 
 <view wx:else class="container">
-<view class="shareTop">
-  <view class="shareBtn2 btn" bindtap="post"> 发布</view>
-  <view class="shareBnt1 btn">存草稿</view>
-</view>
-<!-- 分享，带标题，内容，图片 -->
-<view class="shareBody">
-  <view class="shareBB">
-    <view class="shareTitle">
-        <input class="shareTT" focus placeholder="标题" model:value="{{shareTitle}}"/>
-    </view>
-    <view class="divLine"></view>
-    <view class="shareText">
-       <textarea bindblur="bindTextAreaBlur" auto-height placeholder="分享你在这个地方的故事..."  model:value="{{shareText}}"/>
-     </view>
+	<view class="shareTop">
+		<view class="shareBtn2 btn" bindtap="post"> 发布</view>
+		<view class="shareBnt1 ">
+				<view class="inbtn ">
+					<view style="font-size: 30rpx;"  class="btn text-over {{ac2==1 ? 'active' : ''}}" data-id="1" bindtap="parameterTap">故事分享</view>
+          <view style="font-size: 30rpx;"  class="btn text-over {{ac2==0 ? 'active' : ''}}" data-id="2" bindtap="parameterTap">失物</view>
+				</view>
+		</view>
+	</view>
+	<!-- 分享，带标题，内容，图片 -->
+	<view class="shareBody">
+		<view class="shareBB">
+			<view class="shareTitle">
+				<input class="shareTT" focus placeholder="标题" model:value="{{shareTitle}}" />
+			</view>
+			<view class="divLine"></view>
+			<view class="shareText">
+				<textarea bindblur="bindTextAreaBlur" auto-height placeholder="分享你在这个地方的故事..." model:value="{{shareText}}" />
+				</view>
      <view class="shareImg">
-      <scroll-view class="scroll-view" scroll-x="true" wx:if="{{toupload}}">
-      <view wx:for="{{pics}}" wx:for-item="img" wx:key="key">
-       <view class="imgbox" bindtap="previewImage" wx:if="{{toupload}}"><image src="{{img}}" mode="heightFix"></image></view>
+      <scroll-view class="scroll-view" scroll-x="true">
+       <view class="banner" scroll-x="true">
+       <block  wx:for="{{pics}}" wx:for-item="img" wx:key="key">
+         <view class="banner_Item" bindtap="previewImage"  bindtap="previewImage"  wx:if="{{toupload}}" >
+            <image class="upImg" src="{{img}}" mode="WidthFix"></image>
+         </view>
+        </block>
+          <view class="imgbox" bindtap="takePhoto"><image src="/img/add-img.png"></image></view>
       </view>
       </scroll-view>
-       <view class="imgbox" bindtap="takePhoto"><image src="/img/add-img.png"></image></view>
+      
      </view>
   </view>
  

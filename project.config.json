@@ -50,6 +50,14 @@
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
 		"plugin": {
 			"list": []
 		},
@@ -62,32 +70,9 @@
 		"miniprogram": {
 			"list": [
 				{
-					"name": "mymessage",
-					"pathName": "pages/myinfo/myinfo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "分享页面",
+					"id": -1,
+					"name": "分享",
 					"pathName": "pages/share/share",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "测试",
-					"pathName": "pages/test/test",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "发现附近界面",
-					"pathName": "pages/trends/trends",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "页面结点，显示文章",
-					"pathName": "pages/detail/detail",
 					"scene": null
 				}
 			]

@@ -49,7 +49,8 @@
   margin: 1px auto;
   width: 98%;
   display: flex;
-  justify-items: center;
+  /* justify-items:space-between; */
+  justify-content: space-between;
   flex-direction:row-reverse;
   background-color: white;
   border-radius: 8px;
@@ -61,15 +62,42 @@
   line-height: 30px;
   border-radius: 25px;
   text-align: center;
-  font-weight: 550;
   margin: 10px;
 }
 .shareBnt1{
-  border: #9d9d9d 1px solid;
-  background-color: #f7f7f7;
+  /* background: cornsilk; */
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  /* justify-items: center; */
+  justify-content: flex-start;
+  font-weight: 500;
 }
 .shareBtn2{
+  font-weight: 550;
   background-color: #fb9d39;
+  line-height: 100%;
+  text-align:center;
+}
+.inbtn{
+  display: flex;
+  justify-content: flex-start;
+  width: 70%;
+}
+.inbtn .btn{
+  border: rgb(230, 230, 230) 1px solid ;
+  line-height: 100%;
+  text-align:center;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+}
+.inbtn .active
+{
+  background-color: #fb9d39;
+  border: darkcyan 0px solid ;
 }
 
 .shareBody
@@ -232,14 +260,52 @@
 
 .shareImg{
   /* background: #fb9d39; */
-  height: 38%;
+  height: 300rpx;
   width: 100%;
   display: flex;
   justify-content: left;
-
 }
 .imgbox image
 {
   width: 240rpx;
   height: 240rpx;
 }
+.imgbox {
+  margin-bottom: 10px;
+  width: 230rpx;
+  height: 230rpx;
+  border-radius: 14rpx;
+  /* background: palegreen; */
+}
+.upImg{
+  width: 230rpx;
+  height: 230rpx;
+}
+
+.banner{
+  height:200rpx; 
+  width:100%;
+  display: flex;
+  display: -webkit-box;
+  flex-direction: column;
+} 
+.banner_Item{ 
+ width: 225rpx;
+ height: 225rpx;
+ line-height: 225rpx;
+ text-align: center;
+ border-radius: 10px;
+ background-color:red;
+ margin-right:10rpx;
+ overflow: hidden;
+ display: block;
+} 
+/* //选择 */
+.checked_parameter{
+  background: #36ab60;
+  padding: 2px;
+  font-size: 20px;
+  font-weight: 400;
+  border-radius: 10px;
+  color: #fff;
+  }

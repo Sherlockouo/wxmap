@@ -26,8 +26,35 @@ Page({
     longtitude: 0,
     shareTitle:"",
     shareText:"",
-    shareLocal:"成都市郫都区红光镇红光大道9999号"
+    shareLocal:"成都市郫都区红光镇红光大道9999号",
+    title_type:"1",//作品类别  1表示分享，2表示失物
+    ac2:1
   },
+
+  parameterTap: function (e) {
+    //e是获取e.currentTarget.dataset.id所以是必备的，跟前端的data-id获取的方式差不多
+    console.log("点击")
+    var that = this
+    var type = e.currentTarget.dataset.id
+    if(type==1)
+    {
+      this.setData({
+       ac2:1
+      })
+    }
+    else
+    {
+      this.setData({
+        ac2:0
+      })
+    }
+   
+    this.setData({
+      title_type:type
+    })
+    console.log(this.data.title_type);
+   
+    },
 
   /**
    * 预览图片
