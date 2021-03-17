@@ -380,9 +380,9 @@ Page({
         })
       }
     }
-
+    var pagid=1
     wx.navigateTo({
-      url: '/pages/detail/detail'
+      url: '/pages/detail/detail?pageid='+pagid,
     })
   },
 

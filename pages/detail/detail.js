@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageid:'',//跳转到此界面之前页面的id
     vaHe:0,  //导航菜单高度
     inputHe:0,  //输入框高度
     myname:'Another Drmension',
@@ -64,15 +65,14 @@ Page({
       // 获取导航栏高度
       vaHe:data.bottom+10,
       inputHe:data.bottom-data.top,
+      pageid:options.pageid
       // Sheight: (WH.windowHeight),
       // Swidth: (WH.windowWidth)
     })
-    console.log(this.data.vaHe);
+    console.log("页面的ID"+options.pageid);
   },
   swiperChange: function(e) {
-
     this.setData({
-
       swiperCurrent: e.detail.current
 
     })
@@ -96,19 +96,29 @@ Page({
   swipclick: function(e) {
 
     console.log(this.data.swiperCurrent);
-
     wx.switchTab({
-
       url: this.data.links[this.data.swiperCurrent]
 
     })
 
   },
   deback:function(e){
-
-   wx.switchTab({
-      url: '/pages/trends/trends'
+    console.log("点击收到的"+this.data.pageid)
+    if(this.data.pageid==1)
+    {
+       wx.switchTab({
+      url: '/pages/index/index'
     })
+    }else if(this.data.pageid==2)
+    {
+      wx.switchTab({
+        url: '/pages/trends/trends',
+      })
+    }else{
+      wx.switchTab({
+        url: '/pages/man/man'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

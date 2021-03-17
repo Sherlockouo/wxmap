@@ -13,7 +13,7 @@
         <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="2" bindtap="goDetail">
               </image>
             </view>
             <view class="inlocal">
@@ -46,7 +46,7 @@
         <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="2" bindtap="goDetail"></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
@@ -86,7 +86,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" data-id="2" bindtap="goDetail">
               </image>
             </view>
             <view class="inlocal">
@@ -119,7 +119,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="2" bindtap="goDetail"></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
@@ -149,68 +149,5 @@
         </block>
       </view>
     </view>
-    <!-- <view wx:else class="container">
-      <view class="conterL">
-        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
-          <view class="wenzhang" wx:if="{{index%2==0}}">
-            <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
-              <view class="inlocal">
-                <view class="localimg">
-                  <image src="/img/location-icon2.png"></image>
-                </view>
-                <view class="localname">
-                  <view class="inlocalname">{{item.local}}</view>
-                </view>
-              </view>
-            </view>
-            <view class="mytitle"><view>{{item.title}}</view></view>
-            <view class="mymessage">
-              <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
-                
-              </view>
-              <view class="myname">{{item.username}}</view>
-              <view class="hart">
-                <view>
-                  <image src="/img/bottom-unpraise.png"></image>
-                </view>
-              </view>
-              <view class="like">{{item.like}}</view>
-            </view>
-          </view>
-        </block>
-      </view>
-      <view class="conterR">
-        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
-          <view class="wenzhang" wx:if="{{index%2!=0}}">
-            <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail"></image>
-              <view class="inlocal">
-                <view class="localimg">
-                  <image src="/img/location-icon2.png"></image>
-                </view>
-                <view class="localname">
-                  <view class="inlocalname">{{item.local}}</view>
-                </view>
-              </view>
-            </view>
-            <view class="mytitle"><view>{{item.title}}</view></view>
-            <view class="mymessage">
-              <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
-              </view>
-              <view class="myname">{{item.username}}</view>
-              <view class="hart">
-                <view>
-                  <image src="/img/bottom-unpraise.png"></image>
-                </view>
-              </view>
-              <view class="like">{{item.like}}</view>
-            </view>
-          </view>
-        </block>
-      </view>
-    </view> -->
   </view>
 </view>

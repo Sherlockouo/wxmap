@@ -6,6 +6,90 @@ Page({
    * 页面的初始数据
    */
   data: {
+    sharenavbar: [{
+      id:1,
+      imgurl:"http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg",
+      title:"艺术大楼，秋意浓浓，艺术大楼，秋意浓浓",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog9.jpg",
+      username:"Frightly",
+      local:'四川省成都市高新区西源大道2006号',
+      like:1034,
+      concern:10
+    },
+    {
+      id:2,
+      imgurl:"http://www.fjtbkyc.net/mywx/sunny5.jpg",
+      title:"湖边生活悠闲自得",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      username:"Brank",
+      local:'成都市郫都区太双路与蜀新大道交叉路口',
+      like:112,
+      concern:10
+    },
+    {
+      id:3,
+      imgurl:"http://www.fjtbkyc.net/mywx/sunny4.jpg",
+      title:"西华四舍",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      username:"Brank",
+      local:'四川省成都市高新区西源大道2006号',
+      like:112,
+      concern:10
+    },
+    {
+      id:4,
+      imgurl:"http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio3.jpg",
+      title:"这是title4",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      username:"Brank",
+      local:'贵阳市观山湖区金阳新区观山大桥',
+      like:112,
+      concern:10
+    },
+    {
+      id:5,
+      imgurl:"http://www.fjtbkyc.net/mywx/sunny.jpg",
+      title:"这是title5",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      username:"Brank",
+      local:'四川省成都市大邑县西岭镇',
+      like:112,
+      concern:10
+    },
+    {
+      id:6,
+      imgurl:"http://www.fjtbkyc.net/mywx/sunny2.jpg",
+      title:"这是title6",
+      handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      username:"Brank",
+      local:'四川省成都市金牛区西华大道16号',
+      like:112,
+      concern:10
+    }
+    ],
+    lostnavbar:[
+      {
+      id:1,
+      imgurl:"http://www.fjtbkyc.net/mywx/umber.jpg",
+      title:"丢失一把雨伞",
+      handimg:"http://www.fjtbkyc.net/mywx/services1.png",
+      username:"bigSur",
+      local:'四川省成都市青羊区光华大道与光耀三路路口',
+      like:1034,
+      concern:10
+      },
+      {
+        id:1,
+      imgurl:"http://www.fjtbkyc.net/mywx/phone17.jpg",
+      title:"捡到一部手机",
+      handimg:"http://www.fjtbkyc.net/mywx/konjian.png",
+      username:"Jone",
+      local:'四川省成都市郫都区红光街道广场路北三段188号',
+      like:1034,
+      concern:10
+      },
+    ],
+    lostCount:0,
     userInfo: {},
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -13,7 +97,7 @@ Page({
     navbar: ['我的分享', '失物招领'],
     currentTab: 0,
     tal:0,
-    shareCount:5,   //分享的数量
+    shareCount:1,   //分享的数量
   },
   navbarTap: function(e){
     this.setData({
@@ -44,7 +128,6 @@ Page({
               // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
               // 根据自己的需求有其他操作再补充
               // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
-              
             }
           });
         } else {
@@ -124,7 +207,13 @@ Page({
     });
   }
   },
-
+  goDetail:function(e)
+  {
+    var pagid=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/detail/detail?pageid='+pagid,
+    })
+  },
   /**
   * 自定义函数
   */

@@ -120,8 +120,9 @@ Page({
   },
   goDetail:function(e)
   {
+    var pagid=e.currentTarget.dataset.id; //用于文章返回 
     wx.navigateTo({
-      url: '/pages/detail/detail',
+      url: '/pages/detail/detail?pageid='+pagid,
     })
   },
   /**

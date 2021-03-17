@@ -3,12 +3,10 @@
     <view class='header'>
       <image src='/img/name.png'></image>
     </view>
-
     <view class='content'>
       <view>申请获取以下权限</view>
       <text>获得你的公开信息(昵称，头像等)</text>
     </view>
-
     <view>
       <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="wxlogin">
         登录
@@ -17,12 +15,10 @@
         注册
       </button>
     </view>
-
   </view>
   <view wx:else>请升级微信版本</view>
 </view>
-
-<view wx:else class="container">
+<view wx:else class="mancontainer">
   <view class="userinfo">
     <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <view class="userinfo2">
@@ -68,16 +64,160 @@
         bindtap="navbarTap">{{item}}</view>
     </view>
 
-    <!--我的分享-->
-    <view hidden="{{currentTab!==0}}" class="tab1">
-      我的分享还未发布任何内容哦
-     
-    </view>
+    <!--我的分享-->  
+   <scroll-view  hidden="{{currentTab!==0}}" class="left" scroll-y> 
+    <view class="tab1">
+     <view wx:if="{{!shareCount}}" class="conter">
+     <view class="nofund"><image src="/img/nofund.png"></image></view>
+      <view>我的分享还未发布任何内容哦~</view>
+     </view> 
+     <view class="liftlist" wx:else class="container">
+      <view class="conterL">
+        <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2==0}}">
+            <view class="myimg">
+              <image src="{{item.imgurl}}" mode="widthFix" data-id="3" bindtap="goDetail">
+              </image>
+            </view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="conterR">
+        <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2!=0}}">
+            <view class="myimg">
+              <image src="{{item.imgurl}}" mode="widthFix" data-id="3" bindtap="goDetail"></image>
+            </view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
 
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}"  mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    </view> 
+  </scroll-view> 
     <!--失物招领-->
-    <view hidden="{{currentTab!==1}}" class="tab2">
-      失物招领还未发布任何内容哦~
+   <scroll-view hidden="{{currentTab!==1}}" class="left" scroll-y> 
+    <view  class="tab2">
+      <!-- 失物招领还未发布任何内容哦~ -->
+      <view wx:if="{{!lostCount}}" class="conter">
+        <view class="nofund"><image src="/img/nofund.png"></image></view>
+         <view>失物招领还未发布任何内容哦~</view>
+     </view>
+      <view wx:else class="container">
+      <view class="conterL">
+        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2==0}}">
+            <view class="myimg">
+              <image src="{{item.imgurl}}" mode="widthFix" data-id="3" bindtap="goDetail">
+              </image>
+            </view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="conterR">
+        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+          <view class="wenzhang" wx:if="{{index%2!=0}}">
+            <view class="myimg">
+              <image src="{{item.imgurl}}" mode="widthFix" data-id="3" bindtap="goDetail"></image>
+            </view>
+            <view class="inlocal">
+              <view class="localimg">
+                <image src="/img/location-icon2.png"></image>
+              </view>
+              <view class="localname">
+                <view class="inlocalname">{{item.local}}</view>
+              </view>
+            </view>
+
+            <view class="mytitle">
+              <view>{{item.title}}</view>
+            </view>
+            <view class="mymessage">
+              <view class="myhand">
+                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+              </view>
+              <view class="myname">{{item.username}}</view>
+              <view class="hart">
+                <view>
+                  <image src="/img/bottom-unpraise.png"></image>
+                </view>
+              </view>
+              <view class="like">{{item.like}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
     </view>
   </view>
-  
+  </scroll-view>
+</view>
 </view>

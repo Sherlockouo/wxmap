@@ -73,6 +73,20 @@
 					"id": -1,
 					"name": "分享",
 					"pathName": "pages/share/share",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "用户界面",
+					"pathName": "pages/man/man",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "xiangxi",
+					"pathName": "pages/trends/trends",
 					"scene": null
 				}
 			]
