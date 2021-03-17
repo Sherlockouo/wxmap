@@ -461,7 +461,7 @@ Page({
     console.log('shit ',that.data.centerAddressBean)
     wx.navigateTo({
       // url:'/pages/share/share?city='
-      url:'/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street+'&address='+that.data.centerAddressBean.address,
+      url:'/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street+'&address='+that.data.centerAddressBean.address+'&lat='+that.data.latitude+'&lng='+that.data.longitude,
   });
   },
   /**

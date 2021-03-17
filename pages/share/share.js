@@ -24,6 +24,7 @@ Page({
     street: '',
     latitude: 0,
     longtitude: 0,
+    tags: '#标签##随意#',
     shareTitle:"",
     shareText:"",
     shareLocal:"成都市郫都区红光镇红光大道9999号",
@@ -129,11 +130,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log('lat: ',options.lat,'lng: ',options.lng)
     var that = this;
     that.setData({
       shareLocal:options.address,
       city: options.city,
-      street: options.street
+      street: options.street,
+      latitude: options.lat,
+      longtitude: options.lng,
     })
   },
   Stable :function(e)
@@ -148,25 +152,48 @@ Page({
       url: '/pages/chooseAddress/chooseAddress?city='+this.data.city+'&street='+this.data.street
     })
   },
-  post:function(){
+  post: function(){
     var that = this
-    console.log("shit text ",that.data.shareText)
+    if(that.data.shareTitle==''||that.data.shareText==''||that.data.tag){
+      wx.showModal({
+        content: '请检查是否填写完整',
+        cancelColor: 'orange',
+        cancelText: '取消',
+        confirmText:'确认',
+        confirmColor:'red'
+      })
+      return ;
+    }
+    if(that.data.latitude==0||that.data.longtitude==0||that.data.pics.length==0){
+      wx.showModal({
+        content: '请检查是否填写完整',
+        cancelColor: 'blue',
+        cancelText: '取消',
+        confirmText:'确认',
+        confirmColor:'red'
+      })
+      return ;
+    }
     var fs = [];
     console.log('globaldata ',app.globalData.token)
-    // var token = app.globalData.token;
-    var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3ZGYuY29kZXJAZ21haWwuY29tIiwiZXhwIjoxNjE1OTA0NTI4LCJpYXQiOjE2MTU4ODY1Mjh9.rqxD7Z2erS_ymPfRP9Zk0-wmpxfKMeD-382U5wilTN440DvQS2Q6uC-7CRsCZUl37kT8sqIfhzz91C-hQ1beNg'
+    var token = app.globalData.token;
+    // var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3ZGYuY29kZXJAZ21haWwuY29tIiwiZXhwIjoxNjE1OTA0NTI4LCJpYXQiOjE2MTU4ODY1Mjh9.rqxD7Z2erS_ymPfRP9Zk0-wmpxfKMeD-382U5wilTN440DvQS2Q6uC-7CRsCZUl37kT8sqIfhzz91C-hQ1beNg'
     if(token==null||token==''){
       wx.showModal({
         content:'请重新登录',
         confirmText: '确定',
         cancelColor: 'red',
       })
-      wx.navigateTo({
-        url: '/pages/man/man',
-      })
+      /**
+       * 清除登录信息 让他重新登录
+       */
+    
+    
       return ;
     }
+   new Promise((resolve,reject)=>{
     var ps = that.data.pics;
+    var files='';
     for(var i=0;i<ps.length;i++){
       console.log(ps[i])
     wx.uploadFile({
@@ -178,34 +205,41 @@ Page({
       name: 'files',
       filePath: ps[i],
       success(res){
-        console.log("success upload files",res)
+        files=files+'#'+res.data.files+'#';
+        console.log("success upload files",res.data.files)
+        
       },
       fail(res){
         console.log("fails to upload ",res)
       }
     })
   }
-    // 等上面ok了再测试下面的
-    // wx.request({
-    //   url: 'https://storymap.sherlockouo.com/poster/post', //仅为示例，并非真实的接口地址
-    //   method: 'POST',
-    //   data: {
-    //     title: that.data.shareTitle,
-    //     message: that.data.shareText,
-    //     type: "lost",
-    //     address: that.data.shareLocal,
-    //     latitude: 115.88367580795743,
-    //     longtitude: 35.688365773824085,
-    //     files: fs,
-    //   },
-    //   header: {
-    //     'Authorization': token,
-    //     'content-type': 'application/x-www-form-urlencoded' 
-    //   },
-    //   success (res) {
-    //     console.log('markers',res.data)
-    //   }
-    // })
+  resolve(files)
+   }).then((res)=>{
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/post', //仅为示例，并非真实的接口地址
+      method: 'POST',
+      data: {
+        title: that.data.shareTitle,
+        message: that.data.shareText,
+        type: that.data.title_type,
+        address: that.data.shareLocal,
+        latitude: that.data.latitude,
+        longtitude: that.data.longtitude,
+        tags: that.data.tags,
+        files: res,
+      },
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded' 
+      },
+      success (res) {
+        console.log('markers',res.data)
+      }
+    })
+   })
+   
+    
   },
   // 使页面显现的函数
   // changeView: function(e){

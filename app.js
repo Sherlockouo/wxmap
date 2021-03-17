@@ -12,6 +12,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+    this.globalData.token=wx.getStorageSync('token')
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -32,7 +33,6 @@ App({
         }
       }
     })
-    app.globalData.token = wx.getStorageSync('token')
   },
   globalData: {
     userInfo: null,
