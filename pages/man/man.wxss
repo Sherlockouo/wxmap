@@ -217,7 +217,7 @@ page{
 
 .myimg {
   width: 100%;
-  height: 200rpx;
+  height: 205rpx;
   border-radius: 10px;
   background: url('http://www.fjtbkyc.net/images/load.gif');
   background-size: cover;
@@ -226,7 +226,7 @@ page{
 
 .mymessage {
   width: 94%;
-  margin: 0 auto;
+  margin: 4px auto;
   display: flex;
 
 }
@@ -238,16 +238,17 @@ page{
   display: block;
 }
 
-.mytitle {
-  /* float: left; */
-  position: relative;
-  bottom: 10px;
+.mytitle view{
+ 
   width: 94%;
   margin: 0px auto;
   /* margin-top: 3rpx; */
   font-size: 28rpx;
   font-weight: 600;
-  font-family: "楷体";
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+
 }
 
 
@@ -340,7 +341,7 @@ page{
 
 .inlocal {
   position: relative;
-  bottom: 39rpx;
+  bottom: 34rpx;
   z-index: 0;
   height: 30rpx;
   /* float: left; */
@@ -350,33 +351,36 @@ page{
   color: white;
   /* text-shadow:  1rpx 1rpx 1rpx rgba(83,83,83,0.9); */
   text-shadow: 1rpx 1rpx 1rpx rgba(85, 85, 85, 1.0);
-
   width: 98%;
   /* background: rgb(88,88,88,0.5); */
   letter-spacing: 3rpx;
   font-weight: 600;
   border-radius: 10px;
+  white-space:nowrap;
 }
 
 .localname {
   width: auto;
-  /* height: auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   /* white-space: pre-line; */
+  white-space:nowrap;
 }
 
 .inlocalname {
   width: 100%;
-  height: 25rpx;
+  /* height: 25rpx; */
   display: block;
   white-space: pre-line;
   overflow: hidden; 
   /* height: auto;
   /* white-space: pre-line; */
+  
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   /* 当文本溢出包含元素时显示省略符号来代表被修剪的文本   */
 
 }
@@ -384,7 +388,8 @@ page{
 /* 设置滚动列表 */
 .left{
   height:80%;
-  width: 100%;
+  margin-left:2%;
+  width: 96%;
   display: inline-block;
   }
   /* .leftlist{

@@ -5,7 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    concern:[
+      {
+        id:1,
+        handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+        name:"steven Turn",
+        introduce:"择一城终老，爱一人白首！"
+      },
+      {
+        id:2,
+        handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+        name:"steven Turn",
+        introduce:"择一城终老，爱一人白首！"
+      }
+    ]
   },
 
   /**

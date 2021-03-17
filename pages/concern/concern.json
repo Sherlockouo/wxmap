@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText":"关注"
+  "navigationBarTitleText":"关注",
+  "navigationBarBackgroundColor":"#1ba1f0"
 }

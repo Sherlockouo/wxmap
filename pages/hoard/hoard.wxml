@@ -1,2 +1,31 @@
-<!--pages/hoard/hoard.wxml-->
-<text>这是收藏信息界面</text>
+<view class="contertain">
+  <block wx:for="{{navbar}}" data-idx="{{index}}" class="allitem" wx:key="idx">
+    <view class="hoard-item"  bindtap="Tapgo" data-id="4">
+      <view class="hoardimage">
+       <view class="himimg"> <image src="{{item.imgurl}}" mode="widthFix"></image></view>
+      </view>
+      <view class="hoardtext">
+        <view class="essaytitle">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="rbottom">
+   
+          <view class="outleft">
+            <view class="bleft">
+            <view>{{item.like}}喜欢.</view>
+            <view>{{item.concern}}收藏</view>
+            </view>
+          </view>
+          <view class="bright">
+            <view class="handimg">
+              <image src="{{item.handimg}}"></image>
+            </view>
+            <view class="author">
+              <view>{{item.username}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

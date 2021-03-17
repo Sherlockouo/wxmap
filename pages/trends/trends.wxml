@@ -43,7 +43,7 @@
         </block>
       </view>
       <view class="conterR">
-        <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+        <block wx:for="{{navbar}}" data-idx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
               <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="2" bindtap="goDetail"></image>

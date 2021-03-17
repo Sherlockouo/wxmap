@@ -114,9 +114,13 @@ Page({
       wx.switchTab({
         url: '/pages/trends/trends',
       })
-    }else{
+    }else if(this.data.pageid==3){
       wx.switchTab({
         url: '/pages/man/man'
+      })
+    }else{
+      wx.navigateBack({
+        url: '/pages/hoard/hoard'
       })
     }
   },

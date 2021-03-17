@@ -21,7 +21,7 @@
        <view class="banner" scroll-x="true">
        <block  wx:for="{{pics}}" wx:for-item="img" wx:key="key">
          <view class="banner_Item" bindtap="previewImage"  bindtap="previewImage"  wx:if="{{toupload}}" >
-            <image class="upImg" src="{{img}}" mode="widthFix"></image>
+            <image class="upImg" src="{{img}}" mode="aspectFill"></image>
          </view>
          <!-- 图片取消选的图标按钮 -->
          <view class="concel"><image src="/img/delete.png"></image></view>

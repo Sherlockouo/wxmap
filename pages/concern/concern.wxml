@@ -1,2 +1,16 @@
-<!--pages/concern/concern.wxml-->
-<text>这是关注信息界面</text>
+<view class="contertain">
+  <view wx:for="{{concern}}" data-idx="{{index}}" class="allitem" wx:key="idx">
+    <view class="author">
+      <view class="handimg">
+        <view>
+          <image src="{{item.handimg}}"></image>
+        </view>
+      </view>
+      <view class="right">
+        <view class="name">{{item.name}}</view>
+        <view class="introduce">{{item.introduce}}</view>
+      </view>
+    </view>
+    <view class="divLine"></view>
+  </view>
+</view>
