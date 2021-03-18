@@ -34,3 +34,25 @@
 .right{
   margin-left: 25rpx;
 }
+.concel{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: center;
+  float:right;
+}
+.middle{
+  /* margin-top: 20rpx; */
+  width: 130rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  background: #fb9527;
+  color: white;
+  border-radius: 10rpx;
+}
+.outline{
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,15 +1,21 @@
 <view class="contertain">
   <view wx:for="{{concern}}" data-idx="{{index}}" class="allitem" wx:key="idx">
-    <view class="author">
-      <view class="handimg">
-        <view>
-          <image src="{{item.handimg}}"></image>
+    <view class="outline">
+      <view class="author" >
+        <view class="handimg">
+          <view>
+            <image src="{{item.handimg}}"></image>
+          </view>
+        </view>
+        <view class="right">
+          <view class="name">{{item.name}}</view>
+          <view class="introduce">{{item.introduce}}</view>
         </view>
       </view>
-      <view class="right">
-        <view class="name">{{item.name}}</view>
-        <view class="introduce">{{item.introduce}}</view>
+      <view class="concel">
+        <view class="middle">取消关注</view>
       </view>
+
     </view>
     <view class="divLine"></view>
   </view>

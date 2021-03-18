@@ -33,7 +33,7 @@
   <view class="stare">
     <view class="hoard usercare" bindtap="toH">
       <view>
-        <image class="usericon" src="/img/hoard.png">
+        <image class="usericon" src="/img/hoard_h.png">
         </image>
       </view>
       <text>收藏</text>
@@ -48,7 +48,7 @@
     </view>
     <view class="mylike usercare" bindtap="toL">
       <view>
-        <image class="usericon" src="/img/like.png">
+        <image class="usericon" src="/img/like_h.png">
         </image>
       </view>
       <text>点赞</text>

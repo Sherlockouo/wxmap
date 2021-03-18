@@ -3,10 +3,10 @@
     <!--顶部提示-->
   <view class='cover-tip-wrapper' id='input-address-layout' wx:if='{{showTopTip}}' style='height:{{inputHe}}px;  margin-top: {{vaHe-inputHe-10}}px;'>
     <view class='cover-tip-content' >
-    <view><image  class='input-address gray-text' src='/img/notification.png' style="width:{{inputHe-8}}px;height:{{inputHe-8}}px;margin-top:{{inputHe/4}}px"></image></view>
+    <view style="margin:6rpx"><image  class='input-address gray-text' src='/img/notification.png' style="width:{{inputHe-8}}px;height:{{inputHe-8}}px;margin-top:{{inputHe/4}}px"></image></view>
     <input placeholder-style='font-size:12px;'  bindinput='bindAddressInput' value='{{inputAddress}}' placeholder='{{warningText}}'></input>
     <view class='cancel-wrapper' bindtap='deleteInput' wx:if='{{inputAddress}}'>
-      <image class='delete-input' src='../../img/delete.png'></image>
+      <view style="height:50rpx"><image class='delete-input' src='../../img/delete.png'></image></view>
     </view>
   </view>
   

@@ -674,11 +674,12 @@ Page({
    * 删除输入内容
    */
   deleteInput: function () {
-    that = this
+    // that = this
+    // console.log("点击");
     this.setData({
       inputAddress: '',
     })
-    that.suggestionSearch(that.data.street);
+    // that.suggestionSearch(that.data.street);
   },
 
   /**

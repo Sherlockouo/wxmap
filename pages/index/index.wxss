@@ -755,3 +755,11 @@ button::after {
   width: 180rpx;
   height: 180rpx;
 }
+.cancel-wrapper{
+  float: right;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: center;
+}
