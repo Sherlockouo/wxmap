@@ -41,5 +41,19 @@
     </scroll-view>
     <view class="divLine"></view>
     <view class="essay">{{essayall.essay_text}}</view>
+    <view class="data"><text>发布时间：</text>{{essayall.sharetime}}</view>
   </view>
+  <view class="empty"></view>
+  <view class="bbbox">
+ <view class="bottom">
+   <view class="like">
+     <view class="likeimg"><image src="{{likeimg}}"></image></view>
+     <view class="liketext">{{essayall.like}}</view>
+   </view>
+   <view class="boconcern">
+     <view class="conimg"><image src="{{hoardimg}}"></image></view>
+     <view class="context">{{essayall.concern}}</view>
+   </view>
+ </view>
+</view>
 </view>

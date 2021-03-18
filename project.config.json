@@ -97,6 +97,12 @@
         {
           "name": "点赞",
           "pathName": "pages/like/like",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "详细信息查看界面",
+          "pathName": "pages/detail/detail",
           "scene": null
         }
       ]
