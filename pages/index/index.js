@@ -154,9 +154,8 @@ Page({
     if (that.data.callbackAddressInfo == null) {
       that.getCenterLocation();
       //正在上传的话，不去请求地理位置信息
-      if (that.data.showUpload) {
         that.requestLocation();
-      }
+      
     } else {
       that.setData({
         selectAddress: that.data.callbackAddressInfo.title,
@@ -397,22 +396,6 @@ Page({
     that.adjustViewStatus(true, false, false);
   },
 
-  /**
-   * 确认上传情报，忽略此处逻辑
-   */
-  confirmClick: function (res) {
-    var that = this;
-    consoleUtil.log(res);
-    var message = res.detail.value.message.trim();
-    if (!that.data.centerLatitude || !that.data.centerLongitude) {
-      that.showModal('请选择上传地点~');
-      return;
-    }
-    if (!message) {
-      that.showModal('请说点什么吧~');
-      // return;
-    }
-  },
   // 跳转到分享界面
   toShare: function (e) {
     var that = this;
@@ -520,8 +503,9 @@ Page({
     consoleUtil.log('查询当前坐标 marker 点信息')
     //调用请求 marker 点的接口就好了
     wx.request({
-      url: 'https://storymap.sherlockouo.com/poster/all', //仅为示例，并非真实的接口地址
+      url: 'https://storymap.sherlockouo.com/poster/all', 
       data: {
+        // 或许可以改为根据地理位置信息提供服务
         pageNum: 1,
         pageSize: 100
       },
@@ -555,10 +539,16 @@ Page({
       var marker = markers[key];
       marker.id = marker.id;
       marker.userid = marker.userid;
-      marker.iconPath = '/img/drag-icon.png';
       marker.longitude = marker.longtitude;
       marker.width = 40;
       marker.height = 40;
+      if(marker.type==1){
+        // share
+        marker.iconPath = '/img/dog-select.png';
+      }else{
+        // lost
+        marker.iconPath = '/img/dog-yellow.png';
+      }
     }
     currentMarker = currentMarker.concat(markers);
     console.log('ms ss',currentMarker)

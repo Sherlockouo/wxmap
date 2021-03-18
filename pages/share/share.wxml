@@ -24,7 +24,7 @@
             <image class="upImg" src="{{img}}" mode="aspectFill"></image>
          </view>
          <!-- 图片取消选的图标按钮 -->
-         <view class="concel"><image src="/img/delete.png"></image></view>
+         <view class="concel" bindtap="deleteSelectImage" data-id="{{index}}"><image src="/img/delete.png" ></image></view>
         </block>
           <view class="imgbox" bindtap="takePhoto"><image src="/img/add-img.png"></image></view>
       </view>
@@ -55,13 +55,13 @@
   <view class="shareTab">
     <!-- 类似标题 -->
   <view class="Taltext">
-    <view class="Tbtitle"><view class="tbb" style="color:#4d4d4d">#添加话题（推荐）</view></view>
+    <view class="Tbtitle"><view class="tbb">#添加话题（推荐）</view></view>
   </view>
   <view class="divLine"></view>
   <!-- 输入框 -->
    <view class="taginput">
     <view class="myinput">
-     <view><input  model:value="{{mytag}}" placeholder="请输入标签(输入后点加号加入)" class="tagin"></input>
+     <view><input  model:value="{{shareTitle}}" placeholder="请输入标签(输入后点加号加入)" class="tagin"></input>
      </view>
     </view>
     <view class="addicon"><view class="inaddicon"><image src="/img/add_h.png" bindlongtap="addTag"></image></view></view>
