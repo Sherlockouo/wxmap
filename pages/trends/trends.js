@@ -60,7 +60,7 @@ Page({
       imgurl:"http://www.fjtbkyc.net/mywx/sunny2.jpg",
       title:"这是title6",
       handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-      username:"Brank",
+      username:"Brankstrighting veruwer",
       local:'四川省成都市金牛区西华大道16号',
       like:112,
       concern:10

@@ -15,7 +15,7 @@ page
   justify-items: flex-start;
   /* background: rgba(233, 233, 233, 0.9); */
   /* border-radius: 20px; */
-  border-bottom: rgb(133, 133, 133) 2px solid;
+  border-bottom: rgb(185, 185, 185) 1px solid;
 }
 .hoardimage
 {
@@ -30,9 +30,12 @@ page
 .himimg{
   border-radius: 15px;
   margin-left: 5px;
-  height: 230rpx;
+  height: 220rpx;
   overflow: hidden;
 }
+/* .handimg image{
+   width: cover;
+} */
 .hoardtext{
   padding: 15px;
   width: 65%;

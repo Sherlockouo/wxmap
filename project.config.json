@@ -91,6 +91,12 @@
         {
           "name": "关注的人",
           "pathName": "pages/concern/concern",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "点赞",
+          "pathName": "pages/like/like",
           "scene": null
         }
       ]
