@@ -1,4 +1,6 @@
-// pages/trends/trends.js
+//获取应用实例
+const app = getApp();
+//  pages/trends/trends.js
 Page({
 
   /**
@@ -60,7 +62,7 @@ Page({
       imgurl:"http://www.fjtbkyc.net/mywx/sunny2.jpg",
       title:"这是title6",
       handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-      username:"Brankstrighting veruwer",
+      username:"Brank",
       local:'四川省成都市金牛区西华大道16号',
       like:112,
       concern:10
@@ -88,6 +90,8 @@ Page({
       concern:10
       },
     ],
+    lat: 0,
+    lng: 0,
     currentTab: 0,
     tal:0,
     ac1:1,
@@ -96,6 +100,21 @@ Page({
     shareCount:1,
     lostCount:2,
   },
+
+  //请求地理位置
+  requestLocation: function () {
+    var that = this;
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+        })
+      },
+    })
+  },
+
   navbarTap: function(e){
     this.setData({
       currentTab: e.currentTarget.dataset.idx
@@ -129,7 +148,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    that.requestLocation()
+    
   },
 
   /**
@@ -143,7 +164,43 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    /**
+     * 获取周围post
+     */
+    var that = this
+    console.log(that.data.lat,that.data.lng)
+    var token = app.globalData.token;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/type',
+      method: "GET",
+      header:{
+        Authorization: token,
+      },
+      data:{
+        type: 1,
+        pageNum: 1,
+        pageSize: 100
 
+      },
+      success(res){
+        console.log('res is  ',res.data.data.list)
+        var ls = res.data.data.list;
+        
+        for (var key in ls) {
+          var marker = ls[key];
+          marker.id = marker.id;
+          marker.userid = marker.userid;
+          marker.local = marker.address;
+          
+          //cover
+          marker.imgurl = marker.files.substr(1,83);
+          console.log('marker',marker)
+        }
+        that.setData({
+          navbar:res.data.data.list
+        })
+      }
+    })
   },
 
   /**
