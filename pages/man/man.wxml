@@ -46,8 +46,7 @@
       </view>
       <text>关注</text>
     </view>
-    <view class="like usercare" bindtap="toL">
-
+    <view class="mylike usercare" bindtap="toL">
       <view>
         <image class="usericon" src="/img/like.png">
         </image>

@@ -10,11 +10,12 @@ page
 }
 .hoard-item{
   width: 96%;
-  margin: 10px auto;
+  margin: 0 auto;
   display: flex;
   justify-items: flex-start;
-  background: rgba(219, 219, 219, 0.9);
-  border-radius: 20px;
+  /* background: rgba(233, 233, 233, 0.9); */
+  /* border-radius: 20px; */
+  border-bottom: rgb(133, 133, 133) 2px solid;
 }
 .hoardimage
 {
@@ -41,7 +42,7 @@ page
   padding-top:15rpx;
   font-size: 35rpx;
   font-weight: 600;
-  height: 180rpx;
+  height: 160rpx;
   /* background: red; */
 }
 .essaytitle text{
@@ -68,6 +69,9 @@ page
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  color: rgb(131, 131, 131);
+  font-weight:600;
+  font-size: 35rpx;
 }
 .outleft{
   width: 60%;
