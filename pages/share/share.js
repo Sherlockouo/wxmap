@@ -16,8 +16,9 @@ Page({
     isHide: false,
     imageMaxNum: 6,
     toupload: false,
-    region:[],
-    pics:[],
+    region: [],
+    pics: [],
+    filesToPost: '',
     province: '',
     city: '',
     type: '',
@@ -25,14 +26,14 @@ Page({
     latitude: 0,
     longtitude: 0,
     tags: '#标签##随意#',
-    tagvevtor:[
-      "成都","自然","春天","阳光","风和日丽" 
+    tagvevtor: [
+      "成都", "自然", "春天", "阳光", "风和日丽"
     ],
-    shareTitle:"",
-    shareText:"",
-    shareLocal:"成都市郫都区红光镇红光大道9999号",
-    title_type:"1",//作品类别  1表示分享，2表示失物
-    ac2:1
+    shareTitle: "",
+    shareText: "",
+    shareLocal: "成都市郫都区红光镇红光大道9999号",
+    title_type: "1", //作品类别  1表示分享，2表示失物
+    ac2: 1
   },
 
   parameterTap: function (e) {
@@ -40,25 +41,22 @@ Page({
     console.log("点击")
     var that = this
     var type = e.currentTarget.dataset.id
-    if(type==1)
-    {
+    if (type == 1) {
       this.setData({
-       ac2:1
+        ac2: 1
+      })
+    } else {
+      this.setData({
+        ac2: 0
       })
     }
-    else
-    {
-      this.setData({
-        ac2:0
-      })
-    }
-   
+
     this.setData({
-      title_type:type
+      title_type: type
     })
     console.log(this.data.title_type);
-   
-    },
+
+  },
 
   /**
    * 预览图片
@@ -86,14 +84,14 @@ Page({
     wx.chooseImage({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
-      count: that.data.imageMaxNum-that.data.pics.length,
+      count: that.data.imageMaxNum - that.data.pics.length,
       success: function (res) {
         var imgs = res.tempFilePaths;
-        console.log("images ",imgs.length)
+        console.log("images ", imgs.length)
         for (var i = 0; i < imgs.length; i++) {
           ps.push(imgs[i])
         }
-        for(var i = 0;i<pics.length;i++){
+        for (var i = 0; i < pics.length; i++) {
           ps.push(pics[i])
         }
         that.setData({
@@ -109,19 +107,19 @@ Page({
   /**
    * 删除已选照片
    */
-  deleteSelectImage: function () {
-    this.resetPhoto();
+  deleteSelectImage: function (e) {
+    var key = e.currentTarget.dataset.id;
+    var that = this
+    var ps = that.data.pics
+    // var pos = ps.indexOf(key);
+    ps.splice(key, 1)
+    that.setData({
+      pics:ps
+    })
+
   },
 
-  /**
-   * 重置照片
-   */
-  resetPhoto: function () {
-    var that = this;
-    that.setData({
-      uploadImagePath: '',
-    })
-  },
+
 
   previewSelectImage: function (key) {
     var that = this;
@@ -136,116 +134,128 @@ Page({
     // console.log('lat: ',options.lat,'lng: ',options.lng)
     var that = this;
     that.setData({
-      shareLocal:options.address,
+      shareLocal: options.address,
       city: options.city,
       street: options.street,
       latitude: options.lat,
       longtitude: options.lng,
     })
   },
-  Stable :function(e)
-  {
+  Stable: function (e) {
     wx.navigateTo({
       url: '/pages/table/table'
     })
   },
-  Slocal :function(e)
-  {
+  Slocal: function (e) {
     wx.navigateTo({
-      url: '/pages/chooseAddress/chooseAddress?city='+this.data.city+'&street='+this.data.street
+      url: '/pages/chooseAddress/chooseAddress?city=' + this.data.city + '&street=' + this.data.street
     })
   },
-  post: function(){
+  post: function () {
     var that = this
-    if(that.data.shareTitle==''||that.data.shareText==''||that.data.tag){
+    if (that.data.shareTitle == '' || that.data.shareText == '' || that.data.tag) {
       wx.showModal({
         content: '请检查是否填写完整',
         cancelColor: 'orange',
         cancelText: '取消',
-        confirmText:'确认',
-        confirmColor:'red'
+        confirmText: '确认',
+        confirmColor: 'red'
       })
-      return ;
+      return;
     }
-    if(that.data.latitude==0||that.data.longtitude==0||that.data.pics.length==0){
+    if (that.data.latitude == 0 || that.data.longtitude == 0 || that.data.pics.length == 0) {
       wx.showModal({
         content: '请检查是否填写完整',
         cancelColor: 'blue',
         cancelText: '取消',
-        confirmText:'确认',
-        confirmColor:'red'
+        confirmText: '确认',
+        confirmColor: 'red'
       })
-      return ;
+      return;
     }
     var fs = [];
-    console.log('globaldata ',app.globalData.token)
+    console.log('globaldata ', app.globalData.token)
     var token = app.globalData.token;
     // var token = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3ZGYuY29kZXJAZ21haWwuY29tIiwiZXhwIjoxNjE1OTA0NTI4LCJpYXQiOjE2MTU4ODY1Mjh9.rqxD7Z2erS_ymPfRP9Zk0-wmpxfKMeD-382U5wilTN440DvQS2Q6uC-7CRsCZUl37kT8sqIfhzz91C-hQ1beNg'
-    if(token==null||token==''){
+    if (token == null || token == '') {
       wx.showModal({
-        content:'请重新登录',
+        content: '请重新登录',
         confirmText: '确定',
         cancelColor: 'red',
       })
       /**
        * 清除登录信息 让他重新登录
        */
-    
-    
-      return ;
+
+      return;
     }
-   new Promise((resolve,reject)=>{
-    var ps = that.data.pics;
-    var files='';
-    for(var i=0;i<ps.length;i++){
-      console.log(ps[i])
-    wx.uploadFile({
-      url: 'https://storymap.sherlockouo.com/upload/files',
-      method: 'POST',
-      header:{
-        Authorization:token,
-      },
-      name: 'files',
-      filePath: ps[i],
-      success(res){
-        files=files+'#'+res.files+'#';
-        console.log("success upload files",res.files)
-        
-      },
-      fail(res){
-        console.log("fails to upload ",res)
-      }
-    })
-  }
-  resolve(files)
-   }).then((res)=>{
-    wx.request({
-      url: 'https://storymap.sherlockouo.com/poster/post', //仅为示例，并非真实的接口地址
-      method: 'POST',
-      data: {
-        title: that.data.shareTitle,
-        message: that.data.shareText,
-        type: that.data.title_type,
-        address: that.data.shareLocal,
-        latitude: that.data.latitude,
-        longtitude: that.data.longtitude,
-        tags: that.data.tags,
-        files: res,
-      },
-      header: {
-        'Authorization': token,
-        'content-type': 'application/x-www-form-urlencoded' 
-      },
-      success (res) {
-        wx.showModal({
-          content: res.msg
+
+    var files = '';
+    const v = new Promise((resolve, reject) => {
+      var ps = that.data.pics;
+
+      for (var i = 0; i < ps.length; i++) {
+        wx.uploadFile({
+          url: 'https://storymap.sherlockouo.com/upload/files',
+          method: 'POST',
+          header: {
+            Authorization: token,
+          },
+          name: 'files',
+          filePath: ps[i],
+          success(res) {
+            res = JSON.parse(res.data)
+            files += '#' + res.files[0] + '#'
+            resolve(files += '#' + res.files[0] + '#')
+            // console.log('fk',files)
+          },
+          fail(res) {
+            wx.navigateBack({
+              delta: 1,
+            })
+            console.log("fails to upload ", res)
+          }
         })
-        console.log('markers',res.data)
       }
+
+
     })
-   })
-   
-    
+    v.then((res) => {
+      console.log('files', res)
+      wx.request({
+        url: 'https://storymap.sherlockouo.com/poster/post', //仅为示例，并非真实的接口地址
+        method: 'POST',
+        data: {
+          title: that.data.shareTitle,
+          message: that.data.shareText,
+          type: that.data.title_type,
+          address: that.data.shareLocal,
+          latitude: that.data.latitude,
+          longtitude: that.data.longtitude,
+          tags: that.data.tags,
+          files: files,
+        },
+        header: {
+          'Authorization': token,
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success(res) {
+          wx.showToast({
+            title: '上传成功',
+            icon: 'success',
+            duration: 1500
+          })
+        },
+        fail(res) {
+          console.log('failes to upload', res.data)
+        }
+      })
+    })
+
+    wx.navigateBack({
+      delta: 0,
+    })
+
   },
   // 使页面显现的函数
   // changeView: function(e){
