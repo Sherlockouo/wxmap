@@ -208,8 +208,8 @@ Page({
       name: 'files',
       filePath: ps[i],
       success(res){
-        files=files+'#'+res.data.files+'#';
-        console.log("success upload files",res.data.files)
+        files=files+'#'+res.files+'#';
+        console.log("success upload files",res.files)
         
       },
       fail(res){
@@ -237,6 +237,9 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' 
       },
       success (res) {
+        wx.showModal({
+          content: res.msg
+        })
         console.log('markers',res.data)
       }
     })

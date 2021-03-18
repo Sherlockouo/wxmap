@@ -38,42 +38,12 @@ Page({
     latitude: '',
     //地图缩放级别
     scale: defaultScale,
-    markers: [
-      {
-        iconPath: "/img/drag-icon.png",
-        id: 0,
-        latitude: 23.099994,
-        longitude: 113.324520,
-        width: 50,
-        height: 50
-      },{
-        iconPath: "/img/drag-icon.png",
-        id: 0,
-        latitude: 30.099994,
-        longitude: 103.324520,
-        width: 50,
-        height: 50
-      },{
-        iconPath: "/img/drag-icon.png",
-        id: 0,
-        latitude: 30.399994,
-        longitude: 103.324520,
-        width: 50,
-        height: 50
-      },{
-        iconPath: "/img/drag-icon.png",
-        id: 0,
-        latitude: 30.019994,
-        longitude: 103.324520,
-        width: 50,
-        height: 50
-      }
-    ],
-    vaHe:0,  //导航菜单高度
-    inputHe:0,  //输入框高度
-    Sheight:0,
-    Swidth:0,
-    ssw:0,
+    markers: null,
+    vaHe: 0, //导航菜单高度
+    inputHe: 0, //输入框高度
+    Sheight: 0,
+    Swidth: 0,
+    ssw: 0,
     showTopTip: true,
     warningText: '搜索发现更多地方的故事',
     showUpload: true,
@@ -130,16 +100,16 @@ Page({
   onLoad: function (options) {
     this.selfLocationClick();
     var data = wx.getMenuButtonBoundingClientRect()
-    var WH=wx.getSystemInfoSync()
+    var WH = wx.getSystemInfoSync()
     this.setData({
       // 获取导航栏高度
-      vaHe:data.bottom+10,
-      inputHe:data.bottom-data.top,
+      vaHe: data.bottom + 10,
+      inputHe: data.bottom - data.top,
       Sheight: (WH.windowHeight),
       Swidth: (WH.windowWidth)
     })
     this.setData({
-      ssw: (this.data.Swidth/2)-68
+      ssw: (this.data.Swidth / 2) - 68
     })
     var that = this;
     //检测更新
@@ -172,7 +142,7 @@ Page({
     this.getSearchContentHeight();
     this.loadSdk();
   },
-  
+
 
   onShow: function () {
     consoleUtil.log('onShow--------------------->');
@@ -197,8 +167,12 @@ Page({
         callbackAddressInfo: null
       })
     }
-    //获取marker信息
-    this.queryMarkerInfo()
+      this.queryMarkerInfo()
+   
+  
+     
+  
+    
   },
 
   /**
@@ -208,29 +182,18 @@ Page({
 
   },
 
-  onReady: function(){
+  onReady: function () {
     //默认按照当前street(街道)搜索
     this.suggestionSearch(this.data.street);
   },
 
-  /** 
-   * deprecated
-   * 点击顶部横幅提示  */
-  showNewMarkerClick: function () {
-    var that = this;
-    wx.showModal({
-      title: '提示',
-      content: '你点击了顶部提示框',
-      showCancel: false
-    })
-  },
 
   /**
    * 设置上传按钮的左边距
    */
   setHomeActionLeftDistance: function () {
     var that = this;
-    if (!that.data.showUpload){
+    if (!that.data.showUpload) {
       return;
     }
     wx.getSystemInfo({
@@ -266,7 +229,6 @@ Page({
         var query = wx.createSelectorQuery();
         query.select('#bottom-layout').boundingClientRect()
         query.exec(function (res) {
-          consoleUtil.log(res);
           bottomHeight = res[0].height;
           that.setMapHeight();
         })
@@ -380,9 +342,9 @@ Page({
         })
       }
     }
-    var pagid=1
+    var pagid = 1
     wx.navigateTo({
-      url: '/pages/detail/detail?pageid='+pagid,
+      url: '/pages/detail/detail?pageid=' + pagid,
     })
   },
 
@@ -452,17 +414,16 @@ Page({
     }
   },
   // 跳转到分享界面
-  toShare :function(e)
-  {
+  toShare: function (e) {
     var that = this;
     // that.adjustViewStatus(false, true, false);
     that.updateCenterLocation(that.data.latitude, that.data.longitude);
     that.regeocodingAddress();
-    console.log('shit ',that.data.centerAddressBean)
+    console.log('shit ', that.data.centerAddressBean)
     wx.navigateTo({
       // url:'/pages/share/share?city='
-      url:'/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street+'&address='+that.data.centerAddressBean.address+'&lat='+that.data.latitude+'&lng='+that.data.longitude,
-  });
+      url: '/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street + '&address=' + that.data.centerAddressBean.address + '&lat=' + that.data.latitude + '&lng=' + that.data.longitude,
+    });
   },
   /**
    * 点击控件时触发
@@ -493,7 +454,7 @@ Page({
   },
 
   onShareAppMessage: function (res) {
-    
+
   },
 
   /**
@@ -536,7 +497,7 @@ Page({
         latitude: that.data.centerLatitude,
         longitude: that.data.centerLongitude
       },
-      success: function (res,data) {
+      success: function (res, data) {
         that.setData({
           centerAddressBean: res.result,
           selectAddress: res.result.formatted_addresses.recommend,
@@ -565,37 +526,42 @@ Page({
         pageSize: 100
       },
       header: {
-        'content-type': 'application/x-www-form-urlencoded' 
+        'content-type': 'application/x-www-form-urlencoded'
       },
-      success (res) {
-        console.log('markers',res.data)
+      success(res) {
+        var ls = res.data.data.list;
+        const v = new Promise((resolve, reject) => {
+          resolve(ls)
+        })
+        v.then((res) => {
+          console.log('res type',res[0])
+          that.createMarker(res)
+        })
+        // that.setData({
+        //   markers:ls
+        // })
       }
     })
   },
 
+  
   /**
    * 创建marker
    */
-  createMarker: function (dataList) {
+  createMarker: function (markers) {
     var that = this;
     var currentMarker = [];
-    var markerList = dataList.data;
-    for (var key in markerList) {
-      var marker = markerList[key];
-      marker.id = marker.info_id;
-      marker.latitude = marker.lat;
-      marker.longitude = marker.lng;
+    for (var key in markers) {
+      var marker = markers[key];
+      marker.id = marker.id;
+      marker.userid = marker.userid;
+      marker.iconPath = '/img/drag-icon.png';
+      marker.longitude = marker.longtitude;
       marker.width = 40;
       marker.height = 40;
-      if (marker.image) {
-        marker.iconPath = '../../img/dog-select.png';
-      } else {
-        marker.iconPath = '../../img/dog-yellow.png';
-      }
     }
-    currentMarker = currentMarker.concat(markerList);
-    consoleUtil.log('-----------------------');
-    consoleUtil.log(currentMarker);
+    currentMarker = currentMarker.concat(markers);
+    console.log('ms ss',currentMarker)
     that.setData({
       markers: currentMarker
     })
@@ -642,14 +608,7 @@ Page({
     }
   },
 
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+
 
   /**
    * 初始化sdk
@@ -691,9 +650,9 @@ Page({
     that.setData({
       inputAddress: e.detail.value,
     })
-    if (e.detail.value){
+    if (e.detail.value) {
       that.suggestionSearch(e.detail.value);
-    }else{
+    } else {
       that.suggestionSearch(that.data.street);
     }
   },
@@ -735,7 +694,7 @@ Page({
   /**
    * item点击事件,将地址回调到地图页面
    */
-  itemAddressClick: function(e){
+  itemAddressClick: function (e) {
     var that = this;
     consoleUtil.log(e);
     consoleUtil.log(e.currentTarget.id);
@@ -748,7 +707,7 @@ Page({
       callbackAddressInfo: item
     })
     wx.navigateBack({
-      
+
     })
   },
 })
