@@ -18,7 +18,7 @@ Page({
     {
       id:2,
       imgurl:"http://www.fjtbkyc.net/mywx/sunny5.jpg",
-      title:"湖边生活悠闲自得",
+      title:"湖边生活悠闲自得我悠",
       handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
       username:"Brank",
       local:'成都市郫都区太双路与蜀新大道交叉路口',
@@ -66,6 +66,7 @@ Page({
       concern:10
     }
     ],
+    ac:[],//判断文字是行数
 
   },
 
@@ -73,6 +74,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var arr=[]
+    for(let td of this.data.navbar){
+     if(td.title.length>12)
+      {
+        arr[td.id-1]=1
+      }
+   }
+   this.setData({
+    ac:arr
+  })
+  console.log(this.data.ac);
 
   },
   Tapgo:function(e)

@@ -1,5 +1,6 @@
 {
   "usingComponents": {},
   "navigationBarTitleText":"关注",
-  "navigationBarBackgroundColor":"#1ba1f0"
+  "navigationBarBackgroundColor":"#1ba1f0",
+  "enablePullDownRefresh":true
 }

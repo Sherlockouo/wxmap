@@ -2,18 +2,18 @@
   <block wx:for="{{navbar}}" data-idx="{{index}}" class="allitem" wx:key="idx">
     <view class="hoard-item"  bindtap="Tapgo" data-id="4">
       <view class="hoardimage">
-       <view class="himimg"> <image src="{{item.imgurl}}" mode="aspectFill"></image></view>
+       <image class="himimg" src="{{item.imgurl}}" mode="aspectFill"></image>
       </view>
       <view class="hoardtext">
         <view class="essaytitle">
-          <text>{{item.title}}</text>
+          <text class="{{ac[index]==1 ? 'indent' : ''}}">{{item.title}}</text>
         </view>
         <view class="rbottom">
    
           <view class="outleft">
             <view class="bleft">
-            <view>{{item.like}}<text style="font-size:25rpx;font-weight:500"> 喜欢. </text></view>
-            <view>{{item.concern}} <text style="font-size:25rpx;font-weight:500">收藏</text></view>
+            <view>{{item.like}}<text style="font-size:30rpx;font-weight:600"> 喜欢. </text></view>
+            <view>{{item.concern}} <text style="font-size:30rpx;font-weight:600">收藏</text></view>
             </view>
           </view>
           <view class="bright">

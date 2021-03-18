@@ -118,9 +118,15 @@ Page({
       wx.switchTab({
         url: '/pages/man/man'
       })
-    }else{
+    }else if(this.data.pageid=4){
       wx.navigateBack({
         url: '/pages/hoard/hoard'
+      })
+    }
+    else if(this.data.pageid=5)
+    {
+      wx.navigateBack({
+        url: '/pages/like/like'
       })
     }
   },

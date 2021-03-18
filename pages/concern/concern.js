@@ -9,13 +9,13 @@ Page({
       {
         id:1,
         handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-        name:"steven Turn",
+        name:"喜羊羊",
         introduce:"择一城终老，爱一人白首！"
       },
       {
         id:2,
         handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-        name:"steven Turn",
+        name:"灰太狼",
         introduce:"择一城终老，爱一人白首！"
       }
     ]

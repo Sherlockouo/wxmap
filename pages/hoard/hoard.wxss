@@ -31,6 +31,7 @@ page
   border-radius: 15px;
   margin-left: 5px;
   height: 220rpx;
+  width: 220rpx;
   overflow: hidden;
 }
 /* .handimg image{
@@ -48,6 +49,9 @@ page
   height: 160rpx;
   /* background: red; */
 }
+.essaytitle .indent{
+  text-indent:25rpx
+}
 .essaytitle text{
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -59,22 +63,22 @@ page
   justify-content: space-between;
 }
 .handimg{
-  width: 60rpx;
-  height: 60rpx;
+  width: 45rpx;
+  height: 45rpx;
   overflow: hidden;
   border-radius: 50%;
 }
 .handimg image{
-  width: 60rpx;
-  height: 60rpx;
+  width: 45rpx;
+  height: 45rpx;
 }
 .bleft {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   color: rgb(131, 131, 131);
-  font-weight:600;
-  font-size: 35rpx;
+  font-weight:500;
+  font-size: 25rpx;
 }
 .outleft{
   width: 60%;
