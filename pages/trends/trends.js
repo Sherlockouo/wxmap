@@ -193,7 +193,7 @@ Page({
           marker.local = marker.address;
           
           //cover
-          marker.imgurl = marker.files.substr(1,83);
+          marker.imgurl = marker.files.substr(1,82);
           console.log('marker',marker)
         }
         that.setData({
@@ -224,7 +224,7 @@ Page({
           marker.local = marker.address;
           
           //cover
-          marker.imgurl = marker.files.substr(1,83);
+          marker.imgurl = marker.files.substr(1,82);
           console.log('marker',marker)
         }
         that.setData({

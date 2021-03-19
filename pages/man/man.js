@@ -211,7 +211,11 @@ Page({
   },
   goDetail:function(e)
   {
-    var pagid=e.currentTarget.dataset.id;
+    
+   console.log('current marker id ',e.currentTarget.dataset.id)
+   app.globalData.currentMarkerId = e.currentTarget.dataset.id
+    
+    var pagid=3;
     wx.navigateTo({
       url: '/pages/detail/detail?pageid='+pagid,
     })

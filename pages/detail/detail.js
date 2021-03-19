@@ -70,7 +70,7 @@ Page({
       // 获取导航栏高度
       vaHe:data.bottom+10,
       inputHe:data.bottom-data.top,
-      pageid:options.pageid
+      pageid:options.pageid,
       // Sheight: (WH.windowHeight),
       // Swidth: (WH.windowWidth)
     })
@@ -146,7 +146,44 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var postid = app.globalData.currentMarkerId
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/info',
+      method: "GET",
+      data:{
+        posterId: postid,
+      },
+      success(res){
+        console.log('res is  ',res.data.data)
+        var ls = res.data.data
+        
+          var marker = ls;
+          marker.id = marker.id;
+          marker.userid = marker.userid;
+          marker.local = marker.address;
+          marker.essay_title=marker.title;
+          var len = Math.floor(marker.files.length/82);
+          console.log('len ',len)
+          var imgurls = [];
+          // for(var i=0;i<len;i++){
+            var s = marker.files.split("#");
+              imgurls.push(s)
+          // }
+          console.log('imageurls ',imgurls)
+          /**
+           * to-split the images's url 
+           * len(files)/82 => floor to get the number of the urls
+           * then give it to the essayall...
+           */
+          marker.essay_text=marker.message;
+          marker.like=marker.likes;
+          // //cover
+          // marker.imgurl = marker.files.substr(1,83);
+          console.log('marker',marker)
+        
+       
+      }
+    })
   },
 
   /**
