@@ -247,6 +247,13 @@ Page({
       url: '/pages/like/like'
     })
   },
+  gomessgeinfo:function(e)
+  {
+    console.log("xu",e.currentTarget.dataset.headimg)
+    wx.navigateTo({
+      url: '/pages/myinfo/myinfo?userinfoimg='+e.currentTarget.dataset.headimg+'&username='+e.currentTarget.dataset.username
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -20,6 +20,21 @@ Page({
       }
     ]
   },
+  concelConcern:function(e)
+  {
+    console.log("点击")
+    wx.showModal({
+      title: '提示',
+      content: '是否取消关注: '+e.currentTarget.dataset.name,
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

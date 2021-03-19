@@ -103,6 +103,12 @@
         {
           "name": "详细信息查看界面",
           "pathName": "pages/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "个人信息界面",
+          "pathName": "pages/myinfo/myinfo",
           "scene": null
         }
       ]

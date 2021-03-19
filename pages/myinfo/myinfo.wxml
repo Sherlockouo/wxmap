@@ -1,63 +1,71 @@
 <!-- 用户信息界面 -->
 <view>
-  <view class="titleCss">
-   <view class="Bac">
-       <image src="/img/bacimg.jpg" mode="heightFix"></image>
-   </view>
-   <view class="setBac">
-      <view class="head box" ><image src="{{userhead}}" mode="widthFix" class="headimg"></image></view>
-       <view class="btn box">设置背景</view>
-   </view>
-  
-  </view>
+    <view class="titleCss">
+        <view class="setBac">
+            <view class="head box">
+                <image src="{{userhead}}" mode="scaleToFill" class="headimg"></image>
+            </view>
+            <view class="btn box" bindtap="setbackground">设置背景</view>
+        </view>
+    </view>
 
 
-  <!-- 是一个提交表单 -->
-  <view class="weui-cells weui-cells_after-title mbody">
-    <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-            <view class="weui-label labelCss">
-              <text class="textCss">昵称:</text>
+    <!-- 是一个提交表单 -->
+    <view class="weui-cells weui-cells_after-title mbody">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label labelCss">
+                    <text class="textCss">昵称:</text>
+                </view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input inputCss" placeholder-class="place-holder" value="{{username}}" placeholder="请输入您的昵称" />
             </view>
         </view>
-        <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="请输入您的昵称"/>
-        </view>
-    </view>
-    <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-            <view class="weui-label labelCss">
-              <text class="textCss">性别:</text>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label labelCss">
+                    <text class="textCss">性别:</text>
+                </view>
+            </view>
+            <view class="weui-cell__bd sexCheck">
+                <!-- <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="未设置" /> -->
+                <view class="inpbox">
+                    <radio-group bindchange="radioChange" class="inp radiogroup">
+                        <view class="radiobox" wx:for="{{sex}}" wx:key="value">
+                            <radio value="{{item.id}}" color="#fb9d39" checked="{{item.checked}}" />
+                            <view class="radiotxt">{{item.value}}</view>
+                        </view>
+                    </radio-group>
+                </view>
             </view>
         </view>
-        <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="未设置"/>
-        </view>
-    </view>
-    <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-            <view class="weui-label labelCss">
-              <text class="textCss">生日:</text>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label labelCss">
+                    <text class="textCss">生日:</text>
+                </view>
+            </view>
+
+            <view class="weui-cell__bd">
+                <picker mode="date" value="{{date}}" start="1900-01-01" end="2021-10-08" bindchange="changeDate">
+                    <view class="tui-picker-detail">
+                        {{date}}
+                    </view>
+                </picker>
             </view>
         </view>
-       
-        <view class="weui-cell__bd">
-            <picker mode="date" disabled value="{{material.arriveToDate}}" bindchange="changeDate1">
-                  <input class="weui-input inputCss" placeholder="2000-03-02" name="arriveToDate" value="{{material.arriveToDate}}" disabled/>
-            </picker>
-            <!-- <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="2000.03.02" password bindinput="passwordInput" focus="{{password_show}}"/> -->
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-label labelCss">
+                <text class="textCss">签名:</text>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="留下点你的痕迹吧" />
+            </view>
         </view>
     </view>
-    <view class="weui-cell weui-cell_input">
-        <view class="weui-label labelCss">
-          <text class="textCss">签名:</text>
-        </view>
-        <view class="weui-cell__bd">
-            <input class="weui-input inputCss" placeholder-class="place-holder" placeholder="留下点你的痕迹吧" type="number"/>
-        </view>
+    <view class="page__bd page__bd_spacing addBnCss">
+        <button class="weui-btn" type="primary" bindtap="addUser">确定</button>
     </view>
-  </view>
-  <view class="page__bd page__bd_spacing addBnCss">
-      <button class="weui-btn" type="primary" bindtap="addUser">确定</button>
-  </view>
+
 </view>

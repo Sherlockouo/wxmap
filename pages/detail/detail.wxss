@@ -26,8 +26,7 @@
   height: 30rpx;
 }
 .deMessage{
-  padding-top:12px ;
-  width: 45%;
+  width: 60%;
   display: flex;
   /* flex-direction: row; */
   /* justify-content: center; */
@@ -35,10 +34,12 @@
 }
 .inimg
 { 
-  width: 40px;
-  height: 40px;
-   border-radius: 20px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+   overflow: hidden;
    /* background: chocolate; */
+   /* border: #fb9527 3rpx solid; */
 }
 .outimg{
   width: 40px;
@@ -48,12 +49,12 @@
   justify-items: center;
 }
 .inimg image{
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 }
 .dname{
-  /* width: 80%; */
-  font-size: 10px;
+  width: 100%;
+  font-size: 18rpx;
 }
 .concern{
   padding-top: 20px;
@@ -64,18 +65,20 @@
 }
 .inconcern{
   float: left;
-  width: 60px;
-  height: 25px;
+  width: 50px;
+  height: 24px;
   font-size: 12px;
-  line-height: 25px;
+  line-height: 24px;
   text-align: center;
    border-radius: 20px;
-   background: #fb9527;
+   border: rgb(87, 87, 87) 3rpx solid;
+   background: #d8d8d8;
+  
 }
 /* 内容样式 */
 .container-layout
 {
- margin-top:10%;
+ margin-top:9%;
  width: 100%;
  height: 100%;
 }
@@ -241,4 +244,14 @@
 }
 .context{
   font-size: 24rpx;
+}
+.active{
+  border: rgb(219, 219, 219) 0rpx solid;
+  background: #fb9527;
+}
+.allmessage{
+  padding-top:11px ;
+  width: 62%;
+  display: flex;
+  justify-content: space-between;
 }

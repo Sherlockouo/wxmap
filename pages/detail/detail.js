@@ -9,8 +9,11 @@ Page({
     pageid:'',//跳转到此界面之前页面的id
     vaHe:0,  //导航菜单高度
     inputHe:0,  //输入框高度
-    myname:'Another Drmension',
+    uesrname:'Another Drmension',
     current: 0,  //当前所在页面的 index
+    concernAc:0,//用户是否关注
+    isconcern:'+关注',//按钮的文字内容
+    headimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog4.jpg",//头像信息
     // indicatorDots: true, //是否显示面板指示点
     // autoplay: false, //是否自动切换
     // interval: 3000, //自动切换时间间隔
@@ -133,6 +136,22 @@ Page({
       wx.navigateBack({
         url: '/pages/like/like'
       })
+    }else{
+      wx.switchTab({
+        url: '/pages/index/index'
+      })
+    }
+  },
+  //点击关注按钮调用
+  concern:function(e)
+  {
+    
+    if(this.data.concernAc==0)
+    {
+      this.setData({
+        concernAc:1,
+        isconcern:'已关注'
+      })
     }
   },
   /**
@@ -154,9 +173,8 @@ Page({
         posterId: postid,
       },
       success(res){
-        console.log('res is  ',res.data.data)
+        console.log('res is  RRRR',res.data.data)
         var ls = res.data.data
-        
           var marker = ls;
           marker.id = marker.id;
           marker.userid = marker.userid;

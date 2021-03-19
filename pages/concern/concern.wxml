@@ -13,7 +13,7 @@
         </view>
       </view>
       <view class="concel">
-        <view class="middle">取消关注</view>
+        <view class="middle" bindtap="concelConcern" data-id="{{item.id}}" data-name="{{item.name}}">取消关注</view>
       </view>
 
     </view>

@@ -4,17 +4,21 @@
       <image src="/img/left-arrow.png"></image>
     </view>
   </view>
-  <view class="deMessage">
-    <view class="outimg" style="height:{{vaHe}}px">
-      <view class="inimg" mode="widthFix">
-        <image src="/img/fu.png"></image>
+  <view class="allmessage">
+    <view class="deMessage">
+      <view class="outimg" style="height:{{vaHe}}px">
+        <view class="inimg" mode="widthFix">
+          <image src="{{headimg}}"></image>
+        </view>
       </view>
+      <view class="dname" style="height:{{vaHe}}px; line-height:{{vaHe}}px;text-align:center">{{uesrname}}</view>
     </view>
-    <view class="dname" style="height:{{vaHe}}px; line-height:{{vaHe}}px;text-align:center">{{myname}}</view>
+    <view class="concern">
+      <!-- 点击关注可以变化 -->
+      <view class="inconcern {{concernAc==0?'active':''}}" bindtap="concern">{{isconcern}}</view>
+    </view>
   </view>
-  <view class="concern">
-    <view class="inconcern">+关注</view>
-  </view>
+
 </view>
 
 <view class="container-layout">
@@ -26,7 +30,7 @@
           <image class="vol-picture" src="{{item}}" mode="aspectFill" bindtap='imgClick' data-num="{{index}}"></image>
         </view>
       </swiper-item>
-    
+
     </block>
   </swiper>
   <view class='bannerNum'>{{(current+1)}}/{{essayall.imgUrls.length}}</view>
@@ -35,7 +39,9 @@
     <scroll-view scroll-x="true">
       <view class="tabel" scroll-x="true">
         <block wx:for="{{essayall.tabel}}">
-          <view class="tabeltext"><view>{{item}}</view></view>
+          <view class="tabeltext">
+            <view>{{item}}</view>
+          </view>
         </block>
       </view>
     </scroll-view>
@@ -45,15 +51,20 @@
   </view>
   <view class="empty"></view>
   <view class="bbbox">
- <view class="bottom">
-   <view class="like">
-     <view class="likeimg"><image src="{{likeimg}}"></image></view>
-     <view class="liketext">{{essayall.like}}</view>
-   </view>
-   <view class="boconcern">
-     <view class="conimg"><image src="{{hoardimg}}"></image></view>
-     <view class="context">{{essayall.concern}}</view>
-   </view>
- </view>
-</view>
+    <view class="bottom">
+      <view class="boconcern">
+        <view class="conimg">
+          <image src="{{hoardimg}}"></image>
+        </view>
+        <view class="context">{{essayall.concern}}</view>
+      </view>
+      <view class="like">
+        <view class="likeimg">
+          <image src="{{likeimg}}"></image>
+        </view>
+        <view class="liketext">{{essayall.like}}</view>
+      </view>
+
+    </view>
+  </view>
 </view>
