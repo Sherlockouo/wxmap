@@ -7,28 +7,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navbar: [{
-      id:1,
-      imgurl:"",
-      title:"",
-      handimg:"",
-      username:"Frightly",
-      local:'',
-      like:0,
-      concern:0
-    }
+    navbar: [
+    //   {
+    //   id:1,
+    //   imgurl:"",
+    //   title:"",
+    //   handimg:"",
+    //   username:"Frightly",
+    //   local:'',
+    //   like:0,
+    //   concern:0
+    // }
     ],
     lostnavbar:[
-      {
-      id:1,
-      imgurl:"",
-      title:"",
-      handimg:"",
-      username:"",
-      local:'',
-      like:0,
-      concern:0
-      },
+      // {
+      // id:1,
+      // imgurl:"",
+      // title:"",
+      // handimg:"",
+      // username:"",
+      // local:'',
+      // like:0,
+      // concern:0
+      // },
 
     ],
     lat: 0,
