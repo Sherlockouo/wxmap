@@ -9,9 +9,44 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 获取到用户的 code 之后：res.code
+        console.log("用户的code:" + res.code);
+        // 可以传给后台，再经过解析获取用户的 openid
+        // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
+        wx.request({
+            // 自行补上自己的 APPID 和 SECRET
+            url: 'https://storymap.sherlockouo.com/user/register',
+            method: "POST",
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+            },
+            data:{
+              wxcode:res.code
+            },
+            success: res => { 
+              
+                console.log(res)
+                // 获取到用户的 openid
+                if(res.data.code==0){
+                  // app.globalData.token = res.data.token;
+                  wx.setStorage({
+                    data: res.data.token,
+                    key: 'token',
+                  })
+                 
+                }else{
+                  
+                  console.log(" something goes wrong msg ",res.data.msg);
+                }
+            },
+            fail: res=>{
+                console.log("shit failed");
+            }
+        });
+      
       }
-    })
+    });
+  
     this.globalData.token=wx.getStorageSync('token')
     // 获取用户信息
     wx.getSetting({

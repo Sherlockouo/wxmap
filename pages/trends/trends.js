@@ -201,6 +201,38 @@ Page({
         })
       }
     })
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/type',
+      method: "GET",
+      header:{
+        Authorization: token,
+      },
+      data:{
+        type: 2,
+        pageNum: 1,
+        pageSize: 100
+
+      },
+      success(res){
+        console.log('res is  ',res.data.data.list)
+        var ls = res.data.data.list;
+        
+        for (var key in ls) {
+          var marker = ls[key];
+          marker.id = marker.id;
+          marker.userid = marker.userid;
+          marker.local = marker.address;
+          
+          //cover
+          marker.imgurl = marker.files.substr(1,83);
+          console.log('marker',marker)
+        }
+        that.setData({
+          lostnavbar:res.data.data.list
+        })
+      }
+    })
+  
   },
 
   /**

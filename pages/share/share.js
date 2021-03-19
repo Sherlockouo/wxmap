@@ -240,11 +240,19 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
+          if(res.code==0){
           wx.showToast({
             title: '上传成功',
             icon: 'success',
             duration: 1500
           })
+        }else{
+          wx.showToast({
+            title: '上传失败',
+            icon: 'fail',
+            duration: 1500
+          })
+        }
         },
         fail(res) {
           console.log('failes to upload', res.data)
