@@ -146,7 +146,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
     var postid = app.globalData.currentMarkerId
+    var essayall = {};
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/info',
       method: "GET",
@@ -155,31 +157,38 @@ Page({
       },
       success(res){
         console.log('res is  ',res.data.data)
-        var ls = res.data.data
-        
-          var marker = ls;
-          marker.id = marker.id;
-          marker.userid = marker.userid;
-          marker.local = marker.address;
-          marker.essay_title=marker.title;
-          var len = Math.floor(marker.files.length/82);
-          console.log('len ',len)
-          var imgurls = [];
-          // for(var i=0;i<len;i++){
-            var s = marker.files.split("#");
-              imgurls.push(s)
-          // }
-          console.log('imageurls ',imgurls)
-          /**
-           * to-split the images's url 
-           * len(files)/82 => floor to get the number of the urls
-           * then give it to the essayall...
-           */
-          marker.essay_text=marker.message;
-          marker.like=marker.likes;
-          // //cover
-          // marker.imgurl = marker.files.substr(1,83);
-          console.log('marker',marker)
+        new Promise((resolve,reject)=>{
+
+          var marker =res.data.data;
+          essayall.id = marker.id;
+          essayall.userid = marker.userid;
+          essayall.local = marker.address;
+          essayall.essay_title=marker.title;
+          essayall.essay_text=marker.message
+          var imgurls = marker.files.split("#");
+
+          for(var i=0;i<imgurls.length;i++){
+            if(imgurls[i]=="") imgurls.splice(i,1);
+          }
+          imgurls = Array.from(new Set(imgurls))
+          essayall.imgUrls = imgurls;
+
+          var tags = marker.tags.split("#");
+          
+          for(var i=0;i<tags.length;i++){
+            if(tags[i]=="") tags.splice(i,1);
+          }
+          essayall.tabel =tags;
+          essayall.like = marker.likes;
+          essayall.sharetime = marker.createTime;
+          resolve(essayall)
+        }).then(()=>{
+          console.log('ess ',essayall)
+          that.setData({
+            essayall:essayall
+          })
+        })
+          
         
        
       }

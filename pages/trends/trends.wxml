@@ -13,7 +13,7 @@
         <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="2" bindtap="goDetail">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="{{item.id}}" bindtap="goDetail">
               </image>
             </view>
             <view class="inlocal">
@@ -46,7 +46,7 @@
         <block wx:for="{{navbar}}" data-idx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="2" bindtap="goDetail"></image>
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="{{item.id}}" bindtap="goDetail"></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
@@ -86,7 +86,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" data-id="2" bindtap="goDetail">
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" data-id="{{item.id}}" bindtap="goDetail">
               </image>
             </view>
             <view class="inlocal">
@@ -119,7 +119,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="2" bindtap="goDetail"></image>
+              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="{{item.id}}" bindtap="goDetail"></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
