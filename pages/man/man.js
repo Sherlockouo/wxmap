@@ -89,7 +89,6 @@ Page({
       concern:10
       },
     ],
-    lostCount:0,
     userInfo: {},
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -139,6 +138,7 @@ Page({
         }
       }
     });
+    
   },
 
   wxlogin: function(e){
@@ -152,7 +152,7 @@ Page({
           // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
           wx.request({
               // 自行补上自己的 APPID 和 SECRET
-              url: 'https://storymap.sherlockouo.com/user/login',
+              url: 'https://storymap.sherlockouo.com/user/register',
               method: "POST",
               header: {
                 'content-type': 'application/x-www-form-urlencoded' // 默认值
@@ -164,11 +164,7 @@ Page({
                 // 获取到用户的信息了，打印到控制台上看下
                   console.log("用户的信息如下：");
                   console.log(e.detail.userInfo);
-                  //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-                  that.setData({
-                    isHide: false,
-                    userInfo: e.detail.userInfo
-                  });
+                  
                   console.log(res)
                   // 获取到用户的 openid
                   if(res.data.code==0){
@@ -177,6 +173,11 @@ Page({
                       data: res.data.token,
                       key: 'token',
                     })
+                    //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+                  that.setData({
+                    isHide: false,
+                    userInfo: e.detail.userInfo
+                  });
                     // app.globalData.token = res.data.token;
                   console.log("用户的token " + app.globalData.token);
                   }else{
@@ -188,6 +189,7 @@ Page({
                   console.log("shit failed");
               }
           });
+        
         }
       });
     
@@ -253,7 +255,71 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this
+    var token = app.globalData.token;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/self',
+      method: "GET",
+      header:{
+        Authorization: token,
+      },
+      data:{
+        type: 1,
+        pageNum: 1,
+        pageSize: 100
 
+      },
+      success(res){
+        console.log('res is  ',res.data.data.list)
+        var ls = res.data.data.list;
+        
+        for (var key in ls) {
+          var marker = ls[key];
+          marker.id = marker.id;
+          marker.userid = marker.userid;
+          marker.local = marker.address;
+          
+          //cover
+          marker.imgurl = marker.files.substr(1,83);
+          console.log('marker',marker)
+        }
+        that.setData({
+          sharenavbar:res.data.data.list
+        })
+      }
+    })
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/self',
+      method: "GET",
+      header:{
+        Authorization: token,
+      },
+      data:{
+        type: 2,
+        pageNum: 1,
+        pageSize: 100
+
+      },
+      success(res){
+        console.log('res is lost  ',res.data.data.list)
+        var ls = res.data.data.list;
+        
+        for (var key in ls) {
+          var marker = ls[key];
+          marker.id = marker.id;
+          marker.userid = marker.userid;
+          marker.local = marker.address;
+          
+          //cover
+          marker.imgurl = marker.files.substr(1,82);
+          console.log('marker',marker)
+        }
+        that.setData({
+          lostnavbar:res.data.data.list
+        })
+      }
+    })
+  
   },
 
   /**

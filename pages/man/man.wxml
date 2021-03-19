@@ -144,7 +144,7 @@
    <scroll-view hidden="{{currentTab!==1}}" class="left" scroll-y> 
     <view  class="tab2">
       <!-- 失物招领还未发布任何内容哦~ -->
-      <view wx:if="{{!lostCount}}" class="conter">
+      <view wx:if="{{!lostnavbar.length}}" class="conter">
         <view class="nofund"><image src="/img/nofund.png"></image></view>
          <view>失物招领还未发布任何内容哦~</view>
      </view>
