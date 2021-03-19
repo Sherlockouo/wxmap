@@ -2,16 +2,14 @@
 
 .titleCss{
   width: 100%;
-  height: 50%;
+  height: 400rpx;
   text-align: center;
+  background:url('http://www.fjtbkyc.net/mywx/bacimg.jpg') ;
+  background-size: cover;
 }
 .mbody
 {
   margin-top: 15%;
-}
-.Bac{
-  position: fixed ;
-  z-index: -10 ;
 }
 .setBac{
   width: 100%;
@@ -19,7 +17,7 @@
   flex-direction:column;
   align-items:center;
   justify-content: space-between;
-  padding-top: 20px;
+  padding-top: 60rpx;
 }
 .headimg{
   width: 80px;
@@ -66,3 +64,44 @@
 .weui-cell{
   height: 40px;
 }
+.weui-cell__bd picker{
+  margin-left: 2vh;
+}
+.inputbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 10rpx;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 32rpx;
+  color: #535353;
+}
+.sexCheck{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: center;
+}
+.inpbox {
+  width: 100%;
+  height: auto;
+}
+  .inp {
+    position: relative;
+    width: 100%;
+    height: 50rpx;
+  }
+  .radiogroup {
+    display: flex;
+    flex-direction: row;
+  }
+    .radiobox {
+      display: flex;
+      flex-direction: row;
+      margin-left: 20rpx;
+    }
+

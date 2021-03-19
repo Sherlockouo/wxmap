@@ -23,9 +23,9 @@
     <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <view class="userinfo2">
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <view class='message'>
+      <view class='message' bindtap="gomessgeinfo" data-headimg="{{userInfo.avatarUrl}}" data-username="{{userInfo.nickName}}">
         <!-- //bindtap="myinfopage" -->
-        <navigator url="/pages/myinfo/myinfo?userinfoimg={{userInfo.avatarUrl}}">我的信息</navigator>
+        我的信息
         <!-- 我的信息 -->
       </view>
     </view>
@@ -75,7 +75,7 @@
         <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg">
-              <image style="height:900rpx" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail" data-id="{{item.id}}">
+              <image style="height:900rpx" src="{{item.imgurl}}" mode="scaleToFill" bindtap="goDetail" data-id="{{item.id}}">
               </image>
             </view>
             <view class="inlocal">
@@ -108,7 +108,7 @@
         <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg">
-              <image style="height:300px" src="{{item.imgurl}}" mode="widthFix"  bindtap="goDetail" data-id="{{item.id}}" ></image>
+              <image style="height:300px" src="{{item.imgurl}}" mode="scaleToFill"  bindtap="goDetail" data-id="{{item.id}}" ></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
