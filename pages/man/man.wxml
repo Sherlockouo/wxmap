@@ -75,7 +75,7 @@
         <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg">
-              <image style="height:900rpx" src="{{item.imgurl}}" mode="widthFix" data-id="3" bindtap="goDetail">
+              <image style="height:900rpx" src="{{item.imgurl}}" mode="widthFix" bindtap="goDetail" data-id="{{item.id}}">
               </image>
             </view>
             <view class="inlocal">
@@ -108,7 +108,7 @@
         <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg">
-              <image style="height:300px" src="{{item.imgurl}}" mode="widthFix" data-id="3" bindtap="goDetail"></image>
+              <image style="height:300px" src="{{item.imgurl}}" mode="widthFix"  bindtap="goDetail" data-id="{{item.id}}" ></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
@@ -153,7 +153,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg">
-              <image src="{{item.imgurl}}" mode="aspectFill" data-id="3" bindtap="goDetail">
+              <image src="{{item.imgurl}}" mode="aspectFill" bindtap="goDetail" data-id="{{item.id}}">
               </image>
             </view>
             <view class="inlocal">
