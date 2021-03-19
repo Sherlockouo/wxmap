@@ -61,10 +61,10 @@
   <!-- 输入框 -->
    <view class="taginput">
     <view class="myinput">
-     <view><input  model:value="{{shareTitle}}" placeholder="请输入标签(输入后点加号加入)" class="tagin"></input>
+     <view><input  model:value="{{shareTag}}" placeholder="请输入标签(输入后点加号加入)" class="tagin"></input>
      </view>
     </view>
-    <view class="addicon"><view class="inaddicon"><image src="/img/add_h.png" bindlongtap="addTag"></image></view></view>
+    <view class="addicon"><view class="inaddicon" bindtap="addTag"><image src="/img/add_h.png" bindlongtap="addTag"></image></view></view>
    </view>
     <!-- 话题模块提供选择 -->
   <view class="divLine"></view>
@@ -76,7 +76,7 @@
           <view><text>{{item}}</text></view>
         </view>
          <!-- 图片取消选的图标按钮 -->  
-        <view class="tagConcel"><view><image src="/img/delete.png"></image></view></view>
+        <view class="tagConcel"><view bindtap="concelTag" data-idx="{{index}}"><image src="/img/delete.png"></image></view></view>
         </view>
      </block>
     

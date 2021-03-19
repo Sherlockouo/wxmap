@@ -25,9 +25,9 @@ Page({
     street: '',
     latitude: 0,
     longtitude: 0,
-    tags: '#标签##随意#',
+    shareTag:'',
     tagvevtor: [
-      "成都", "自然", "春天", "阳光", "风和日丽"
+      "成都", "自然", "风和日丽"
     ],
     shareTitle: "",
     shareText: "",
@@ -257,23 +257,47 @@ Page({
     })
 
   },
-  // 使页面显现的函数
-  // changeView: function(e){
-  //   var that = this
-  //   if(that.data.isHide==true){
-  //     that.setData({
-  //       isHide:false
-  //     })
-  //   }else{
-  //     that.setData({
-  //       isHide:true
-  //     })
-  //   }
-  //   console.log("clicked change view :",that.data.isHide)
-  // },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+  concelTag:function(e){
+    var key = e.currentTarget.dataset.idx;
+    var newshareTag =[]
+    for(let td of this.data.tagvevtor){
+      // console.log(td);
+      newshareTag.push(td);
+    }
+    newshareTag.splice(key,1);
+    // console.log("new",newshareTag);
+    this.setData({
+      tagvevtor:newshareTag
+    })
+  },
+  addTag:function(e)
+  {
+    var newshareTag =[]
+    for(let td of this.data.tagvevtor){
+      // console.log(td);
+      newshareTag.push(td);
+    }
+    var flag=0;
+    for(let td of this.data.tagvevtor){
+       if(this.data.shareTag==td)
+         flag=1;
+    } 
+
+    if(this.data.shareTag.length!=0&&flag==0)
+         newshareTag.push(this.data.shareTag);
+    else{
+      wx.showToast({
+        title: '标签已存在！',
+        icon: 'none',
+        duration: 1500
+      })      
+    }
+    // console.log("new",newshareTag);
+    this.setData({
+      tagvevtor:newshareTag,
+      shareTag:''
+    })
+  },
   onReady: function () {
 
   },
