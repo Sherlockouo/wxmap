@@ -163,6 +163,7 @@ Page({
     var that = this
     var postid = app.globalData.currentMarkerId
     var essayall = {};
+    console.log('postid ',postid)
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/info',
       method: "GET",
@@ -170,7 +171,8 @@ Page({
         posterId: postid,
       },
       success(res) {
-        console.log('res is  ', res.data.data)
+        console.log('res is  ', res)
+        if(res.data.code==0){
         new Promise((resolve, reject) => {
           var marker = res.data.data;
           essayall.id = marker.id;
@@ -180,13 +182,17 @@ Page({
           essayall.essay_title = marker.title;
           essayall.essay_text = marker.message
           var imgurls = marker.files.split("#");
-
+          console.log('before ',imgurls)
           for (var i = 0; i < imgurls.length; i++) {
             if (imgurls[i] == "") imgurls.splice(i, 1);
           }
+          // 去重方式一 会把imgurls 变为 空
           imgurls = Array.from(new Set(imgurls))
+          // var imgs = [...new Set(imgurls)];
+          // var imgs = imgurls;
+          // console.log('imgs ',imgs)
           essayall.imgUrls = imgurls;
-
+          console.log('after ',imgurls)
           var tags = marker.tags.split("#");
 
           for (var i = 0; i < tags.length; i++) {
@@ -206,6 +212,7 @@ Page({
 
 
       }
+    }
     })
   },
   //分享给朋友

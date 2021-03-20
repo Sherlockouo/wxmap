@@ -25,9 +25,11 @@ Page({
     street: '',
     latitude: 0,
     longtitude: 0,
-    tags:'',
-    shareTag:'',
-    tagvevtor: [],
+    tags: '',
+    shareTag: '',
+    tagvevtor: [
+      "#成都#"
+    ],
     shareTitle: "",
     shareText: "",
     shareLocal: "成都市郫都区红光镇红光大道9999号",
@@ -70,8 +72,7 @@ Page({
    */
   takePhoto: function () {
     var that = this;
-    var ps = [];
-    var pics = that.data.pics;
+    var ps = that.data.pics;
     if (that.data.pics.length >= that.data.imageMaxNum) {
       wx.showToast({
         title: '最多选择' + that.data.imageMaxNum + '张！',
@@ -84,13 +85,11 @@ Page({
       count: that.data.imageMaxNum - that.data.pics.length,
       success: function (res) {
         var imgs = res.tempFilePaths;
-        console.log("images ", imgs.length)
+
         for (var i = 0; i < imgs.length; i++) {
           ps.push(imgs[i])
         }
-        for (var i = 0; i < pics.length; i++) {
-          ps.push(pics[i])
-        }
+
         that.setData({
           pics: ps,
           toupload: true,
@@ -111,7 +110,7 @@ Page({
     // var pos = ps.indexOf(key);
     ps.splice(key, 1)
     that.setData({
-      pics:ps
+      pics: ps
     })
 
   },
@@ -186,38 +185,46 @@ Page({
 
       return;
     }
-    var files = '';
+    var ps = that.data.pics;
+    var files = [];
+    var iters =[]
     const v = new Promise((resolve, reject) => {
-      var ps = that.data.pics;
 
       for (var i = 0; i < ps.length; i++) {
-        wx.uploadFile({
-          url: 'https://storymap.sherlockouo.com/upload/files',
-          method: 'POST',
-          header: {
-            Authorization: token,
-          },
-          name: 'files',
-          filePath: ps[i],
-          success(res) {
-            res = JSON.parse(res.data)
-            files += '#' + res.files[0] + '#'
-            resolve(files += '#' + res.files[0] + '#')
-            // console.log('fk',files)
-          },
-          fail(res) {
-            wx.navigateBack({
-              delta: 1,
-            })
-            console.log("fails to upload ", res)
-          }
+        iters.push(new Promise((resolve, reject) => {
+          wx.uploadFile({
+            url: 'https://storymap.sherlockouo.com/upload/files',
+            method: 'POST',
+            header: {
+              Authorization: token,
+            },
+            name: 'files',
+            filePath: ps[i],
+            success(res) {
+              res = JSON.parse(res.data)
+
+              var f = '#' + res.files[0] + '#'
+              files.push(f);
+              // console.log('files is length', files)
+              resolve(files = Array.from(new Set(files)))
+              // console.log('fk',files)
+            },
+            fail(res) {
+              wx.navigateBack({
+                delta: 1,
+              })
+              console.log("fails to upload ", res)
+            }
+          })
+
         })
+        )
       }
 
-
     })
-    v.then((res) => {
-      console.log('files', res)
+
+    Promise.all(iters).then((res) => {
+      var fileurls = files.join("")
       wx.request({
         url: 'https://storymap.sherlockouo.com/poster/post', //仅为示例，并非真实的接口地址
         method: 'POST',
@@ -229,26 +236,26 @@ Page({
           latitude: that.data.latitude,
           longtitude: that.data.longtitude,
           tags: that.data.tags,
-          files: files,
+          files: fileurls,
         },
         header: {
           'Authorization': token,
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
-          if(res.data.code==0){
-          wx.showToast({
-            title: '上传成功',
-            icon: 'success',
-            duration: 1500
-          })
-        }else{
-          wx.showToast({
-            title: '上传失败',
-            icon: 'error',
-            duration: 1500
-          })
-        }
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '上传成功',
+              icon: 'success',
+              duration: 1500
+            })
+          } else {
+            wx.showToast({
+              title: '上传失败',
+              icon: 'error',
+              duration: 1500
+            })
+          }
         },
         fail(res) {
           console.log('failes to upload', res.data)
@@ -261,42 +268,39 @@ Page({
     })
 
   },
-  concelTag:function(e){
+  concelTag: function (e) {
     var key = e.currentTarget.dataset.idx;
-    var newshareTag =[]
-    for(let td of this.data.tagvevtor){
+    var newshareTag = []
+    for (let td of this.data.tagvevtor) {
       // console.log(td);
       newshareTag.push(td);
     }
-    newshareTag.splice(key,1);
+    newshareTag.splice(key, 1);
     // console.log("new",newshareTag);
     this.setData({
-      tagvevtor:newshareTag
+      tagvevtor: newshareTag
     })
   },
-  addTag:function(e)
-  {
-    var newshareTag =this.data.tagvevtor;
-     if(this.data.shareTag!='')
-     {
-        var td = '#'+this.data.shareTag+'#';
-     console.log('sharetag ',td)
+  addTag: function (e) {
+    var newshareTag = this.data.tagvevtor;
+    if (this.data.shareTag != '') {
+      var td = '#' + this.data.shareTag + '#';
+      console.log('sharetag ', td)
       newshareTag.push(td);
-      console.log('new s length',newshareTag)
+      console.log('new s length', newshareTag)
       var ss = this.data.tagvevtor;
-      newshareTag= Array.from(new Set(ss))
-      console.log('ss',ss)
+      newshareTag = Array.from(new Set(ss))
+      console.log('ss', ss)
       this.setData({
         tagvevtor: newshareTag,
-        shareTag:''
+        shareTag: ''
       })
-     }
-     else{
+    } else {
       wx.showToast({
         title: '标签添加不能为空！',
         icon: 'none',
         duration: 1500
-      })     
+      })
     }
   },
   onReady: function () {
