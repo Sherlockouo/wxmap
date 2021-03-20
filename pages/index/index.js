@@ -96,7 +96,7 @@ Page({
     userAvatar: 'https://images.unsplash.com/photo-1499355940597-5601b9869168?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a501f2aa74492264ce48c72546450e8&auto=format&fit=crop&w=1567&q=80',
     userNickname: '芜湖',
     uploadTime: '一分钟前',
-    city:'',
+    city: '',
   },
   onLoad: function (options) {
     this.selfLocationClick();
@@ -155,8 +155,8 @@ Page({
     if (that.data.callbackAddressInfo == null) {
       that.getCenterLocation();
       //正在上传的话，不去请求地理位置信息
-        that.requestLocation();
-      
+      that.requestLocation();
+
     } else {
       that.setData({
         selectAddress: that.data.callbackAddressInfo.title,
@@ -167,12 +167,12 @@ Page({
         callbackAddressInfo: null
       })
     }
-      this.queryMarkerInfo()
-   
-  
-     
-  
-    
+    this.queryMarkerInfo()
+
+
+
+
+
   },
 
   /**
@@ -328,8 +328,8 @@ Page({
    */
   bindMakertap: function (e) {
     var that = this;
-    
-   app.globalData.currentMarkerId = e.detail.markerId;
+
+    app.globalData.currentMarkerId = e.detail.markerId;
     //重新设置点击marker为中心点
     for (var key in that.data.markers) {
       var marker = that.data.markers[key];
@@ -402,17 +402,17 @@ Page({
     that.updateCenterLocation(that.data.latitude, that.data.longitude);
     that.regeocodingAddress();
     console.log('shit ', that.data.centerAddressBean)
-    if (app.globalData.token.length==0) {
+    if (app.globalData.token.length == 0) {
       wx.navigateTo({
-        url: '/pages/login/login?pagetype='+1,
+        url: '/pages/login/login?pagetype=' + 1,
       })
-    }else{
-       wx.navigateTo({
-      // url:'/pages/share/share?city='
-      url: '/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street + '&address=' + that.data.centerAddressBean.address + '&lat=' + that.data.latitude + '&lng=' + that.data.longitude,
-    });
+    } else {
+      wx.navigateTo({
+        // url:'/pages/share/share?city='
+        url: '/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street + '&address=' + that.data.centerAddressBean.address + '&lat=' + that.data.latitude + '&lng=' + that.data.longitude,
+      });
     }
-   
+
   },
   /**
    * 点击控件时触发
@@ -496,7 +496,7 @@ Page({
         })
       },
       fail: function (res) {
-        console.log("逆地址解析",res);
+        console.log("逆地址解析", res);
       }
     });
   },
@@ -509,7 +509,7 @@ Page({
     consoleUtil.log('查询当前坐标 marker 点信息')
     //调用请求 marker 点的接口就好了
     wx.request({
-      url: 'https://storymap.sherlockouo.com/poster/all', 
+      url: 'https://storymap.sherlockouo.com/poster/all',
       data: {
         // 或许可以改为根据地理位置信息提供服务
         pageNum: 1,
@@ -524,7 +524,7 @@ Page({
           resolve(ls)
         })
         v.then((res) => {
-          console.log('res type',res[0])
+          console.log('res type', res[0])
           that.createMarker(res)
         })
         // that.setData({
@@ -534,7 +534,7 @@ Page({
     })
   },
 
-  
+
   /**
    * 创建marker
    */
@@ -548,16 +548,16 @@ Page({
       marker.longitude = marker.longtitude;
       marker.width = 40;
       marker.height = 40;
-      if(marker.type==1){
+      if (marker.type == 1) {
         // share
         marker.iconPath = '/img/dog-select.png';
-      }else{
+      } else {
         // lost
         marker.iconPath = '/img/dog-yellow.png';
       }
     }
     currentMarker = currentMarker.concat(markers);
-    console.log('ms ss',currentMarker)
+    console.log('ms ss', currentMarker)
     that.setData({
       markers: currentMarker
     })
@@ -642,14 +642,17 @@ Page({
    */
   bindAddressInput: function (e) {
     var that = this;
-    consoleUtil.log(e.detail.value);
     that.setData({
       inputAddress: e.detail.value,
     })
+
     if (e.detail.value) {
       that.suggestionSearch(e.detail.value);
     } else {
       that.suggestionSearch(that.data.street);
+      that.setData({
+        resultList: '',
+      })
     }
   },
 
@@ -658,7 +661,7 @@ Page({
    */
   suggestionSearch: function (searchValue) {
     var that = this;
-    console.log("city",this.data.city);
+    console.log("city", this.data.city);
     // consoleUtil.log(qqmapsdk);
     qqmapsdk.getSuggestion({
       keyword: searchValue,
@@ -667,7 +670,7 @@ Page({
       // region_fix: 1,
       // policy: 1,
       success: function (res) {
-        console.log("232",res.data);
+        console.log("232", res.data);
         that.setData({
           resultList: res.data
         })
@@ -677,7 +680,14 @@ Page({
       }
     });
   },
-
+  //选择地点
+  chance: function (e) {
+    console.log("点击地点",e.currentTarget.dataset.idx);
+    this.setData({
+      resultList:"",
+      inputAddress:''
+    })
+  },
 
   /**
    * 删除输入内容
@@ -687,6 +697,7 @@ Page({
     // console.log("点击");
     this.setData({
       inputAddress: '',
+      resultList: ''
     })
     // that.suggestionSearch(that.data.street);
   },

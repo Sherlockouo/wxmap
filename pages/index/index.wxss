@@ -1,11 +1,12 @@
 /**index.wxss**/
-.top{
+.top {
   width: 100%;
   display: flex;
 }
+
 .container-layout {
   margin: 0;
-  padding:0;
+  padding: 0;
   width: 100%;
   height: 100%;
 }
@@ -13,12 +14,14 @@
 .map-wrapper {
   width: 100%;
 }
-.delete-input{
+
+.delete-input {
   width: 50rpx;
   height: 50rpx;
 }
+
 .map {
-   
+
   height: 100%;
   width: 100%;
 }
@@ -32,22 +35,24 @@
   background-color: #e0e0e0;
 }
 
-.tip-bg{
+.tip-bg {
   width: 100%;
   height: 100%;
   position: absolute;
   opacity: 0.9;
 }
 
-.cover-tip-content{
+.cover-tip-content {
   width: 100%;
   height: 100%;
   position: absolute;
-  display: flex; 
+  display: flex;
   flex-direction: row;
   align-items: center;
 }
-
+.cover-tip-content input{
+   width: 80%;
+}
 .cover-layout {
   width: 100rpx;
   height: 100rpx;
@@ -79,9 +84,11 @@
 .input-address gray-text {
   margin: 10px;
 }
-.input-address gray-text input{
+
+.input-address gray-text input {
   width: max-content;
 }
+
 .tip-text {
   flex: 1;
   color: #666;
@@ -674,7 +681,7 @@ button::after {
   align-items: center;
 }
 
-.upload-user-info{
+.upload-user-info {
   width: 100%;
   height: 90rpx;
   display: flex;
@@ -683,14 +690,14 @@ button::after {
   border-bottom: 1rpx solid #e5e5e5;
 }
 
-.user-avatar{
+.user-avatar {
   width: 60rpx;
   height: 60rpx;
   margin-left: 40rpx;
   border-radius: 30rpx;
 }
 
-.user-nickname{
+.user-nickname {
   flex: 1;
   font-size: 28rpx;
   color: #666666;
@@ -698,28 +705,28 @@ button::after {
   font-weight: 500;
 }
 
-.user-upload-time{
+.user-upload-time {
   color: #ff555c;
   font-size: 24rpx;
   margin-right: 20rpx;
 }
 
-.split-blur-bg{
+.split-blur-bg {
   width: 100%;
   height: 1rpx;
-  -moz-box-shadow:0px -2px 6px #333333; 
-  -webkit-box-shadow:0px -2px 6px #333333; 
-  box-shadow:0px -2px 6px #333333;
+  -moz-box-shadow: 0px -2px 6px #333333;
+  -webkit-box-shadow: 0px -2px 6px #333333;
+  box-shadow: 0px -2px 6px #333333;
 }
 
-.recommend-wrapper{
+.recommend-wrapper {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.select-recommend-info{
+.select-recommend-info {
   flex: 1;
   height: 60rpx;
   border: 1rpx solid #e5e5e5;
@@ -730,32 +737,33 @@ button::after {
   align-items: center;
 }
 
-.recommend-text{
+.recommend-text {
   font-size: 28rpx;
   color: #666;
   margin-left: 10rpx;
 }
 
-.recommend-image{
+.recommend-image {
   width: 50rpx;
   height: 50rpx;
   margin-left: 20rpx;
 }
 
-.share-btn
-{
-   position: absolute;
-   bottom: 2%;
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   justify-items: center;
+.share-btn {
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
-.share-btn cover-image{
+
+.share-btn cover-image {
   width: 180rpx;
   height: 180rpx;
 }
-.cancel-wrapper{
+
+.cancel-wrapper {
   float: right;
   height: 100%;
   display: flex;
@@ -763,17 +771,35 @@ button::after {
   justify-items: center;
   justify-content: center;
 }
-.line{
-  position: relative;
-  top: 0;
-  z-index: 10;
-  height: 100px;
+
+.line {
+  position: absolute;
+  z-index: 33;
   width: 94%;
+  height: auto;
   left: 3%;
   border-radius: 10px;
-  background:rgb(61, 61, 61,0.6);
+  background: rgb(255, 174, 107);
+  color: rgb(27, 27, 27);
 }
-.cityInfo{
+
+.cityInfo {
   width: 98%;
   margin: 0 auto;
+}
+.chanceadress{
+  padding-top: 40rpx;
+  width: 90%;
+  margin: 0 auto;
+  /* height: 80rpx; */
+  border-bottom: black 1px solid;
+}
+.citytitle{ 
+  color: #333333;
+  font-size: 16px;
+  /* background: rgb(231, 255, 253); */
+}
+.cityaddress{
+  color: rgb(68, 68, 68);
+  font-size: 12px;
 }

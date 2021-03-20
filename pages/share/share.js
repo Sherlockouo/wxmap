@@ -27,9 +27,7 @@ Page({
     longtitude: 0,
     tags:'',
     shareTag:'',
-    tagvevtor: [
-      "#成都#"
-    ],
+    tagvevtor: [],
     shareTitle: "",
     shareText: "",
     shareLocal: "成都市郫都区红光镇红光大道9999号",

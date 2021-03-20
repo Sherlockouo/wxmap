@@ -7,11 +7,12 @@
         <image class='input-address gray-text' src='/img/notification.png'
           style="width:{{inputHe-8}}px;height:{{inputHe-8}}px;margin-top:{{inputHe/4}}px"></image>
       </view>
-      <input placeholder-style='font-size:12px;' bindinput='bindAddressInput' value='{{inputAddress}}'
-        placeholder='{{warningText}}'></input>
+      <input placeholder-style='font-size:18rpx;' bindinput='bindAddressInput' confirm-type="search"
+        value='{{inputAddress}}' placeholder='{{warningText}}'></input>
       <view class='cancel-wrapper' bindtap='deleteInput' wx:if='{{inputAddress}}'>
-        <view style="height:50rpx">
-          <image class='delete-input' src='../../img/delete.png'></image>
+        <view>
+          <image class='delete-input' style="width:{{inputHe-4}}px;height:{{inputHe-4}}px;margin-top:{{vaHe/16}}px"
+            src='/img/delete.png'></image>
         </view>
       </view>
     </view>
@@ -21,10 +22,11 @@
 
   <!--地图-->
   <view class='map-wrapper' style='height:{{mapHeight}}'>
-
-    <cover-view class='line' style="height:auto" wx:for="{{resultList}}">
-      <cover-view class="citytitle">{{item.title}}</cover-view>
-      <cover-view class="cityaddress">{{item.address}}</cover-view>
+    <cover-view class='line' style="top:10%">
+      <cover-view wx:for="{{resultList}}" class="chanceadress" bindtap="chance" data-idx="{{index}}">
+        <cover-view class="citytitle">{{item.title}}</cover-view>
+        <cover-view class="cityaddress">{{item.address}}</cover-view>
+      </cover-view>
     </cover-view>
     <map class='map' id='myMap' longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" show-location="true"
       markers="{{markers}}" bindmarkertap="bindMakertap" data-item="{{markers}}" bindcontroltap='controlTap'
