@@ -13,10 +13,15 @@
       </view>
       <view class="dname" style="height:{{vaHe}}px; line-height:{{vaHe}}px;text-align:center">{{uesrname}}</view>
     </view>
+    <view wx:if="{{!isyouself}}">
     <view class="concern">
       <!-- 点击关注可以变化 -->
       <view class="inconcern {{concernAc==0?'active':''}}" bindtap="concern">{{isconcern}}</view>
     </view>
+  </view>
+  <view wx:else> 
+    <view class="control"></view>
+  </view>
   </view>
 
 </view>
@@ -52,6 +57,12 @@
   <view class="empty"></view>
   <view class="bbbox">
     <view class="bottom">
+      <view class="share">
+        <view class="shareimg" bindtap="onShareAppMessage">
+          <image src="{{shareimg}}"></image>
+        </view>
+        <view class="sharetext"></view>
+      </view>
       <view class="boconcern">
         <view class="conimg">
           <image src="{{hoardimg}}"></image>
@@ -64,7 +75,6 @@
         </view>
         <view class="liketext">{{essayall.like}}</view>
       </view>
-
     </view>
   </view>
 </view>

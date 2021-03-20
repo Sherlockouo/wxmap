@@ -71,7 +71,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                <image src="{{item.headimg}}" mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">
@@ -104,7 +104,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}"  mode="scaleToFill"></image>
+                <image src="{{item.headimg}}"  mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">
@@ -149,7 +149,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                <image src="{{item.headimg}}" mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">
@@ -182,7 +182,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                <image src="{{item.headimg}}" mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">

@@ -10,13 +10,17 @@ Page({
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false,
-    pagetpye:1,//页面跳转前的页面
+    pagetype:1,//页面跳转前的页面
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('pagetype ',this.data.pagetype);
+    this.setData({
+      pagetype:options.pagetype
+    })
     var that = this;
     // 查看是否授权
     wx.getSetting({
@@ -118,25 +122,24 @@ Page({
   // 从分享界面1，从详情页2，从主信息界面3
   goback:function(e)
   {
-    if(this.data.pagetype==2)
+    console.log('pagetype ',this.data.pagetype);
+    if(this.data.pagetype==1)
     {
       wx.switchTab({
         url: '/pages/index/index'
       })
 
-    }else if(this.data.pagetpye==1)
+    }else if(this.data.pagetype==2)
     {
       wx.switchTab({
         url: '/pages/trends/trends'
       })
-
     }
-    else{
+    else if(this.data.pagetype==3){
       wx.switchTab({
         url: '/pages/man/man'
       })
     }
-
 
   },
 

@@ -12,7 +12,7 @@ Page({
     //   id:1,
     //   imgurl:"",
     //   title:"",
-    //   handimg:"",
+    //   headimg:"",
     //   username:"Frightly",
     //   local:'',
     //   like:0,
@@ -24,13 +24,12 @@ Page({
       // id:1,
       // imgurl:"",
       // title:"",
-      // handimg:"",
+      // headimg:"",
       // username:"",
       // local:'',
       // like:0,
       // concern:0
-      // },
-
+      // }
     ],
     lat: 0,
     lng: 0,
@@ -41,6 +40,8 @@ Page({
     cTab:0,
     shareCount:1,
     lostCount:2,
+    Lflage:[],
+    Sflage:[],
   },
 
   //请求地理位置
@@ -84,9 +85,9 @@ Page({
     app.globalData.currentMarkerId = e.currentTarget.dataset.id
     
     var pagid=e.currentTarget.dataset.id; //用于文章返回 
-    if (app.globalData.isHide == 0) {
+    if (app.globalData.token.length==0) {
       wx.navigateTo({
-        url: '/pages/login/login?pagetype='+3,
+        url: '/pages/login/login?pagetype='+2,
       })
     }else{
       wx.navigateTo({
@@ -95,6 +96,7 @@ Page({
     }
     
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -149,6 +151,8 @@ Page({
                 }
           imgurls = Array.from(new Set(imgurls))
           //cover
+          marker.headimg = marker.avatar;
+          marker.like=marker.likes;
           marker.imgurl = imgurls[0];
           console.log('marker',marker)
         }
@@ -179,7 +183,8 @@ Page({
           marker.userid = marker.userid;
           marker.local = marker.address;
           var imgurls = marker.files.split("#");
-
+          marker.headimg = marker.avatar;
+          marker.like=marker.likes;
                 for (var i = 0; i < imgurls.length; i++) {
                   if (imgurls[i] == "") imgurls.splice(i, 1);
                 }

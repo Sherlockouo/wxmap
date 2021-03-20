@@ -111,8 +111,10 @@
   width: 100%;
   height: auto;
   border-radius: 10px;
-  background: url('http://www.fjtbkyc.net/images/load.gif');
+  background: url('http://www.fjtbkyc.net/images/load.gif') no-repeat center center;
   background-size: cover;
+  /* min-height: 200rpx;
+  max-height: 600rpx; */
 }
 
 .mymessage {
@@ -124,9 +126,11 @@
 
 .myimg image {
   width: 100%;
-  height: 200px;
+  /* height: 200px; */
   border-radius: 10rpx;
   display: block;
+  min-height: 200rpx;
+  max-height: 460rpx;
 }
 
 .mytitle {

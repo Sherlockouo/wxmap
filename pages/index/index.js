@@ -401,9 +401,9 @@ Page({
     that.updateCenterLocation(that.data.latitude, that.data.longitude);
     that.regeocodingAddress();
     console.log('shit ', that.data.centerAddressBean)
-    if (app.globalData.isHide == 0) {
+    if (app.globalData.token.length==0) {
       wx.navigateTo({
-        url: '/pages/login/login?pagetype='+2,
+        url: '/pages/login/login?pagetype='+1,
       })
     }else{
        wx.navigateTo({

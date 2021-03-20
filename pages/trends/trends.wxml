@@ -16,7 +16,7 @@
         <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="{{item.id}}" bindtap="goDetail">
+                <image src="{{item.imgurl}}"  mode="widthFix" data-id="{{item.id}}" bindtap="goDetail">
               </image>
             </view>
             <view class="inlocal">
@@ -32,7 +32,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                <image src="{{item.headimg}}" mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">
@@ -49,7 +49,7 @@
         <block wx:for="{{navbar}}" data-idx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="{{item.id}}" bindtap="goDetail"></image>
+              <image src="{{item.imgurl}}"  mode="widthFix"  data-id="{{item.id}}" bindtap="goDetail"></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
@@ -65,7 +65,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                <image src="{{item.headimg}}" mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">
@@ -89,10 +89,10 @@
     </view>
     <view wx:else class="container">
       <view class="conterL">
-        <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
+        <block wx:for="{{lostnavbar}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix" data-id="{{item.id}}" bindtap="goDetail">
+              <image src="{{item.imgurl}}" mode="widthFix" data-id="{{item.id}}" bindtap="goDetail">
               </image>
             </view>
             <view class="inlocal">
@@ -108,7 +108,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                <image src="{{item.headimg}}" mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">
@@ -125,7 +125,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg" style="height:auto">
-              <image style="height:100px" src="{{item.imgurl}}" mode="widthFix"  data-id="{{item.id}}" bindtap="goDetail"></image>
+              <image src="{{item.imgurl}}" mode="widthFix" data-id="{{item.id}}" bindtap="goDetail"></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
@@ -141,7 +141,7 @@
             </view>
             <view class="mymessage">
               <view class="myhand">
-                <image src="{{item.handimg}}" mode="scaleToFill"></image>
+                <image src="{{item.headimg}}" mode="scaleToFill"></image>
               </view>
               <view class="myname">{{item.username}}</view>
               <view class="hart">

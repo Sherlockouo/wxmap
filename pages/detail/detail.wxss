@@ -132,6 +132,7 @@
   padding-top: 0px;
 }
 .vol-swiper-item {
+  margin-top: 20rpx;
   box-sizing: border-box;
 }
  
@@ -139,7 +140,7 @@
   /*parent layout  and  this inner padding*/
   /* padding: 6rpx; */
   height: 100%;
-  /* background: rgb(247, 203, 203); */
+  background: url('http://www.fjtbkyc.net/images/load.gif') navajowhite center center;
 }
 .vol-swiper {
   height: auto;
@@ -195,7 +196,7 @@
   /* background-color: chartreuse; */
 }
 .bottom{
-  width: 60%;
+  width: 75%;
   margin: 0 auto;
   color: #000000;
   display: flex;
@@ -227,6 +228,19 @@
   height: 60rpx;
   /* background: #fb9527; */
 }
+.share{
+  display: flex;
+  width: 20%;
+}
+.shareimg{
+ 
+  width: 60rpx;
+  height: 60rpx;
+}
+.shareimg image{
+  width: 60rpx;
+  height: 60rpx;
+}
 .bbbox{
   position: fixed;
   bottom: 0;
@@ -254,4 +268,9 @@
   width: 62%;
   display: flex;
   justify-content: space-between;
+}
+.control{
+  width: 100rpx;
+  height: 60rpx;
+  background: chartreuse;
 }

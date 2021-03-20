@@ -11,7 +11,7 @@ Page({
       //   id:6,
       //   imgurl:"http://www.fjtbkyc.net/mywx/sunny2.jpg",
       //   title:"这是title6",
-      //   handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      //   headimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
       //   username:"Brank",
       //   local:'四川省成都市金牛区西华大道16号',
       //   like:112,
@@ -23,7 +23,7 @@ Page({
       // id:1,
       // imgurl:"http://www.fjtbkyc.net/mywx/umber.jpg",
       // title:"丢失一把雨伞",
-      // handimg:"http://www.fjtbkyc.net/mywx/services1.png",
+      // headimg:"http://www.fjtbkyc.net/mywx/services1.png",
       // username:"bigSur",
       // local:'四川省成都市青羊区光华大道与光耀三路路口',
       // like:1034,
@@ -58,9 +58,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    if (app.globalData.isHide == 0) {
+    // console.log(app.globalData.token);
+    if (app.globalData.token.length==0) {
       wx.navigateTo({
-        url: '/pages/login/login?pagetype='+1,
+        url: '/pages/login/login?pagetype='+3,
       })
     }
   },
@@ -194,6 +195,8 @@ Page({
   onShow: function () {
     var that = this
     var token = app.globalData.token;
+    console.log('token ',token.length)
+    if(token.length!=0){
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/self',
       method: "GET",
@@ -207,7 +210,7 @@ Page({
 
       },
       success(res) {
-        console.log('res is  ', res.data.data.list)
+        console.log('res is  ', res)
         var ls = res.data.data.list;
 
         for (var key in ls) {
@@ -215,7 +218,8 @@ Page({
           marker.id = marker.id;
           marker.userid = marker.userid;
           marker.local = marker.address;
-
+          marker.headimg=marker.avator;
+          marker.like=marker.likes;
           //cover
           marker.imgurl = marker.files.substr(1, 83);
           console.log('marker', marker)
@@ -246,7 +250,8 @@ Page({
           marker.id = marker.id;
           marker.userid = marker.userid;
           marker.local = marker.address;
-
+          marker.headimg=marker.avator;
+          marker.like=marker.likes;
           //cover
           marker.imgurl = marker.files.substr(1, 82);
           console.log('marker', marker)
@@ -256,6 +261,7 @@ Page({
         })
       }
     })
+  }
 
   },
 
