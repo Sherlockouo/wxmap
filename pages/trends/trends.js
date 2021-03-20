@@ -82,6 +82,7 @@ Page({
   },
   goDetail:function(e)
   {
+    
     app.globalData.currentMarkerId = e.currentTarget.dataset.id
     
     var pagid=e.currentTarget.dataset.id; //用于文章返回 
