@@ -28,9 +28,7 @@ Page({
     //       'http://www.fjtbkyc.net/mywx/sunny5.jpg'
     //     ],
     //     essay_title:"这就是标题啦",
-    //     essay_text:"花香四溢的春天来了，我的家乡到处是一片欣欣向荣的景象。石川河的柳树开始发芽了，鸡子山的草儿也偷偷地钻了出来，各种各样的花儿也悄悄地开放 了。你看那河的沿岸和山脚下：粉红的桃花、雪白的梨花、娇艳的海棠花......都开得笑盈盈的。"+
-    //     "一场春雨过后，柳枝绿了，桃花笑了。山溪水满，水面上时而飘过一二片桃花瓣。天色像玻璃一样嫩碧中透亮。太阳喜眉笑眼地从东半天升腾起来，红得像少女的脸膛，盈盈动人。如诗如画的春色和壮丽多姿的山川，使人感到舒畅，生气勃勃。"+
-    //     "小园已经有点春意了，首先是荡漾在杨柳枝头的绿雾，其次是清晨飞来的莺声；下过几阵细雨，荒坪又给涂上一层浅浅的颜色，青油油的地，如沙漠上的绿洲，难道这不就是黯淡欲绝的人生里一线生机吗？",
+    //     essay_text:"花香四溢的春天来了，我的家乡到处是一片欣欣向荣的景象。石川河的柳树开始发芽了，鸡子山的草儿也偷偷地钻了出来，各种各样的花儿也悄悄地开放 了。你看那河的沿岸和山脚下：粉红的桃花、雪白的梨花、娇艳的海棠花......都开得笑盈盈的。"
     //     tabel:['西华','湖面','秋天','秋风落叶','自然','宁静','成都'],
     //     sharetime:'2020-11-23',
     //     like:'1208',
@@ -41,7 +39,7 @@ Page({
     ],
     likeimg: '/img/like.png',
     hoardimg: '/img/hoard.png',
-    shareimg: '/img/shareicon.png',
+    shareimg: '/img/shareico_h.png',
     isyouself:0//判断是不是本人
   },
 
@@ -68,6 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();//取消当前界面的分享功能
     // console.log("current markid is ",app.globalData.currentMarkerId)
     var data = wx.getMenuButtonBoundingClientRect()
     var WH = wx.getSystemInfoSync()
@@ -209,24 +208,30 @@ Page({
       }
     })
   },
-  //分享文章
-  // shareEssay: function (e) {
-    // console.log("点击");
-  //   return {
-  //     title: '分享文章标题',
-  //     desc: '分享文章内容',
-  //     path: '/pages/detail/detail?id=' + 2,
-  //   }
-  // },
-  onShareAppMessage: function (res) {
-    console.log("点击");
-    if (res.from === 'button') {
+  //分享给朋友
+  
+onShareAppMessage: function (res) { 
+  return {
+    title: '朋友圈看到的页面标题',
+    path: '/pages/detail/detail?id='+markid,
+    imageUrl:'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',
+    success: function (res) {
+      console.log("分享成功")
+    },
+    fail: function (res) {
+      console.log("分享失败")
     }
-    return {
-      title: "真好",
-      path: 'pages/detail/datail?var=' +2
-    }
-  },
+  }
+},
+// 分享到朋友圈 
+onShareTimeline: function() {
+  return {
+    title: '朋友圈看到的页面标题',
+    path: '/pages/detail/detail?id='+markid,
+    imageUrl:'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',//分享链接图片
+    query: 'kjbfrom=pyq'
+  }
+},
 
   /**
    * 生命周期函数--监听页面隐藏

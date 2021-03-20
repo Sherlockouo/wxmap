@@ -26,7 +26,7 @@ var sizeType = [
 Page({
   data: {
     searchContentHeight: '0px',
-    resultList: [],
+    resultList: [], //搜索返回的结果数组
     //输入绑定同时显示隐藏删除按钮
     inputAddress: '',
     gpsAddress: '',
@@ -96,6 +96,7 @@ Page({
     userAvatar: 'https://images.unsplash.com/photo-1499355940597-5601b9869168?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a501f2aa74492264ce48c72546450e8&auto=format&fit=crop&w=1567&q=80',
     userNickname: '芜湖',
     uploadTime: '一分钟前',
+    city:'',
   },
   onLoad: function (options) {
     this.selfLocationClick();
@@ -495,7 +496,7 @@ Page({
         })
       },
       fail: function (res) {
-        console.log(res);
+        console.log("逆地址解析",res);
       }
     });
   },
@@ -657,14 +658,16 @@ Page({
    */
   suggestionSearch: function (searchValue) {
     var that = this;
-    consoleUtil.log(qqmapsdk);
+    console.log("city",this.data.city);
+    // consoleUtil.log(qqmapsdk);
     qqmapsdk.getSuggestion({
       keyword: searchValue,
       region: that.data.city,
-      region_fix: 1,
-      policy: 1,
+      // region: "四川省成都市郫都区",
+      // region_fix: 1,
+      // policy: 1,
       success: function (res) {
-        console.log(res.data);
+        console.log("232",res.data);
         that.setData({
           resultList: res.data
         })
@@ -674,6 +677,7 @@ Page({
       }
     });
   },
+
 
   /**
    * 删除输入内容

@@ -38,6 +38,14 @@ Page({
     var postId = event.detail.current; 
     console.log(postId);
   },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+    }
+    return {
+      title: "真好",
+      path: 'pages/mypage/mypage'
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

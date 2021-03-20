@@ -28,8 +28,6 @@ Page({
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: function(res) {
-          
-              app.globalData.userInfo = res.userInfo
               that.setData({
                 userInfo: res.userInfo,
               })
@@ -73,8 +71,13 @@ Page({
                  that.goback();
                   console.log("用户的信息如下：");
                   console.log(e.detail.userInfo);
-                  
-                  console.log(res)
+                 
+                  wx.setStorageSync('userInfo', e.detail.userInfo)
+                   //获取用户信息进行保存
+                   app.globalData.userInfo=e.detail.userInfo
+                      
+                 
+                  console.log("用户的信息如下huoqu",app.globalData.userInfo)
                   // 获取到用户的 openid
                   if(res.data.code==0){
                     app.globalData.token = res.data.token;
@@ -137,7 +140,7 @@ Page({
     }
     else if(this.data.pagetype==3){
       wx.switchTab({
-        url: '/pages/man/man'
+        url: '/pages/man/man?userInfo?='+app.globalData.userInfo
       })
     }
 

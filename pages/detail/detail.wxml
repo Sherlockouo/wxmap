@@ -14,14 +14,14 @@
       <view class="dname" style="height:{{vaHe}}px; line-height:{{vaHe}}px;text-align:center">{{uesrname}}</view>
     </view>
     <view wx:if="{{!isyouself}}">
-    <view class="concern">
-      <!-- 点击关注可以变化 -->
-      <view class="inconcern {{concernAc==0?'active':''}}" bindtap="concern">{{isconcern}}</view>
+      <view class="concern">
+        <!-- 点击关注可以变化 -->
+        <view class="inconcern {{concernAc==0?'active':''}}" bindtap="concern">{{isconcern}}</view>
+      </view>
     </view>
-  </view>
-  <view wx:else> 
-    <view class="control"></view>
-  </view>
+    <view wx:else>
+      <view class="control"></view>
+    </view>
   </view>
 
 </view>
@@ -58,23 +58,28 @@
   <view class="bbbox">
     <view class="bottom">
       <view class="share">
-        <view class="shareimg" bindtap="onShareAppMessage">
-          <image src="{{shareimg}}"></image>
-        </view>
-        <view class="sharetext"></view>
+        <!-- <button>分享</button> -->
+        <button open-type='share' class='btn1'>
+          <image class='btnImg' src='/img/shareico_h.png'></image>
+          <!-- <view>联系客服</view> -->
+        </button>
       </view>
       <view class="boconcern">
-        <view class="conimg">
-          <image src="{{hoardimg}}"></image>
+        <view class="inbconcern">
+          <view class="conimg">
+              <image src="{{hoardimg}}"></image>
+          </view>
+          <view class="context">{{essayall.concern}}</view>
         </view>
-        <view class="context">{{essayall.concern}}</view>
       </view>
       <view class="like">
+        <view class="inlike">
         <view class="likeimg">
           <image src="{{likeimg}}"></image>
         </view>
         <view class="liketext">{{essayall.like}}</view>
       </view>
+    </view>
     </view>
   </view>
 </view>

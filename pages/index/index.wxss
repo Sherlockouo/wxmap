@@ -763,3 +763,17 @@ button::after {
   justify-items: center;
   justify-content: center;
 }
+.line{
+  position: relative;
+  top: 0;
+  z-index: 10;
+  height: 100px;
+  width: 94%;
+  left: 3%;
+  border-radius: 10px;
+  background:rgb(61, 61, 61,0.6);
+}
+.cityInfo{
+  width: 98%;
+  margin: 0 auto;
+}

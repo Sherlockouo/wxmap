@@ -58,16 +58,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    // console.log(app.globalData.token);
-    if (app.globalData.token.length==0) {
-      wx.navigateTo({
-        url: '/pages/login/login?pagetype='+3,
+    if (app.globalData.token.length == 0) {
+      wx.redirectTo({
+        url: '/pages/login/login?pagetype=' + 3,
       })
     }
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+    console.log("获取到的结果信息！", this.data.userInfo);
   },
   goDetail: function (e) {
-
-    console.log('current marker id ', e.currentTarget.dataset.id)
     app.globalData.currentMarkerId = e.currentTarget.dataset.id
 
     var pagid = 3;
@@ -100,14 +101,12 @@ Page({
     })
   },
   gomessgeinfo: function (e) {
-    console.log("xu", e.currentTarget.dataset.headimg)
     wx.navigateTo({
       url: '/pages/myinfo/myinfo?userinfoimg=' + e.currentTarget.dataset.headimg + '&username=' + e.currentTarget.dataset.username
     })
   },
   // 获取图片宽高
   imageLoad: function (e) {
-    console.log(e.currentTarget.dataset.index);
     var k = e.currentTarget.dataset.index;
     var newmodewidth = []
     var newmodeheight = []
@@ -118,14 +117,12 @@ Page({
     }
 
     for (let td of this.data.Smodeheight) {
-      //  console.log(s++);
       newmodeheight.splice(s++, 0, td)
     }
 
     var $width = e.detail.width, //获取图片真实宽度
       $height = e.detail.height,
       ratio = $width / $height; //图片的真实宽高比例
-    console.log(ratio)
     var thismode = '' //定义每次获取的图片模式
 
     // rario大于1表示横版图片
@@ -145,7 +142,6 @@ Page({
   },
   // 获取失物招领图片宽高
   LimageLoad: function (e) {
-    console.log(e.currentTarget.dataset.index);
     var k = e.currentTarget.dataset.index;
     var newmodewidth = []
     var newmodeheight = []
@@ -156,14 +152,13 @@ Page({
     }
 
     for (let td of this.data.Lmodeheight) {
-      //  console.log(s++);
+
       newmodeheight.splice(s++, 0, td)
     }
 
     var $width = e.detail.width, //获取图片真实宽度
       $height = e.detail.height,
       ratio = $width / $height; //图片的真实宽高比例
-    console.log(ratio)
     var thismode = '' //定义每次获取的图片模式
 
     // rario大于1表示横版图片
@@ -195,73 +190,73 @@ Page({
   onShow: function () {
     var that = this
     var token = app.globalData.token;
-    console.log('token ',token.length)
-    if(token.length!=0){
-    wx.request({
-      url: 'https://storymap.sherlockouo.com/poster/self',
-      method: "GET",
-      header: {
-        Authorization: token,
-      },
-      data: {
-        type: 1,
-        pageNum: 1,
-        pageSize: 100
+    console.log('token ', token.length)
+    if (token.length != 0) {
+      wx.request({
+        url: 'https://storymap.sherlockouo.com/poster/self',
+        method: "GET",
+        header: {
+          Authorization: token,
+        },
+        data: {
+          type: 1,
+          pageNum: 1,
+          pageSize: 100
 
-      },
-      success(res) {
-        console.log('res is  ', res)
-        var ls = res.data.data.list;
+        },
+        success(res) {
+          console.log('res is  ', res)
+          var ls = res.data.data.list;
 
-        for (var key in ls) {
-          var marker = ls[key];
-          marker.id = marker.id;
-          marker.userid = marker.userid;
-          marker.local = marker.address;
-          marker.headimg=marker.avator;
-          marker.like=marker.likes;
-          //cover
-          marker.imgurl = marker.files.substr(1, 83);
-          console.log('marker', marker)
+          for (var key in ls) {
+            var marker = ls[key];
+            marker.id = marker.id;
+            marker.userid = marker.userid;
+            marker.local = marker.address;
+            marker.headimg = marker.avator;
+            marker.like = marker.likes;
+            //cover
+            marker.imgurl = marker.files.substr(1, 83);
+            console.log('marker', marker)
+          }
+          that.setData({
+            sharenavbar: res.data.data.list
+          })
         }
-        that.setData({
-          sharenavbar: res.data.data.list
-        })
-      }
-    })
-    wx.request({
-      url: 'https://storymap.sherlockouo.com/poster/self',
-      method: "GET",
-      header: {
-        Authorization: token,
-      },
-      data: {
-        type: 2,
-        pageNum: 1,
-        pageSize: 100
+      })
+      wx.request({
+        url: 'https://storymap.sherlockouo.com/poster/self',
+        method: "GET",
+        header: {
+          Authorization: token,
+        },
+        data: {
+          type: 2,
+          pageNum: 1,
+          pageSize: 100
 
-      },
-      success(res) {
-        console.log('res is lost  ', res.data.data.list)
-        var ls = res.data.data.list;
+        },
+        success(res) {
+          console.log('res is lost  ', res.data.data.list)
+          var ls = res.data.data.list;
 
-        for (var key in ls) {
-          var marker = ls[key];
-          marker.id = marker.id;
-          marker.userid = marker.userid;
-          marker.local = marker.address;
-          marker.headimg=marker.avator;
-          marker.like=marker.likes;
-          //cover
-          marker.imgurl = marker.files.substr(1, 82);
-          console.log('marker', marker)
+          for (var key in ls) {
+            var marker = ls[key];
+            marker.id = marker.id;
+            marker.userid = marker.userid;
+            marker.local = marker.address;
+            marker.headimg = marker.avator;
+            marker.like = marker.likes;
+            //cover
+            marker.imgurl = marker.files.substr(1, 82);
+            console.log('marker', marker)
+          }
+          that.setData({
+            lostnavbar: res.data.data.list
+          })
         }
-        that.setData({
-          lostnavbar: res.data.data.list
-        })
-      }
-    })
-  }
+      })
+    }
 
   },
 
