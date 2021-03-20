@@ -7,7 +7,10 @@
 <view class="bottombox">
   <!--附近分享-->
   <view hidden="{{cTab==1}}" class="tab1">
-    <view wx:if="{{!shareCount}}" class="conter">附近未发布任何内容哦，快来发送吧！</view>
+    <view wx:if="{{!navbar.length}}" class="conter">
+      <view class="nofund"><image src="/img/nofund.png"></image></view>
+         <view>附近分享还未发布任何内容哦~</view>
+    </view>
     <view wx:else class="container">
       <view class="conterL">
         <block wx:for="{{navbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
@@ -80,7 +83,10 @@
 
   <!--失物信息-->
   <view hidden="{{cTab==0}}" class="tab2">
-    <view wx:if="{{!lostCount}}" class="conter">失物招领还未发布任何内容哦~</view>
+    <view wx:if="{{!lostnavbar.length}}" class="conter">
+      <view class="nofund"><image src="/img/nofund.png"></image></view>
+         <view>附近失物还未任何内容哦~</view>
+    </view>
     <view wx:else class="container">
       <view class="conterL">
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">

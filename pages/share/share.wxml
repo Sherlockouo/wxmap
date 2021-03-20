@@ -73,7 +73,7 @@
      <block wx:for="{{tagvevtor}}" wx:for-item="item" wx:key="key">
      <view class="intable">
         <view class="intag ">
-          <view><text>{{item}}</text></view>
+          <view><text>{{tagvevtor[tagvevtor.length-index-1]}}</text></view>
         </view>
          <!-- 图片取消选的图标按钮 -->  
         <view class="tagConcel"><view bindtap="concelTag" data-idx="{{index}}"><image src="/img/delete.png"></image></view></view>

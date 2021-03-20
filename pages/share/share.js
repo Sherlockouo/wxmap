@@ -25,9 +25,10 @@ Page({
     street: '',
     latitude: 0,
     longtitude: 0,
+    tags:'',
     shareTag:'',
     tagvevtor: [
-      "成都", "自然", "风和日丽"
+      "#成都#", "#自然#", "#风和日丽#"
     ],
     shareTitle: "",
     shareText: "",
@@ -189,7 +190,6 @@ Page({
 
       return;
     }
-
     var files = '';
     const v = new Promise((resolve, reject) => {
       var ps = that.data.pics;
@@ -240,7 +240,7 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
-          if(res.code==0){
+          if(res.data.code==0){
           wx.showToast({
             title: '上传成功',
             icon: 'success',
@@ -249,7 +249,7 @@ Page({
         }else{
           wx.showToast({
             title: '上传失败',
-            icon: 'fail',
+            icon: 'error',
             duration: 1500
           })
         }
@@ -280,31 +280,28 @@ Page({
   },
   addTag:function(e)
   {
-    var newshareTag =[]
-    for(let td of this.data.tagvevtor){
-      // console.log(td);
+    var newshareTag =this.data.tagvevtor;
+     if(this.data.shareTag!='')
+     {
+        var td = '#'+this.data.shareTag+'#';
+     console.log('sharetag ',td)
       newshareTag.push(td);
-    }
-    var flag=0;
-    for(let td of this.data.tagvevtor){
-       if(this.data.shareTag==td)
-         flag=1;
-    } 
-
-    if(this.data.shareTag.length!=0&&flag==0)
-         newshareTag.push(this.data.shareTag);
-    else{
+      console.log('new s length',newshareTag)
+      var ss = this.data.tagvevtor;
+      newshareTag= Array.from(new Set(ss))
+      console.log('ss',ss)
+      this.setData({
+        tagvevtor: newshareTag,
+        shareTag:''
+      })
+     }
+     else{
       wx.showToast({
-        title: '标签已存在！',
+        title: '标签添加不能为空！',
         icon: 'none',
         duration: 1500
-      })      
+      })     
     }
-    // console.log("new",newshareTag);
-    this.setData({
-      tagvevtor:newshareTag,
-      shareTag:''
-    })
   },
   onReady: function () {
 

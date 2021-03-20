@@ -109,6 +109,18 @@
         {
           "name": "个人信息界面",
           "pathName": "pages/myinfo/myinfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登录界面",
+          "pathName": "pages/login/login",
           "scene": null
         }
       ]

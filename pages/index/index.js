@@ -327,10 +327,8 @@ Page({
    */
   bindMakertap: function (e) {
     var that = this;
-    //设置当前点击的id
-    that.setData({
-      currentMarkerId: e.markerId
-    })
+    
+   app.globalData.currentMarkerId = e.detail.markerId;
     //重新设置点击marker为中心点
     for (var key in that.data.markers) {
       var marker = that.data.markers[key];
@@ -403,10 +401,17 @@ Page({
     that.updateCenterLocation(that.data.latitude, that.data.longitude);
     that.regeocodingAddress();
     console.log('shit ', that.data.centerAddressBean)
-    wx.navigateTo({
+    if (app.globalData.isHide == 0) {
+      wx.navigateTo({
+        url: '/pages/login/login?pagetype='+2,
+      })
+    }else{
+       wx.navigateTo({
       // url:'/pages/share/share?city='
       url: '/pages/share/share?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street + '&address=' + that.data.centerAddressBean.address + '&lat=' + that.data.latitude + '&lng=' + that.data.longitude,
     });
+    }
+   
   },
   /**
    * 点击控件时触发

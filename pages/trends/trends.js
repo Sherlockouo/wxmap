@@ -84,9 +84,16 @@ Page({
     app.globalData.currentMarkerId = e.currentTarget.dataset.id
     
     var pagid=e.currentTarget.dataset.id; //用于文章返回 
-    wx.navigateTo({
+    if (app.globalData.isHide == 0) {
+      wx.navigateTo({
+        url: '/pages/login/login?pagetype='+3,
+      })
+    }else{
+      wx.navigateTo({
       url: '/pages/detail/detail?pageid='+pagid,
     })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -135,9 +142,14 @@ Page({
           marker.id = marker.id;
           marker.userid = marker.userid;
           marker.local = marker.address;
-          
+          var imgurls = marker.files.split("#");
+
+                for (var i = 0; i < imgurls.length; i++) {
+                  if (imgurls[i] == "") imgurls.splice(i, 1);
+                }
+          imgurls = Array.from(new Set(imgurls))
           //cover
-          marker.imgurl = marker.files.substr(1,82);
+          marker.imgurl = imgurls[0];
           console.log('marker',marker)
         }
         that.setData({
@@ -166,9 +178,14 @@ Page({
           marker.id = marker.id;
           marker.userid = marker.userid;
           marker.local = marker.address;
-          
+          var imgurls = marker.files.split("#");
+
+                for (var i = 0; i < imgurls.length; i++) {
+                  if (imgurls[i] == "") imgurls.splice(i, 1);
+                }
+                imgurls = Array.from(new Set(imgurls))
           //cover
-          marker.imgurl = marker.files.substr(1,82);
+          marker.imgurl = imgurls[0]
           console.log('marker',marker)
         }
         that.setData({

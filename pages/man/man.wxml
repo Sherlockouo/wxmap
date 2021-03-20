@@ -1,24 +1,4 @@
-<view wx:if="{{isHide}}">
-  <view wx:if="{{canIUse}}">
-    <view class='header'>
-      <image src='/img/name.png'></image>
-    </view>
-    <view class='content'>
-      <view>申请获取以下权限</view>
-      <text>获得你的公开信息(昵称，头像等)</text>
-    </view>
-    <view>
-      <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="wxlogin">
-        登录
-      </button>
-      <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-        注册
-      </button>
-    </view>
-  </view>
-  <view wx:else>请升级微信版本</view>
-</view>
-<view wx:else class="mancontainer">
+<view class="mancontainer">
   <view class="userinfo">
     <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <view class="userinfo2">
@@ -66,16 +46,16 @@
     <!--我的分享-->  
    <scroll-view  hidden="{{currentTab!==0}}" class="left" scroll-y> 
     <view class="tab1">
-     <view wx:if="{{!shareCount}}" class="conter">
+     <view wx:if="{{!sharenavbar.length}}" class="conter">
      <view class="nofund"><image src="/img/nofund.png"></image></view>
-      <view>我的分享还未发布任何内容哦~</view>
+         <view>我的分享还未发布任何内容哦~</view>
      </view> 
      <view class="liftlist" wx:else class="container">
       <view class="conterL">
         <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg">
-              <image style="height:900rpx" src="{{item.imgurl}}" mode="scaleToFill" bindtap="goDetail" data-id="{{item.id}}">
+              <image  bindload="imageLoad" src="{{item.imgurl}}" style="height:{{Smodeheight[index]}}rpx;width:{{Smodewith[index]}}rpx" data-index="{{index}}" bindtap="goDetail" data-id="{{item.id}}">
               </image>
             </view>
             <view class="inlocal">
@@ -108,7 +88,7 @@
         <block wx:for="{{sharenavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg">
-              <image style="height:300px" src="{{item.imgurl}}" mode="scaleToFill"  bindtap="goDetail" data-id="{{item.id}}" ></image>
+              <image  bindload="imageLoad" src="{{item.imgurl}}"   style="height:{{Smodeheight[index]}}rpx;width:{{Smodewith[index]}}rpx" data-index="{{index}}" bindtap="goDetail" data-id="{{item.id}}" ></image>
             </view>
             <view class="inlocal">
               <view class="localimg">
@@ -153,7 +133,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2==0}}">
             <view class="myimg">
-              <image src="{{item.imgurl}}" mode="aspectFill" bindtap="goDetail" data-id="{{item.id}}">
+              <image  bindload="LimageLoad" src="{{item.imgurl}}" data-index="{{index}}"   style="height:{{Lmodeheight[index]}};width={{Lmodewith[index]}}" bindtap="goDetail" data-id="{{item.id}}">
               </image>
             </view>
             <view class="inlocal">
@@ -186,7 +166,7 @@
         <block wx:for="{{lostnavbar}}" dataidx="{{index}}" class="text-item" wx:key="idx" bindtap="navbarTap">
           <view class="wenzhang" wx:if="{{index%2!=0}}">
             <view class="myimg">
-              <image src="{{item.imgurl}}" mode="aspectFill" data-id="3" bindtap="goDetail"></image>
+              <image bindload="LimageLoad" src="{{item.imgurl}}" data-index="{{index}}" style="height:{{Lmodeheight[index]}};width={{Lmodewith[index]}}" data-id="3" bindtap="goDetail" ></image>
             </view>
             <view class="inlocal">
               <view class="localimg">

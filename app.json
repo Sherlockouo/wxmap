@@ -13,7 +13,8 @@
     "pages/concern/concern",
     "pages/table/table",
     "pages/trends/trends",
-    "pages/preview/preview"
+    "pages/preview/preview",
+    "pages/login/login"
   ],
   "permission": {
     "scope.userLocation": {
