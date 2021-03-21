@@ -49,7 +49,6 @@ Page({
         ac2: 0
       })
     }
-
     this.setData({
       title_type: type
     })
@@ -89,7 +88,6 @@ Page({
         for (var i = 0; i < imgs.length; i++) {
           ps.push(imgs[i])
         }
-
         that.setData({
           pics: ps,
           toupload: true,
@@ -189,7 +187,6 @@ Page({
     var files = [];
     var iters =[]
     const v = new Promise((resolve, reject) => {
-
       for (var i = 0; i < ps.length; i++) {
         iters.push(new Promise((resolve, reject) => {
           wx.uploadFile({

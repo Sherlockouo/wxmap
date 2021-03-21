@@ -127,6 +127,12 @@
         {
           "name": "测试功能专用",
           "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登录",
+          "pathName": "pages/login/login",
           "scene": null
         }
       ]

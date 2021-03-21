@@ -40,7 +40,7 @@ Page({
     likeimg: '/img/like.png',
     hoardimg: '/img/hoard.png',
     shareimg: '/img/shareico_h.png',
-    isyouself:0//判断是不是本人
+    isyouself: 0 //判断是不是本人
   },
 
   // 点击图片进行预览函数
@@ -66,7 +66,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.hideShareMenu();//取消当前界面的分享功能
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     // console.log("current markid is ",app.globalData.currentMarkerId)
     var data = wx.getMenuButtonBoundingClientRect()
     var WH = wx.getSystemInfoSync()
@@ -163,7 +165,7 @@ Page({
     var that = this
     var postid = app.globalData.currentMarkerId
     var essayall = {};
-    console.log('postid ',postid)
+    console.log('postid ', postid)
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/info',
       method: "GET",
@@ -172,106 +174,122 @@ Page({
       },
       success(res) {
         console.log('res is  ', res)
-        if(res.data.code==0){
-        new Promise((resolve, reject) => {
-          var marker = res.data.data;
-          essayall.id = marker.id;
-          essayall.userid = marker.userid;
-          // if(marker.userid==app.globalData.userInfo)
-          essayall.local = marker.address;
-          essayall.essay_title = marker.title;
-          essayall.essay_text = marker.message
-          var imgurls = marker.files.split("#");
-          console.log('before ',imgurls)
-          for (var i = 0; i < imgurls.length; i++) {
-            if (imgurls[i] == "") imgurls.splice(i, 1);
-          }
-          // 去重方式一 会把imgurls 变为 空
-          imgurls = Array.from(new Set(imgurls))
-          // var imgs = [...new Set(imgurls)];
-          // var imgs = imgurls;
-          // console.log('imgs ',imgs)
-          essayall.imgUrls = imgurls;
-          console.log('after ',imgurls)
-          var tags = marker.tags.split("#");
+        if (res.data.code == 0) {
+          new Promise((resolve, reject) => {
+            var marker = res.data.data;
+            essayall.id = marker.id;
+            essayall.userid = marker.userid;
+            // if(marker.userid==app.globalData.userInfo)
+            essayall.local = marker.address;
+            essayall.essay_title = marker.title;
+            essayall.essay_text = marker.message
+            var imgurls = marker.files.split("#");
+            console.log('before ', imgurls)
+            for (var i = 0; i < imgurls.length; i++) {
+              if (imgurls[i] == "") imgurls.splice(i, 1);
+            }
+            // 去重方式一 会把imgurls 变为 空
+            imgurls = Array.from(new Set(imgurls))
+            // var imgs = [...new Set(imgurls)];
+            // var imgs = imgurls;
+            // console.log('imgs ',imgs)
+            essayall.imgUrls = imgurls;
+            console.log('after ', imgurls)
+            var tags = marker.tags.split("#");
 
-          for (var i = 0; i < tags.length; i++) {
-            if (tags[i] == "") tags.splice(i, 1);
-          }
-          essayall.tabel = tags;
-          essayall.like = marker.likes;
-          essayall.sharetime = marker.createTime;
-          resolve(essayall)
-        }).then(() => {
-          console.log('ess ', essayall)
-          that.setData({
-            essayall: essayall
+            for (var i = 0; i < tags.length; i++) {
+              if (tags[i] == "") tags.splice(i, 1);
+            }
+            essayall.tabel = tags;
+            essayall.like = marker.likes;
+            essayall.sharetime = marker.createTime;
+            resolve(essayall)
+          }).then(() => {
+            console.log('ess ', essayall)
+            that.setData({
+              essayall: essayall
+            })
           })
-        })
-
-
-
+        }
       }
-    }
     })
   },
   //分享给朋友
-  
-onShareAppMessage: function (res) { 
-  return {
-    title: '朋友圈看到的页面标题',
-    path: '/pages/detail/detail?id='+markid,
-    imageUrl:'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',
-    success: function (res) {
-      console.log("分享成功")
-    },
-    fail: function (res) {
-      console.log("分享失败")
+
+  onShareAppMessage: function (res) {
+    // return {
+    //   title: '朋友圈看到的页面标题',
+    //   path: '/pages/detail/detail?markid='+markid.userid,
+    //   imageUrl:'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',
+    //   success: function (res) {
+    //     console.log("分享成功")
+    //   },
+    //   fail: function (res) {
+    //     console.log("分享失败")
+    //   }
+    return {
+      title: '朋友圈看到的页面标题',
+      path: '/pages/detail/detail?id='+markid.userid,
+      success: function (res) {
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+          }
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
     }
-  }
 },
 // 分享到朋友圈 
-onShareTimeline: function() {
+onShareTimeline: function () {
   return {
     title: '朋友圈看到的页面标题',
-    path: '/pages/detail/detail?id='+markid,
-    imageUrl:'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',//分享链接图片
+    path: '/pages/detail/detail?id=' + markid,
+    imageUrl: 'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg', //分享链接图片
     query: 'kjbfrom=pyq'
   }
 },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+/**
+ * 生命周期函数--监听页面隐藏
+ */
+onHide: function () {
 
-  },
+},
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+/**
+ * 生命周期函数--监听页面卸载
+ */
+onUnload: function () {
 
-  },
+},
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+/**
+ * 页面相关事件处理函数--监听用户下拉动作
+ */
+onPullDownRefresh: function () {
 
-  },
+},
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+/**
+ * 页面上拉触底事件的处理函数
+ */
+onReachBottom: function () {
 
-  },
+},
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+/**
+ * 用户点击右上角分享
+ */
+onShareAppMessage: function () {
 
-  }
+}
 })
