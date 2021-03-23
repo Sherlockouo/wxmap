@@ -25,11 +25,9 @@ Page({
     street: '',
     latitude: 0,
     longtitude: 0,
-    tags: '',
+    tags: '#成都#',
     shareTag: '',
-    tagvevtor: [
-      "#成都#"
-    ],
+    tagvevtor: [],//添加标签的数组，默认为空
     shareTitle: "",
     shareText: "",
     shareLocal: "成都市郫都区红光镇红光大道9999号",
@@ -217,14 +215,20 @@ Page({
         })
         )
       }
-
     })
 
     Promise.all(iters).then((res) => {
       var fileurls = files.join("")
+      console.log("localyag", that.data.tags);
+      // var tagall=that.data.navigator;
+      // for (let td of tagall) {
+      //   tags.push(td);
+      // }
+      // console.log("localyag", that.data.tags);
       wx.request({
         url: 'https://storymap.sherlockouo.com/poster/post', //仅为示例，并非真实的接口地址
         method: 'POST',
+        
         data: {
           title: that.data.shareTitle,
           message: that.data.shareText,

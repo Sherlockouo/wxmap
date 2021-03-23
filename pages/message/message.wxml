@@ -1,2 +1,41 @@
-<!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view class="container">
+  <view class="bacimg">
+    <image class="mybac" mode="scaleToFill" src="{{userInfo.bacurl}}"></image>
+    <!-- 背景图片 -->
+  </view>
+  <view class="message">
+    <!-- 行成错位 -->
+    <view class="surface">
+      <!-- 顶部的内容 -->
+      <view class="mtop">
+        <view class="headimg">
+          <image mode="scaleToFill" src="{{userInfo.headimg}}"></image>
+        </view>
+        <view class="right">
+          <view class="inright">
+            <view class="chat">
+              <image src="/img/chat.png"></image>
+            </view>
+            <view class="concern">
+              <view class="inconcern {{concernAc==0?'active':''}}" bindtap="concern">{{isconcern}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="mid">
+        <view class="username">
+          {{userInfo.username}}
+        </view>
+        <view class="like">
+         <view class="likebox bn1"> {{userInfo.local}}</view>
+         <view class="likebox bn2"> {{userInfo.concern}}<text>关注</text></view>
+         <view class="likebox bn3"> {{userInfo.like}}<text>粉丝</text></view>
+        </view>
+      </view>
+      <view class="bottom">
+        <view class="introduce"><text>{{userInfo.introduce}}</text></view>
+      </view>
+    </view>
+  </view>
+
+</view>

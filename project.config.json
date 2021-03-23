@@ -133,6 +133,12 @@
         {
           "name": "登录",
           "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "个人主页，用于别人查看",
+          "pathName": "pages/message/message",
           "scene": null
         }
       ]

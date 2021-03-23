@@ -194,7 +194,9 @@
   /* background: chocolate; */
   padding-top: 10px;
   height: 40%;
+  width: 100%;
   color: #424242;
+  overflow: hidden;
 }
 .divLine
 {

@@ -7,18 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navbar: [
-    //   {
-    //   id:1,
-    //   imgurl:"",
-    //   title:"",
-    //   headimg:"",
-    //   username:"Frightly",
-    //   local:'',
-    //   like:0,
-    //   concern:0
-    // }
-    ],
+    navbar: [],//周边分享的图文结果
     lostnavbar:[
       // {
       // id:1,
@@ -122,7 +111,6 @@ Page({
      * 获取周围post
      */
     var that = this
-    console.log(that.data.lat,that.data.lng)
     var token = app.globalData.token;
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/type',

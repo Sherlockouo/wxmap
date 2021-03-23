@@ -103,7 +103,7 @@ Page({
     // consoleUtil.log(qqmapsdk);
     qqmapsdk.getSuggestion({
       keyword: searchValue,
-      region: that.data.city,
+      region:"成都",
       // region: "四川省成都市郫都区",
       region_fix: 1,
       policy: 1,

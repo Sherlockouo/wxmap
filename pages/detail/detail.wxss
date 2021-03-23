@@ -54,7 +54,7 @@
 }
 .dname{
   width: 100%;
-  font-size: 18rpx;
+  font-size: 20rpx;
 }
 .concern{
   padding-top: 20px;

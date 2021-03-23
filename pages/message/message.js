@@ -5,7 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: {
+      bacurl: 'http://www.fjtbkyc.net/mywx/clients-section-bg1.jpg', // 背景图片连接
+      headimg: 'http://www.fjtbkyc.net/mywx/dog.jpg', //头像链接
+      username: 'Another 小明',
+      local:"宜宾", //用户来自城市
+      concern:10, //用户关注的人数
+      like:80, //用户粉丝数
+      introduce:"该用户很懒，还没留下任何东西哦~该用户很懒，还没留下任何东西哦~该用户很懒，还没留下任何东西哦~",//用户介绍，最多50个字
+    },
+    isconcern: '+关注', //按钮的文字内容
+    concernAc: 0,
 
+  },
+  //点击关注按钮调用
+  concern: function (e) {
+
+    if (this.data.concernAc == 0) {
+      this.setData({
+        concernAc: 1,
+        isconcern: '已关注'
+      })
+    }
   },
 
   /**

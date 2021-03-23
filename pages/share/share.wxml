@@ -10,11 +10,11 @@
 	<view class="shareBody">
 		<view class="shareBB">
 			<view class="shareTitle">
-				<input class="shareTT" focus placeholder="标题" model:value="{{shareTitle}}" />
+				<input class="shareTT" maxlength="24" focus placeholder="标题" model:value="{{shareTitle}}" />
 			</view>
 			<view class="divLine"></view>
 			<view class="shareText">
-				<textarea bindblur="bindTextAreaBlur" auto-height placeholder="分享你在这个地方的故事..." model:value="{{shareText}}" />
+				<textarea bindblur="bindTextAreaBlur" style="width:98%" auto-height maxlength="400" placeholder="分享你在这个地方的故事..." model:value="{{shareText}}" />
 				</view>
      <view class="shareImg">
       <scroll-view class="scroll-view" scroll-x="true">

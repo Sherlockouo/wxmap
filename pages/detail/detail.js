@@ -151,6 +151,12 @@ Page({
       })
     }
   },
+  //查看用户的详细信息，跳转时将用户id传递过去
+  gousermessage:function(e){
+    wx.navigateTo({
+      url:'/pages/message/message'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
