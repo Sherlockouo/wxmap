@@ -152,7 +152,6 @@ Page({
     }
 
     for (let td of this.data.Lmodeheight) {
-
       newmodeheight.splice(s++, 0, td)
     }
 

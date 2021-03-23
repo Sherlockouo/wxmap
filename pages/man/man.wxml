@@ -151,7 +151,7 @@
               <view class="wenzhang" wx:if="{{index%2==0}}">
                 <view class="myimg">
                   <image bindload="LimageLoad" src="{{item.imgurl}}" data-index="{{index}}"
-                    style="height:{{Lmodeheight[index]}};width={{Lmodewith[index]}}" bindtap="goDetail"
+                    style="height:{{Lmodeheight[index]}}rpx;width:{{Lmodewith[index]}}rpx" bindtap="goDetail"
                     data-id="{{item.id}}">
                   </image>
                 </view>
@@ -186,7 +186,7 @@
               <view class="wenzhang" wx:if="{{index%2!=0}}">
                 <view class="myimg">
                   <image bindload="LimageLoad" src="{{item.imgurl}}" data-index="{{index}}"
-                    style="height:{{Lmodeheight[index]}};width={{Lmodewith[index]}}" data-id="3" bindtap="goDetail">
+                    style="height:{{Lmodeheight[index]}}rpx;width:{{Lmodewith[index]}}rpx" data-id="3" bindtap="goDetail">
                   </image>
                 </view>
                 <view class="inlocal">
