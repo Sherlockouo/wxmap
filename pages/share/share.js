@@ -182,6 +182,8 @@ Page({
       return;
     }
     var ps = that.data.pics;
+    var tgs = that.data.tagvevtor
+    var tags = ""
     var files = [];
     var iters =[]
     const v = new Promise((resolve, reject) => {
@@ -215,6 +217,9 @@ Page({
         })
         )
       }
+      tags=tgs.toString().replaceAll(",","");
+      // console.log("post tag: ",tags)
+
     })
 
     Promise.all(iters).then((res) => {
@@ -226,7 +231,7 @@ Page({
       // }
       // console.log("localyag", that.data.tags);
       wx.request({
-        url: 'https://storymap.sherlockouo.com/poster/post', //仅为示例，并非真实的接口地址
+        url: 'https://storymap.sherlockouo.com/poster/post', 
         method: 'POST',
         
         data: {
@@ -236,7 +241,7 @@ Page({
           address: that.data.shareLocal,
           latitude: that.data.latitude,
           longtitude: that.data.longtitude,
-          tags: that.data.tags,
+          tags: tags,
           files: fileurls,
         },
         header: {
@@ -288,10 +293,10 @@ Page({
       var td = '#' + this.data.shareTag + '#';
       console.log('sharetag ', td)
       newshareTag.push(td);
-      console.log('new s length', newshareTag)
+      // console.log('new s length', newshareTag)
       var ss = this.data.tagvevtor;
       newshareTag = Array.from(new Set(ss))
-      console.log('ss', ss)
+      // console.log('ss', ss)
       this.setData({
         tagvevtor: newshareTag,
         shareTag: ''

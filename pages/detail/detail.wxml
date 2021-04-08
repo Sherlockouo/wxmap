@@ -72,7 +72,7 @@
           <view class="context">{{essayall.concern}}</view>
         </view>
       </view>
-      <view class="like">
+      <view class="like" bindtap="dolike">
         <view class="inlike">
         <view class="likeimg">
           <image src="{{likeimg}}"></image>

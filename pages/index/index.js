@@ -405,7 +405,7 @@ Page({
     // that.adjustViewStatus(false, true, false);
     that.updateCenterLocation(that.data.latitude, that.data.longitude);
     that.regeocodingAddress();
-    console.log('shit ', that.data.centerAddressBean)
+    // console.log('shit ', that.data.centerAddressBean)
     if (app.globalData.token.length == 0) {
       wx.navigateTo({
         url: '/pages/login/login?pagetype=' + 1,
@@ -472,6 +472,10 @@ Page({
         console.log('getCenterLocation----------------------->');
         console.log(res);
         that.updateCenterLocation(res.latitude, res.longitude);
+        var location = {}
+        location.lat = res.latitude
+        location.lng = res.longitude
+        app.globalData.location = location
         that.regeocodingAddress();
         that.queryMarkerInfo();
       }

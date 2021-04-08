@@ -264,7 +264,41 @@ onShareTimeline: function () {
 },
 
 dolike: function () {
-  that = this
+  var that = this
+  var token = app.globalData.token;
+  console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
+  wx.request({
+    url: 'https://storymap.sherlockouo.com/like/dolike',
+    method: "POST",
+    header:{
+      'Authorization': token,
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    data: {
+      posterid: that.data.essayall.id,
+      tolike: that.data.essayall.userid
+    },
+    success(res) {
+      console.log("dolike ",res)
+      if(res.data.code=='0'){
+        wx.showToast({
+          title: '点赞成功',
+          icon: 'success',
+         duration: 2000
+        })}
+        else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error',
+           duration: 2000
+          })
+        }
+    },
+    fail(res){
+
+
+    }
+  })
 },
 docollect: function () {
   that=this

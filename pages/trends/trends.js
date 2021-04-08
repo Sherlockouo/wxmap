@@ -130,7 +130,7 @@ Page({
 
       },
       success(res){
-        console.log('res is  ',res.data.data.list)
+        // console.log('res is  ',res.data.data.list)
         var ls = res.data.data.list;
         
         for (var key in ls) {
@@ -148,7 +148,7 @@ Page({
           marker.headimg = marker.avatar;
           marker.like=marker.likes;
           marker.imgurl = imgurls[0];
-          console.log('marker',marker)
+          // console.log('marker',marker)
         }
         that.setData({
           navbar:res.data.data.list
@@ -170,7 +170,7 @@ Page({
 
       },
       success(res){
-        console.log('res is  ',res.data.data.list)
+        // console.log('res is  ',res.data.data.list)
         var ls = res.data.data.list;
         
         for (var key in ls) {
@@ -181,13 +181,13 @@ Page({
           var imgurls = marker.files.split("#");
           marker.headimg = marker.avatar;
           marker.like=marker.likes;
-                for (var i = 0; i < imgurls.length; i++) {
-                  if (imgurls[i] == "") imgurls.splice(i, 1);
-                }
-                imgurls = Array.from(new Set(imgurls))
+          for (var i = 0; i < imgurls.length; i++) {
+            if (imgurls[i] == "") imgurls.splice(i, 1);
+          }
+          imgurls = Array.from(new Set(imgurls))
           //cover
           marker.imgurl = imgurls[0]
-          console.log('marker',marker)
+          // console.log('marker',marker)
         }
         that.setData({
           lostnavbar:res.data.data.list
