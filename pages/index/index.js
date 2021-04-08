@@ -93,7 +93,7 @@ Page({
     //是否是分享点击进入小程序
     showShare: false,
     //上传者用户信息
-    userAvatar: 'https://images.unsplash.com/photo-1499355940597-5601b9869168?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a501f2aa74492264ce48c72546450e8&auto=format&fit=crop&w=1567&q=80',
+    // userAvatar: 'https://images.unsplash.com/photo-1499355940597-5601b9869168?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a501f2aa74492264ce48c72546450e8&auto=format&fit=crop&w=1567&q=80',
     userNickname: '芜湖',
     uploadTime: '一分钟前',
     city: '',
@@ -151,22 +151,22 @@ Page({
     that.changeMapHeight();
     that.setHomeActionLeftDistance();
     //如果刚从选择地址页面带数据回调回来，则显示选择的地址
-    consoleUtil.log(that.data.callbackAddressInfo)
-    if (that.data.callbackAddressInfo == null) {
-      that.getCenterLocation();
-      //正在上传的话，不去请求地理位置信息
-      that.requestLocation();
+    // consoleUtil.log(that.data.callbackAddressInfo)
+    // if (that.data.callbackAddressInfo == null) {
+    //   that.getCenterLocation();
+    //   //正在上传的话，不去请求地理位置信息
+    //   that.requestLocation();
 
-    } else {
-      that.setData({
-        selectAddress: that.data.callbackAddressInfo.title,
-        callbackLocation: that.data.callbackAddressInfo.location
-      })
-      //置空回调数据，即只使用一次，下次中心点变化后就不再使用
-      that.setData({
-        callbackAddressInfo: null
-      })
-    }
+    // } else {
+    //   that.setData({
+    //     selectAddress: that.data.callbackAddressInfo.title,
+    //     callbackLocation: that.data.callbackAddressInfo.location
+    //   })
+    //   //置空回调数据，即只使用一次，下次中心点变化后就不再使用
+    //   that.setData({
+    //     callbackAddressInfo: null
+    //   })
+    // }
     this.queryMarkerInfo()
 
 
@@ -314,6 +314,10 @@ Page({
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
+        var location = {}
+        location.lat = res.latitude
+        location.lng = res.longitude
+        app.globalData.location = location
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
@@ -557,7 +561,7 @@ Page({
       }
     }
     currentMarker = currentMarker.concat(markers);
-    console.log('ms ss', currentMarker)
+    // console.log('ms ss', currentMarker)
     that.setData({
       markers: currentMarker
     })
@@ -670,7 +674,7 @@ Page({
       // region_fix: 1,
       // policy: 1,
       success: function (res) {
-        console.log("232", res.data);
+        // console.log("232", res.data);
         that.setData({
           resultList: res.data
         })
@@ -682,7 +686,21 @@ Page({
   },
   //选择地点
   chance: function (e) {
-    console.log("点击地点",e.currentTarget.dataset.idx);
+    var that=this
+    // console.log("点击地点",e.currentTarget.dataset.idx);
+    var index = e.currentTarget.dataset.idx
+    // console.log('address index ',this.data.resultList[index])
+    var location = this.data.resultList[index].location
+    // console.log('lat lng',location.lat,location.lng)
+    // that.updateCenterLocation(location.lat, location.lng);
+    app.globalData.location = location
+    this.setData({
+      latitude: location.lat,
+      longitude: location.lng
+    })
+    // that.getCenterLocation()
+    // that.regeocodingAddress();
+    // that.queryMarkerInfo();
     this.setData({
       resultList:"",
       inputAddress:''

@@ -18,7 +18,7 @@ Page({
     // autoplay: false, //是否自动切换
     // interval: 3000, //自动切换时间间隔
     // duration: 800, //滑动动画时长
-    // circular: true, //是否采用衔接滑动
+    circular: true, //是否采用衔接滑动
     essayall: null,
     // {
     //     imgUrls: [
@@ -221,7 +221,6 @@ Page({
     })
   },
   //分享给朋友
-
   onShareAppMessage: function (res) {
     // return {
     //   title: '朋友圈看到的页面标题',
@@ -262,6 +261,13 @@ onShareTimeline: function () {
     imageUrl: 'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg', //分享链接图片
     query: 'kjbfrom=pyq'
   }
+},
+
+dolike: function () {
+  that = this
+},
+docollect: function () {
+  that=this
 },
 
 /**

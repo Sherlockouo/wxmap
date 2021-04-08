@@ -27,6 +27,12 @@ Page({
 
 
   },
+
+  // 获取点赞列表
+  getlikeList: function () {
+    var token = app.globalData.token;
+  },
+
   goDetail:function(e)
   {
     var pagid=e.currentTarget.dataset.pageid; //用于文章返回 

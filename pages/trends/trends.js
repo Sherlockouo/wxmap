@@ -93,6 +93,7 @@ Page({
   onLoad: function (options) {
     var that = this
     that.requestLocation()
+    // console.log('location ',app.globalData.location)
     
   },
 
@@ -111,17 +112,21 @@ Page({
      * 获取周围post
      */
     var that = this
-    var token = app.globalData.token;
+    console.log('location ',app.globalData.location)
+    var location = app.globalData.location
+    // var token = app.globalData.token;
     wx.request({
-      url: 'https://storymap.sherlockouo.com/poster/type',
+      url: 'https://storymap.sherlockouo.com/poster/local',
       method: "GET",
       header:{
-        Authorization: token,
+        // Authorization: token,
       },
       data:{
+        lat: location.lat,
+        lng: location.lng,
         type: 1,
         pageNum: 1,
-        pageSize: 100
+        pageSize: 200
 
       },
       success(res){
@@ -151,15 +156,17 @@ Page({
       }
     })
     wx.request({
-      url: 'https://storymap.sherlockouo.com/poster/type',
+      url: 'https://storymap.sherlockouo.com/poster/local',
       method: "GET",
       header:{
-        Authorization: token,
+        // Authorization: token,
       },
       data:{
+        lat: location.lat,
+        lng: location.lng,
         type: 2,
         pageNum: 1,
-        pageSize: 100
+        pageSize: 200
 
       },
       success(res){

@@ -95,6 +95,14 @@ Page({
     })
   },
 
+  //获取收藏列表
+  getCollect: function () {
+    var token = app.globalData.token;
+  },
+  // 取消收藏
+  unCollect: function () {
+    var token = app.globalData.token;
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -32,5 +32,6 @@ App({
     currentMarkerId:0,
     token:'',
     isHide:0,//登录状态
+    location:{}
   }
 })

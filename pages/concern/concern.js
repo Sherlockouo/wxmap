@@ -43,6 +43,24 @@ Page({
 
   },
 
+  //获取关注列表
+  getFollow: function(){
+    that = this
+    var concern=[]
+    var token = app.globalData.token;
+    wx.request({
+      url: 'https://volunteer.sherlockouo.com/follow/list',
+      method: 'GET',
+      header:{
+        Authorization:token
+      }
+    })
+  },
+  // 取消关注
+  unfollow: function () {
+    
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
