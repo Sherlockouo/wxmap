@@ -106,17 +106,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    wx.getLocation({
-      type: 'gcj02',
-      success: function (res) {
-        var location = {}
-        location.lat = res.latitude
-        location.lng = res.longitude
-        app.globalData.location = location
+    // var that = this
+    // wx.getLocation({
+    //   type: 'gcj02',
+    //   success: function (res) {
+    //     var location = {}
+    //     location.lat = res.latitude
+    //     location.lng = res.longitude
+    //     app.globalData.location = location
         
-      },
-    })
+    //   },
+    // })
   },
 
   /**
@@ -134,7 +134,7 @@ Page({
      * 获取周围post
      */
     var that = this
-    console.log('location ', app.globalData.location)
+    // console.log('location ', app.globalData.location)
     var location = app.globalData.location
     // var token = app.globalData.token;
     wx.request({

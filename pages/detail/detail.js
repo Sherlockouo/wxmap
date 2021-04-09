@@ -27,9 +27,9 @@ Page({
     shareimg: '/img/shareico_h.png',
     isyouself: 0 ,//判断是不是本人
     isshow:0,//是否展示相关信息
-    isLiked: 0,
-    islike:1,  //是否点赞
-    ishoard:1,  //是否收藏
+    islike:0,  //是否点赞
+    ishoard:0,  //是否收藏
+    authorid: 0,
   },
 
   // 点击图片进行预览函数
@@ -66,7 +66,7 @@ Page({
       vaHe: data.bottom + 10,
       inputHe: data.bottom - data.top,
       pageid: options.pageid,
-      // authorid:options.userid,
+      authorid: options.userid,
       // Sheight: (WH.windowHeight),
       // Swidth: (WH.windowWidth)
     })
@@ -76,7 +76,59 @@ Page({
          isyouself:1,
        })
      }
-     console.log("",app.globalData.userInfo.id)
+    //  console.log("",app.globalData.userInfo.id)
+    var that = this
+    var token = app.globalData.token;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/like/didLike',
+      method: "GET",
+      header:{
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        posterId: app.globalData.currentMarkerId,
+        // tofollow: that.data.essayall.userid
+      },
+      success(res) {
+        console.log("like ",res)
+        if(res.data.code=='0'){
+            if(res.data.data==true){
+     
+              that.setData({
+                islike: 1
+              })
+            }
+        }
+        
+        }
+
+        })
+       
+            wx.request({
+              url: 'https://storymap.sherlockouo.com/collect/didCollect',
+              method: "GET",
+              header:{
+                'Authorization': token,
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                posterId: app.globalData.currentMarkerId,
+                // tofollow: that.data.essayall.userid
+              },
+              success(res) {
+                // console.log("follow ",res)
+                if(res.data.code=='0'){
+                    if(res.data.data==true){
+                      that.setData({
+                        ishoard: 1
+                      })
+                    }
+                }
+                
+                }
+                
+                })
    
   },
   swiperChange: function (e) {
@@ -166,53 +218,38 @@ Page({
   },
   //点击关注按钮调用
   concern: function (e) {
-    if (this.data.concernAc == 1) {
-      this.setData({
-        concernAc: 1,
-        isconcern: '已关注'
+  var that = this
+  var token = app.globalData.token;
+  // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
+  wx.request({
+    url: 'https://storymap.sherlockouo.com/follow/dofollow',
+    method: "POST",
+    header:{
+      'Authorization': token,
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    data: {
+      // posterid: that.data.essayall.id,
+      tofollow: that.data.essayall.userid
+    },
+    success(res) {
+      // console.log("dolike ",res)
+      if(res.data.code=='0'){
+        console.log("shit ",res)
+        that.setData({
+          concernAc: !that.data.concernAc,
       })
-    }
-    else{
-      var that = this
-      var token = app.globalData.token;
-      // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
-      wx.request({
-        url: 'https://storymap.sherlockouo.com/follow/dofollow',
-        method: "POST",
-        header:{
-          'Authorization': token,
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        data: {
-          // posterid: that.data.essayall.id,
-          tofollow: that.data.essayall.userid
-        },
-        success(res) {
-          // console.log("dolike ",res)
-          if(res.data.code=='0'){
-            wx.showToast({
-              title: '关注成功',
-              icon: 'success',
-             duration: 2000
-            })
-            that.setData({
-              concernAc:1,
-              isconcern: '已关注'
-            })
-          }
-         
-          else{
-              wx.showToast({
-                title: res.data.msg,
-                icon: 'none',
-               duration: 2000
-              })
-            }
-        },
-        fail(res){
+      }
+      else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+           duration: 2000
+          })
         }
+      }
       })
-    }
+    
 
   },
   //查看用户的详细信息，跳转时将用户id传递过去
@@ -235,12 +272,13 @@ Page({
     var that = this
     var postid = app.globalData.currentMarkerId
     var essayall = {};
-    console.log('postid ', postid)
+    var token = app.globalData.token
+    // console.log('postid ', postid)
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/info',
       method: "GET",
       data: {
-        posterId: postid,
+        posterId: app.globalData.currentMarkerId,
       },
       success(res) {
         console.log('res is  ', res)
@@ -271,16 +309,40 @@ Page({
             essayall.tabel = tags;
             essayall.like = marker.likes;
             essayall.sharetime = marker.createTime;
-
+            essayall.userid = marker.userid
             that.setData({
               username: marker.username,
               headimg: marker.avatar
             })
             resolve(essayall);
           }).then(() => {
+
             that.setData({
               essayall: essayall,
             })
+            
+          }).then(()=>{
+            wx.request({
+              url: 'https://storymap.sherlockouo.com/follow/didFollow',
+              method: "GET",
+              header:{
+                'Authorization': token,
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                // posterId: app.globalData.currentMarkerId,
+                userId: that.data.essayall.userid
+              },
+              success(res) {
+                // console.log("detail ",res)
+                if(res.data.code=='0'){
+                  that.setData({
+                    concernAc: res.data.data
+                  })
+                }
+                }
+                
+                })
           })
         }
       }
@@ -330,12 +392,7 @@ onShareTimeline: function () {
 },
 
 dolike: function () {
-  if(this.data.islike==1){
-    this.setData({
-      likeimg:"/img/like_h.png"
-   })
-  }
-  else{
+
     var that = this
   var token = app.globalData.token;
   console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
@@ -359,7 +416,7 @@ dolike: function () {
          duration: 2000
         })
          that.setData({
-           likeimg:"/img/like_h.png"
+           islike: !that.data.islike
         })
       }
       else{
@@ -373,15 +430,11 @@ dolike: function () {
     fail(res){
     }
   })
-  }
+  
   
 },
 docollect: function () {
-  if(this.data.islike==1){
-    this.setData({
-      hoardimg :"/img/hoard_h.png"
-  })
-  }else{
+  
    var that=this
    var token = app.globalData.token;
   // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
@@ -397,15 +450,11 @@ docollect: function () {
       userid: that.data.essayall.userid
     },
     success(res) {
-      console.log("doCollect ",res)
+      // console.log("doCollect ",res)
       if(res.data.code=='0'){
-        wx.showToast({
-          title: '收藏成功',
-          icon: 'success',
-         duration: 2000
-        })
+       
          that.setData({
-          hoardimg :"/img/hoard_h.png"
+          ishoard: !that.data.ishoard
       })
       }
       else{
@@ -419,7 +468,7 @@ docollect: function () {
     fail(res){
     }
   })
-}
+
 },
 
 /**

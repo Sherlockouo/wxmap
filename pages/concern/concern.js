@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    refreshPage: 1,
     concern:[
       // {
       //   id:1,
@@ -25,7 +26,7 @@ Page({
   {
     var that = this
     var token = app.globalData.token;
-    console.log("点击 ",e.currentTarget)
+    // console.log("点击 ",e.currentTarget)
     wx.showModal({
       title: '提示',
       content: '是否取消关注: '+e.currentTarget.dataset.name,
@@ -42,13 +43,15 @@ Page({
               tofollow:e.currentTarget.dataset.id
             },
             success(res) {
-              console.log("unfollow",res)
+              // console.log("unfollow",res)
+            
               if(res.code=='0'){
                 wx.showToast({
                   title: res.data.msg,
                   icon: 'success',
                   duration:1500
                 })
+                
               }else{
                 wx.showToast({
                   title: "取关成功",
@@ -81,6 +84,22 @@ Page({
       }
     })
 
+    
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
     var that = this
     var token = app.globalData.token;
 
@@ -92,8 +111,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        // posterid: that.data.essayall.id,
-        // tolike: that.data.essayall.userid
+        
       },
       success(res) {
         console.log("collect list ", res)
@@ -127,19 +145,7 @@ Page({
       url: '/pages/message/message?userid='+ userid,
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
+  
 
   /**
    * 生命周期函数--监听页面隐藏

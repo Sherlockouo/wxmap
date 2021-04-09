@@ -55,8 +55,7 @@
                 <text class="textCss">签名:</text>
             </view>
             <view class="weui-cell__bd">
-                <input class="weui-input inputCss" maxlength="55" placeholder-class="place-holder"
-                    placeholder="留下点你的痕迹吧" />
+                <input class="weui-input inputCss" maxlength="55" placeholder-class="place-holder" value="{{info.motto}}" placeholder="说两句吧" />
             </view>
         </view>
     </view>

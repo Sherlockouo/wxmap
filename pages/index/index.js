@@ -333,7 +333,11 @@ Page({
   bindMakertap: function (e) {
     var that = this;
 
-    app.globalData.currentMarkerId = e.detail.markerId;
+
+    var idx = e.detail.markerId;
+ 
+    app.globalData.currentMarkerId = idx;
+
     //重新设置点击marker为中心点
     for (var key in that.data.markers) {
       var marker = that.data.markers[key];

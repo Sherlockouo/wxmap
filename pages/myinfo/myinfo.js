@@ -1,4 +1,5 @@
 // pages/addOrEditUser/addOrEditUser.js
+const app = getApp();
 Page({
 
   /**
@@ -15,18 +16,7 @@ Page({
     // 省市区三级联动初始化
     region: ["四川省", "成都市", "郫都区"],
   },
-  // 性别变化更改
-  radioChange: function (e) {
-    // console.log('radio发生change事件，携带value值为：', e.detail.value)
-    const sex = this.data.sex
-    for (let i = 0, len = sex.length; i < len; ++i) {
-      sex[i].checked = sex[i].id == e.detail.value
-    }
-    this.setData({
-      sex
-    })
-    console.log(this.data.sex);
-  },
+ 
   //设置用户详情页的图片信息
   setbackground:function()
   {
@@ -42,6 +32,9 @@ Page({
        username:options.username
     })
     
+    this.setData({
+      info: app.globalData.userInfo
+    })
     
   },
    // 选择省市区函数

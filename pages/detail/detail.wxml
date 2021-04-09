@@ -14,9 +14,14 @@
       <view class="dname" style="height:{{vaHe}}px; line-height:{{vaHe}}px;text-align:center">{{username}}</view>
     </view>
     <view wx:if="{{!isyouself}}">
-      <view class="concern">
+      <view class="concern"  bindtap="concern">
         <!-- 点击关注可以变化 -->
-        <view class="inconcern {{concernAc==0?'active':''}}" bindtap="concern">{{isconcern}}</view>
+        <view class="inconcern active"  wx:if="{{!concernAc}}">
+          +关注
+        </view>
+        <view class="inconcern" wx:else>
+          已关注
+        </view>
       </view>
     </view>
     <view wx:else>
@@ -78,18 +83,24 @@
       </view>
       <view class="boconcern" bindtap="docollect">
         <view class="inbconcern">
-          <view class="conimg">
-              <image src="{{hoardimg}}"></image>
+          <view class="conimg" wx:if="{{ishoard}}">
+              <image src="/img/hoard_h.png"></image>
+          </view>
+          <view class="unconimg" wx:else>
+              <image src="/img/hoard.png"></image>
           </view>
           <view class="context">{{essayall.concern}}</view>
         </view>
       </view>
       <view class="like" bindtap="dolike">
         <view class="inlike">
-        <view class="likeimg">
-          <image src="{{likeimg}}"></image>
+        <view class="likeimg" wx:if="{{islike}}">
+          <image src="/img/like_h.png"></image>
         </view>
-        <view class="liketext">{{essayall.like}}</view>
+        <view class="didntlike" wx:else>
+          <image src="/img/like.png"></image>
+        </view>
+        <view class="liketext">{{essayall.like+islike}}</view>
       </view>
     </view>
     </view>
