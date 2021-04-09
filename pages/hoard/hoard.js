@@ -74,6 +74,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#1ba1f0',
+      animation: {
+        duration: 300,
+        timingFunc: 'easeIn'
+      }
+    })
     var arr=[]
     for(let td of this.data.navbar){
      if(td.title.length>12)
@@ -85,7 +93,6 @@ Page({
     ac:arr
   })
   console.log(this.data.ac);
-
   },
   Tapgo:function(e)
   {

@@ -279,24 +279,26 @@ dolike: function () {
       tolike: that.data.essayall.userid
     },
     success(res) {
-      console.log("dolike ",res)
+      // console.log("dolike ",res)
       if(res.data.code=='0'){
         wx.showToast({
           title: '点赞成功',
           icon: 'success',
          duration: 2000
-        })}
-        else{
+        })
+         that.setData({
+        likeimg:"/img/like_h.png"
+      })
+      }
+      else{
           wx.showToast({
             title: res.data.msg,
-            icon: 'error',
+            icon: 'none',
            duration: 2000
           })
         }
     },
     fail(res){
-
-
     }
   })
 },

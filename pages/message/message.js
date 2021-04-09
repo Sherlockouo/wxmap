@@ -34,7 +34,6 @@ Page({
   },
   //点击关注按钮调用
   concern: function (e) {
-
     if (this.data.concernAc == 0) {
       this.setData({
         concernAc: 1,
@@ -189,7 +188,17 @@ onShow: function () {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(options.mystyle==1)
+    {
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#1ba1f0',
+        animation: {
+          duration: 400,
+          timingFunc: 'easeIn'
+        }
+      })
+    }
   },
 
   /**

@@ -29,7 +29,7 @@
   /* justify-items: center; */
 }
 .headimg{
-  border: rgb(255, 170, 72) 6rpx solid;
+  border: rgb(191, 219, 238) 6rpx solid;
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;

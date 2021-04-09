@@ -1,22 +1,33 @@
 <view class="mancontainer">
-  <view class="outuserinfo">
-    <view class="userinfo">
-    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <view class="userinfo2">
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <view class='message' bindtap="gomessgeinfo" data-headimg="{{userInfo.avatarUrl}}"
-        data-username="{{userInfo.nickName}}">
-        <!-- //bindtap="myinfopage" -->
-        我的信息
-        <!-- 我的信息 -->
+  <view wx:if="{{islogin}}">
+    <view class="outuserinfo">
+      <view class="userinfo">
+        <image bindtap="goMessage" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" data-num="index" >
+        </image>
+        <view class="userinfo2">
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+          <view class='message' bindtap="gomessgeinfo" data-headimg="{{userInfo.avatarUrl}}"
+            data-username="{{userInfo.nickName}}">
+            <!-- //bindtap="myinfopage" -->
+            我的信息
+            <!-- 我的信息 -->
+          </view>
+        </view>
+      </view>
+      <view class="servive">
+        <button open-type='contact' class='btn1'>
+          <image class='btnImg' src='/img/service.png'></image>
+          <!-- <view>联系客服</view> -->
+        </button>
       </view>
     </view>
   </view>
-    <view class="servive">
-      <button open-type='contact' class='btn1'>
-        <image class='btnImg' src='/img/service.png'></image>
-        <!-- <view>联系客服</view> -->
-      </button>
+  <view wx:else>
+    <view class="outuserinfo">
+      <view class="nonusershow ">
+         <view class="slogan">登录账号，分享你的故事</view>
+         <view class="loginbtn" bindtap="gologin"><view class="inloginbtn">登录/注册</view></view>
+      </view>
     </view>
   </view>
   <view class="stare">
@@ -186,7 +197,8 @@
               <view class="wenzhang" wx:if="{{index%2!=0}}">
                 <view class="myimg">
                   <image bindload="LimageLoad" src="{{item.imgurl}}" data-index="{{index}}"
-                    style="height:{{Lmodeheight[index]}}rpx;width:{{Lmodewith[index]}}rpx" data-id="3" bindtap="goDetail">
+                    style="height:{{Lmodeheight[index]}}rpx;width:{{Lmodewith[index]}}rpx" data-id="3"
+                    bindtap="goDetail">
                   </image>
                 </view>
                 <view class="inlocal">

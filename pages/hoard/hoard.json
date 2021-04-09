@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText":"收藏",
   "usingComponents": {},
-  "navigationBarBackgroundColor":"#1ba1f0",
   "enablePullDownRefresh":true
   
 }

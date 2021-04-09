@@ -43,6 +43,7 @@ Page({
     Smodeheight: [],
     Lmodewith: [],
     Lmodeheight: [],
+    islogin:true,  //判断用户是否登录
   },
   navbarTap: function (e) {
     this.setData({
@@ -59,8 +60,8 @@ Page({
    */
   onLoad: function () {
     if (app.globalData.token.length == 0) {
-      wx.redirectTo({
-        url: '/pages/login/login?pagetype=' + 3,
+      this.setData({
+        islogin:false,
       })
     }
     this.setData({
@@ -70,10 +71,22 @@ Page({
   },
   goDetail: function (e) {
     app.globalData.currentMarkerId = e.currentTarget.dataset.id
-
     var pagid = 3;
     wx.navigateTo({
       url: '/pages/detail/detail?pageid=' + pagid,
+      // +'?userid='+userid
+    })
+  },
+  gologin:function(e)
+  {
+     wx.redirectTo({
+        url: '/pages/login/login?pagetype=' + 3,
+      })
+  },
+  goMessage:function(e)
+  {
+    wx.navigateTo({
+      url:'/pages/message/message?mystyle='+1,
     })
   },
   /**

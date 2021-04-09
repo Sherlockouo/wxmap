@@ -49,6 +49,7 @@ Page({
        username:options.username
     })
     
+    
   },
   changeDate(e){
     this.setData({ date:e.detail.value});

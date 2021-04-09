@@ -148,7 +148,6 @@ Page({
             //获取用户信息进行保存
             app.globalData.userInfo = e.detail.userInfo
 
-
             console.log("用户的信息如下huoqu", app.globalData.userInfo)
             // 获取到用户的 openid
             if (res.data.code == 0) {

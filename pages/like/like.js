@@ -45,6 +45,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (event) {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#1ba1f0',
+      animation: {
+        duration: 300,
+        timingFunc: 'easeIn'
+      }
+    })
   },
 
   /**

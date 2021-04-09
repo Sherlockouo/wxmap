@@ -3,7 +3,7 @@
     <view class="titleCss">
         <view class="setBac">
             <view class="head box">
-                <image src="{{userhead}}" mode="scaleToFill" class="headimg"></image>
+                <image src="{{userhead}}" mode="scaleToFill" class="headimg" bindtap="imgShow"></image>
             </view>
             <view class="btn box" bindtap="setbackground">设置背景</view>
         </view>
