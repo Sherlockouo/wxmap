@@ -86,14 +86,13 @@ Page({
             resolve(userid)
           }).then(() => {
             app.globalData.currentMarkerId = e.currentTarget.dataset.id
-            var pagid = e.currentTarget.dataset.id; //用于文章返回 
             if (app.globalData.token.length == 0) {
               wx.navigateTo({
                 url: '/pages/login/login?pagetype=' + 2 + "&userid=" + userid,
               })
             } else {
               wx.navigateTo({
-                url: '/pages/detail/detail?pageid=' + pagid + "&userid=" + userid,
+                url: '/pages/detail/detail?pageid=' + 2 + "&userid=" + userid,
               })
             }
           })
@@ -108,9 +107,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    that.requestLocation()
-    // console.log('location ',app.globalData.location)
-
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        var location = {}
+        location.lat = res.latitude
+        location.lng = res.longitude
+        app.globalData.location = location
+        
+      },
+    })
   },
 
   /**

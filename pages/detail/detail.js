@@ -11,7 +11,7 @@ Page({
     pageid: '', //跳转到此界面之前页面的id
     vaHe: 0, //导航菜单高度
     inputHe: 0, //输入框高度
-    uesrname: 'Another Drmension',
+    username: "",
     current: 0, //当前所在页面的 index
     concernAc: 0, //用户是否关注
     isconcern: '+关注', //按钮的文字内容
@@ -30,7 +30,7 @@ Page({
     shareimg: '/img/shareico_h.png',
     isyouself: 0 ,//判断是不是本人
     isshow:0,//是否展示相关信息
-
+    isLiked: 0
   },
 
   // 点击图片进行预览函数
@@ -167,13 +167,47 @@ Page({
   },
   //点击关注按钮调用
   concern: function (e) {
-
-    if (this.data.concernAc == 0) {
-      this.setData({
-        concernAc: 1,
-        isconcern: '已关注'
-      })
+  var that = this
+  var token = app.globalData.token;
+  // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
+  wx.request({
+    url: 'https://storymap.sherlockouo.com/follow/dofollow',
+    method: "POST",
+    header:{
+      'Authorization': token,
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    data: {
+      // posterid: that.data.essayall.id,
+      tofollow: that.data.essayall.userid
+    },
+    success(res) {
+      // console.log("dolike ",res)
+      if(res.data.code=='0'){
+        wx.showToast({
+          title: '关注成功',
+          icon: 'success',
+         duration: 2000
+        })
+      if (this.data.concernAc == 0) {
+        this.setData({
+          concernAc: 1,
+          isconcern: '已关注'
+        })
+      }
+      }
+      else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+           duration: 2000
+          })
+        }
+    },
+    fail(res){
     }
+  })
+   
   },
   //查看用户的详细信息，跳转时将用户id传递过去
   gousermessage:function(e){
@@ -213,7 +247,7 @@ Page({
             essayall.essay_title = marker.title;
             essayall.essay_text = marker.message
             var imgurls = marker.files.split("#");
-            console.log('before ', imgurls)
+            
             for (var i = 0; i < imgurls.length; i++) {
               if (imgurls[i] == "") imgurls.splice(i, 1);
             }
@@ -223,7 +257,7 @@ Page({
             // var imgs = imgurls;
             // console.log('imgs ',imgs)
             essayall.imgUrls = imgurls;
-            console.log('after ', imgurls)
+            // console.log('after ', imgurls)
             var tags = marker.tags.split("#");
             for (var i = 0; i < tags.length; i++) {
               if (tags[i] == "") tags.splice(i, 1);
@@ -231,6 +265,11 @@ Page({
             essayall.tabel = tags;
             essayall.like = marker.likes;
             essayall.sharetime = marker.createTime;
+
+            that.setData({
+              username: marker.username,
+              headimg: marker.avatar
+            })
             resolve(essayall);
           }).then(() => {
             that.setData({
@@ -324,7 +363,43 @@ dolike: function () {
   })
 },
 docollect: function () {
-  that=this
+   var that=this
+   var token = app.globalData.token;
+  // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
+  wx.request({
+    url: 'https://storymap.sherlockouo.com/collect/docollect',
+    method: "POST",
+    header:{
+      'Authorization': token,
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    data: {
+      posterId: that.data.essayall.id,
+      userid: that.data.essayall.userid
+    },
+    success(res) {
+      console.log("doCollect ",res)
+      if(res.data.code=='0'){
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'success',
+         duration: 2000
+        })
+         that.setData({
+        likeimg:"/img/like_h.png"
+      })
+      }
+      else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+           duration: 2000
+          })
+        }
+    },
+    fail(res){
+    }
+  })
 },
 
 /**
