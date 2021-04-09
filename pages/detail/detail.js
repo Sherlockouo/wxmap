@@ -16,10 +16,7 @@ Page({
     concernAc: 0, //用户是否关注
     isconcern: '+关注', //按钮的文字内容
     headimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog4.jpg", //头像信息
-    // indicatorDots: true, //是否显示面板指示点
-    // autoplay: false, //是否自动切换
-    // interval: 3000, //自动切换时间间隔
-    // duration: 800, //滑动动画时长
+   
     circular: true, //是否采用衔接滑动
     essayall: null,
     links: [
@@ -30,7 +27,9 @@ Page({
     shareimg: '/img/shareico_h.png',
     isyouself: 0 ,//判断是不是本人
     isshow:0,//是否展示相关信息
-    isLiked: 0
+    isLiked: 0,
+    islike:0,  //是否点赞
+    ishoard:0,  //是否收藏
   },
 
   // 点击图片进行预览函数
@@ -167,47 +166,54 @@ Page({
   },
   //点击关注按钮调用
   concern: function (e) {
-  var that = this
-  var token = app.globalData.token;
-  // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
-  wx.request({
-    url: 'https://storymap.sherlockouo.com/follow/dofollow',
-    method: "POST",
-    header:{
-      'Authorization': token,
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    data: {
-      // posterid: that.data.essayall.id,
-      tofollow: that.data.essayall.userid
-    },
-    success(res) {
-      // console.log("dolike ",res)
-      if(res.data.code=='0'){
-        wx.showToast({
-          title: '关注成功',
-          icon: 'success',
-         duration: 2000
-        })
-      if (this.data.concernAc == 0) {
-        this.setData({
-          concernAc: 1,
-          isconcern: '已关注'
-        })
-      }
-      }
-      else{
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-           duration: 2000
-          })
-        }
-    },
-    fail(res){
+    if (this.data.concernAc == 1) {
+      this.setData({
+        concernAc: 1,
+        isconcern: '已关注'
+      })
     }
-  })
-   
+    else{
+      var that = this
+      var token = app.globalData.token;
+      // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
+      wx.request({
+        url: 'https://storymap.sherlockouo.com/follow/dofollow',
+        method: "POST",
+        header:{
+          'Authorization': token,
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          // posterid: that.data.essayall.id,
+          tofollow: that.data.essayall.userid
+        },
+        success(res) {
+          // console.log("dolike ",res)
+          if(res.data.code=='0'){
+            wx.showToast({
+              title: '关注成功',
+              icon: 'success',
+             duration: 2000
+            })
+            that.setData({
+              concernAc:1,
+              isconcern: '已关注'
+            })
+          }
+         
+          else{
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+               duration: 2000
+              })
+            }
+        },
+        fail(res){
+        }
+      })
+    }
+
   },
   //查看用户的详细信息，跳转时将用户id传递过去
   gousermessage:function(e){
@@ -324,7 +330,13 @@ onShareTimeline: function () {
 },
 
 dolike: function () {
-  var that = this
+  if(this.data.islike==1){
+    this.setData({
+      likeimg:"/img/like_h.png"
+   })
+  }
+  else{
+    var that = this
   var token = app.globalData.token;
   console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
   wx.request({
@@ -347,8 +359,8 @@ dolike: function () {
          duration: 2000
         })
          that.setData({
-        likeimg:"/img/like_h.png"
-      })
+           likeimg:"/img/like_h.png"
+        })
       }
       else{
           wx.showToast({
@@ -361,8 +373,15 @@ dolike: function () {
     fail(res){
     }
   })
+  }
+  
 },
 docollect: function () {
+  if(this.data.islike==1){
+    this.setData({
+      hoardimg :"/img/hoard_h.png"
+  })
+  }else{
    var that=this
    var token = app.globalData.token;
   // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
@@ -386,7 +405,7 @@ docollect: function () {
          duration: 2000
         })
          that.setData({
-        likeimg:"/img/like_h.png"
+          hoardimg :"/img/hoard_h.png"
       })
       }
       else{
@@ -400,6 +419,7 @@ docollect: function () {
     fail(res){
     }
   })
+}
 },
 
 /**
