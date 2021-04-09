@@ -11,16 +11,9 @@ Page({
     password_check: "",
     password_show: false,
     userhead:"",
-    sex: [{
-      id: 1,
-      value: '男',
-      checked:"true"
-    }, {
-      id: 2,
-      value: '女',
-      checked:"false"
-    }],
-    username:""//用户默认名称
+    username:"",//用户默认名称
+    // 省市区三级联动初始化
+    region: ["四川省", "成都市", "郫都区"],
   },
   // 性别变化更改
   radioChange: function (e) {
@@ -51,6 +44,11 @@ Page({
     
     
   },
+   // 选择省市区函数
+   changeRegin(e){
+    this.setData({ region: e.detail.value });
+  },
+
   changeDate(e){
     this.setData({ date:e.detail.value});
   },
@@ -104,27 +102,7 @@ Page({
   },
   addUser: function(){
     var that = this;
-    var password = that.data.password;
-    var password_check = that.data.password_check;
-    if(password == password_check){
-      
-    }else{
-      wx.showModal({
-        title: '提示',
-        content: '对不起！您输入的两次密码不同！',
-        success(res) {
-          if (res.confirm) {
-            that.setData({
-              password_show: true
-            });
-          } else if (res.cancel) {
-            that.setData({
-              password_show: false
-            });
-          }
-        }
-      })
-    }
+   
   },
   passwordInput: function (e) {
     this.setData({

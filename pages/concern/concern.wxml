@@ -1,6 +1,6 @@
 <view class="contertain">
   <view wx:for="{{concern}}" data-idx="{{index}}" class="allitem" wx:key="idx">
-    <view class="outline">
+    <view class="outline" bindtap="goMessage" data-idx="{{index}}">
       <view class="author" >
         <view class="handimg">
           <view>

@@ -13,7 +13,7 @@ Page({
     inputHe: 0, //输入框高度
     username: "",
     current: 0, //当前所在页面的 index
-    concernAc: 0, //用户是否关注
+    concernAc:0, //用户是否关注
     isconcern: '+关注', //按钮的文字内容
     headimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog4.jpg", //头像信息
    
@@ -28,8 +28,8 @@ Page({
     isyouself: 0 ,//判断是不是本人
     isshow:0,//是否展示相关信息
     isLiked: 0,
-    islike:0,  //是否点赞
-    ishoard:0,  //是否收藏
+    islike:1,  //是否点赞
+    ishoard:1,  //是否收藏
   },
 
   // 点击图片进行预览函数

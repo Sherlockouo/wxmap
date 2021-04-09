@@ -118,8 +118,15 @@ Page({
     })
     
   },
-
-
+  //界面跳转
+  goMessage:function(e)
+  {
+     var index=e.currentTarget.dataset.idx;
+     var userid=this.data.concern[index].userid
+     wx.navigateTo({
+      url: '/pages/message/message?userid='+ userid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

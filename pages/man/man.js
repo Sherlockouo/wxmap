@@ -110,8 +110,10 @@ Page({
   },
   goMessage:function(e)
   {
+    var userid=app.globalData.userInfo.id
+    // console.log(app.globalData.userInfo.id);
     wx.navigateTo({
-      url:'/pages/message/message?mystyle='+1,
+      url:'/pages/message/message?mystyle='+1+'&userid='+userid,
     })
   },
   /**

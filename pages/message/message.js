@@ -126,7 +126,6 @@ onShow: function () {
         type: 1,
         pageNum: 1,
         pageSize: 100
-
       },
       success(res) {
         console.log('res is  ', res)
