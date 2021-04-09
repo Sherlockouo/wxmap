@@ -59,15 +59,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    if (app.globalData.token.length == 0) {
-      this.setData({
-        islogin:false,
-      })
-    }
-    this.setData({
-      userinfo: app.globalData.userInfo
-    })
-    console.log("获取到的结果信息！", app.globalData.userInfo);
+    
+   
   },
   goDetail: function (e) {
     var that = this
@@ -227,6 +220,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
+      this.setData({
+        islogin:app.globalData.token.length != 0,
+      })
+      this.setData({
+        userinfo: app.globalData.userInfo
+      })
+      // console.log("获取到的结果信息！", app.globalData.userInfo);
     var that = this
     var token = app.globalData.token;
     // console.log('token ', token.length)

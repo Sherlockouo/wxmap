@@ -67,6 +67,7 @@ Page({
         // tolike: that.data.essayall.userid
       },
       success(res) {
+        wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
         console.log("collect list ", res)
         var ls = res.data.data
         for (var key in ls) {
@@ -129,7 +130,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad(); //重新加载onLoad()
   },
 
   /**

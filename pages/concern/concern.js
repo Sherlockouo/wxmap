@@ -114,18 +114,16 @@ Page({
         
       },
       success(res) {
+        wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
         console.log("collect list ", res)
         var ls = res.data.data
         for (var key in ls) {
           var marker = ls[key];
           marker.id = marker.userEntity.id
-        
           //cover
           marker.handimg = marker.userEntity.avatar;
           marker.name = marker.userEntity.nickname
           marker.introduce = marker.userEntity.motto
-          
-        
           // console.log('marker',marker)
         }
         that.setData({
@@ -145,8 +143,6 @@ Page({
       url: '/pages/message/message?userid='+ userid,
     })
   },
-  
-
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -165,7 +161,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onShow(); //重新加载onLoad()
   },
 
   /**

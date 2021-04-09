@@ -138,6 +138,17 @@ Page({
     })
 
   },
+    //界面跳转
+    goMessage:function(e)
+    {
+      this.setData({
+        isshow:0
+      })
+       var userid=this.data.authorid
+       wx.navigateTo({
+        url: '/pages/message/message?userid='+ userid,
+      })
+    },
   //展示编辑操作
   showedit:function(e)
   {
@@ -251,12 +262,6 @@ Page({
       })
     
 
-  },
-  //查看用户的详细信息，跳转时将用户id传递过去
-  gousermessage:function(e){
-    wx.navigateTo({
-      url:'/pages/message/message'
-    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -20,8 +20,9 @@
   padding-top: 60rpx;
 }
 .headimg{
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
 }
 .box{
   margin-top: 30px;
@@ -31,6 +32,7 @@
   height: 80px;
   border-radius: 40px;
   background: #a5a5a5;
+  overflow: hidden;
 }
 .btn{
   background-color: #ffffff;
@@ -57,6 +59,7 @@
 }
 .inputCss{
   margin-left: 2vh;
+  width: 90%;
 }
 .place-holder{
   font-size: 28rpx;

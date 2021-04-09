@@ -9,12 +9,15 @@
   margin: 10rpx;
 }
 .handimg{
+  width: 20%;
+}
+.inheadimg{
   width: 80rpx;
   height: 80rpx;
   overflow: hidden;
   border-radius: 50%;
 }
-.handimg image{
+.inheadimg image{
   width: 80rpx;
   height: 80rpx;
 }
@@ -32,7 +35,10 @@
   font-weight: 600;
 }
 .right{
-  margin-left: 25rpx;
+  margin-left: 15rpx;
+}
+.introduce{
+  width: 90%;
 }
 .concel{
   display: flex;

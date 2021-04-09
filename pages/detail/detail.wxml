@@ -7,7 +7,7 @@
   <view class="allmessage">
     <view class="deMessage">
       <view class="outimg" style="height:{{vaHe}}px">
-        <view class="inimg" mode="widthFix" bindtap="gousermessage">
+        <view class="inimg" mode="widthFix" bindtap="goMessage">
           <image src="{{headimg}}"></image>
         </view>
       </view>

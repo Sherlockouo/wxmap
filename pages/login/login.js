@@ -72,7 +72,11 @@ Page({
               // console.log("用户的信息如下：");
               // console.log(e.detail.userInfo);
 
-              wx.setStorageSync('userInfo', res.data.userinfo)
+              
+              wx.setStorage({
+                data: res.data.userinfo,
+                key: 'userInfo',
+              })
               var userinfo= res.data.userinfo;
               //获取用户信息进行保存
               app.globalData.userInfo = userinfo
@@ -143,7 +147,7 @@ Page({
             // 获取到用户的信息了，打印到控制台上看下
             app.globalData.isHide = 1
             that.goback();
-            console.log("用户的信息如下：");
+            // console.log("用户的信息如下：");
             console.log(e.detail.userInfo);
 
             wx.setStorageSync('userInfo', e.detail.userInfo)

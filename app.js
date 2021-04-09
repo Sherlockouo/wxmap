@@ -8,6 +8,7 @@ App({
     wx.setStorageSync('logs', logs)
     this.globalData.token=wx.getStorageSync('token')
     this.globalData.userInfo=wx.getStorageSync('userInfo')
+    console.log("startup ",this.globalData.userInfo)
     // 获取用户信息
     wx.getSetting({
       success: res => {
