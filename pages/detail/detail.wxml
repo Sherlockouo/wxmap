@@ -20,13 +20,25 @@
       </view>
     </view>
     <view wx:else>
-      <view class="control"></view>
+      <view class="control">
+         <view class="downicon" bindtap="showedit"><image src="/img/down.png"></image></view>
+      </view>
+      <view wx:if="{{isshow}}" class="useredit">
+          <view class="edit">
+          <view><image src="/img/editessay.png"></image></view>
+          <view bindtap="edit">编辑</view>
+         </view>
+         <view class="delete" bindtap="delete">
+          <view><image src="/img/newdelete.png"></image></view>
+          <view>删除</view>
+          </view>
+         </view>
     </view>
   </view>
 
 </view>
 
-<view class="container-layout">
+<view class="container-layout" bindtap="hide">
   <swiper class="container" indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" interval="{{interval}}"
     duration="{{duration}}" bindchange='onSlideChange'>
     <block wx:for="{{essayall.imgUrls}}" wx:key="index">

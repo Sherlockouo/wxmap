@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navbar: [],//周边分享的图文结果
-    lostnavbar:[
+    navbar: [], //周边分享的图文结果
+    lostnavbar: [
       // {
       // id:1,
       // imgurl:"",
@@ -23,14 +23,15 @@ Page({
     lat: 0,
     lng: 0,
     currentTab: 0,
-    tal:0,
-    ac1:1,
-    ac2:0,
-    cTab:0,
-    shareCount:1,
-    lostCount:2,
-    Lflage:[],
-    Sflage:[],
+    tal: 0,
+    ac1: 1,
+    ac2: 0,
+    cTab: 0,
+    shareCount: 1,
+    lostCount: 2,
+    Lflage: [],
+    Sflage: [],
+    authorid: 0, //作者的id
   },
 
   //请求地理位置
@@ -47,44 +48,59 @@ Page({
     })
   },
 
-  navbarTap: function(e){
+  navbarTap: function (e) {
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     })
     console.log(e.currentTarget.dataset);
   },
-  active1:function(e)
-  {
+  active1: function (e) {
     this.setData({
-      ac1:1,
-      ac2:0,
+      ac1: 1,
+      ac2: 0,
       cTab: 0
     })
   },
-  active2:function(e)
-  {
+  active2: function (e) {
     this.setData({
-      ac1:0,
-      ac2:1,
+      ac1: 0,
+      ac2: 1,
       cTab: 1
     })
   },
-  goDetail:function(e)
-  {
-    
-    app.globalData.currentMarkerId = e.currentTarget.dataset.id
-    
-    var pagid=e.currentTarget.dataset.id; //用于文章返回 
-    if (app.globalData.token.length==0) {
-      wx.navigateTo({
-        url: '/pages/login/login?pagetype='+2,
-      })
-    }else{
-      wx.navigateTo({
-      url: '/pages/detail/detail?pageid='+pagid,
+  goDetail: function (e) {
+    var that = this
+    var postid = e.currentTarget.dataset.id
+    var userid = 0;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/info',
+      method: "GET",
+      data: {
+        posterId: postid,
+      },
+      success(res) {
+        if (res.data.code == 0) {
+          new Promise((resolve, reject) => {
+            var marker = res.data.data;
+            userid = marker.userid;
+            resolve(userid)
+          }).then(() => {
+            app.globalData.currentMarkerId = e.currentTarget.dataset.id
+            var pagid = e.currentTarget.dataset.id; //用于文章返回 
+            if (app.globalData.token.length == 0) {
+              wx.navigateTo({
+                url: '/pages/login/login?pagetype=' + 2 + "&userid=" + userid,
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/detail/detail?pageid=' + pagid + "&userid=" + userid,
+              })
+            }
+          })
+        }
+      }
     })
-    }
-    
+
   },
 
   /**
@@ -94,7 +110,7 @@ Page({
     var that = this
     that.requestLocation()
     // console.log('location ',app.globalData.location)
-    
+
   },
 
   /**
@@ -112,16 +128,16 @@ Page({
      * 获取周围post
      */
     var that = this
-    console.log('location ',app.globalData.location)
+    console.log('location ', app.globalData.location)
     var location = app.globalData.location
     // var token = app.globalData.token;
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/local',
       method: "GET",
-      header:{
+      header: {
         // Authorization: token,
       },
-      data:{
+      data: {
         lat: location.lat,
         lng: location.lng,
         type: 1,
@@ -129,10 +145,10 @@ Page({
         pageSize: 200
 
       },
-      success(res){
+      success(res) {
         // console.log('res is  ',res.data.data.list)
         var ls = res.data.data.list;
-        
+
         for (var key in ls) {
           var marker = ls[key];
           marker.id = marker.id;
@@ -140,28 +156,28 @@ Page({
           marker.local = marker.address;
           var imgurls = marker.files.split("#");
 
-                for (var i = 0; i < imgurls.length; i++) {
-                  if (imgurls[i] == "") imgurls.splice(i, 1);
-                }
+          for (var i = 0; i < imgurls.length; i++) {
+            if (imgurls[i] == "") imgurls.splice(i, 1);
+          }
           imgurls = Array.from(new Set(imgurls))
           //cover
           marker.headimg = marker.avatar;
-          marker.like=marker.likes;
+          marker.like = marker.likes;
           marker.imgurl = imgurls[0];
           // console.log('marker',marker)
         }
         that.setData({
-          navbar:res.data.data.list
+          navbar: res.data.data.list
         })
       }
     })
     wx.request({
       url: 'https://storymap.sherlockouo.com/poster/local',
       method: "GET",
-      header:{
+      header: {
         // Authorization: token,
       },
-      data:{
+      data: {
         lat: location.lat,
         lng: location.lng,
         type: 2,
@@ -169,10 +185,10 @@ Page({
         pageSize: 200
 
       },
-      success(res){
+      success(res) {
         // console.log('res is  ',res.data.data.list)
         var ls = res.data.data.list;
-        
+
         for (var key in ls) {
           var marker = ls[key];
           marker.id = marker.id;
@@ -180,7 +196,7 @@ Page({
           marker.local = marker.address;
           var imgurls = marker.files.split("#");
           marker.headimg = marker.avatar;
-          marker.like=marker.likes;
+          marker.like = marker.likes;
           for (var i = 0; i < imgurls.length; i++) {
             if (imgurls[i] == "") imgurls.splice(i, 1);
           }
@@ -190,11 +206,11 @@ Page({
           // console.log('marker',marker)
         }
         that.setData({
-          lostnavbar:res.data.data.list
+          lostnavbar: res.data.data.list
         })
       }
     })
-  
+
   },
 
   /**

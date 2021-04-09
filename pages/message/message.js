@@ -183,6 +183,33 @@ onShow: function () {
   }
 
 },
+goDetail: function (e) {
+    var that = this
+    var postid = e.currentTarget.dataset.id
+    var userid = 0;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/info',
+      method: "GET",
+      data: {
+        posterId: postid,
+      },
+      success(res) {
+        if (res.data.code == 0) {
+          new Promise((resolve, reject) => {
+            var marker = res.data.data;
+            userid = marker.userid;
+            resolve(userid)
+          }).then(() => {
+            app.globalData.currentMarkerId = e.currentTarget.dataset.id
+
+              wx.navigateTo({
+                url: '/pages/detail/detail?pageid=' + 6 + "&userid=" + userid,
+              })
+          })
+        }
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -197,6 +224,9 @@ onShow: function () {
           duration: 400,
           timingFunc: 'easeIn'
         }
+      })
+      this.setData({
+        navbar:["我的分享","失物招领"]
       })
     }
   },

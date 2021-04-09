@@ -17,6 +17,7 @@
   justify-items: center;
 
 }
+
 .deBack view{
   text-align: center;
 }
@@ -63,6 +64,52 @@
   justify-content: center;
   justify-items: center;
 }
+.control{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  width: 120rpx;
+  height: 60rpx;
+}
+.useredit image{
+  margin: 12rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.downicon{
+  text-align: center;
+  width: 120rpx;
+  height: 50rpx;
+ 
+  background: #fb9527;
+  border-radius: 25rpx;
+}
+.downicon image{
+   width: 50rpx;
+   height: 50rpx;
+}
+.delete{
+  height: 55rpx;
+  width: 120rpx;
+  line-height: 55rpx;
+  text-align: center;
+  color: #fff;
+  background: #fb9527;
+  display:flex;
+}
+.edit{
+  height: 55rpx;
+  width: 120rpx;
+  line-height: 55rpx;
+  text-align: center;
+  color: #fff;
+  background: #fb9527;
+   display: flex;
+}
+
+
 .inconcern{
   float: left;
   width: 50px;
@@ -287,11 +334,6 @@
   width: 62%;
   display: flex;
   justify-content: space-between;
-}
-.control{
-  width: 100rpx;
-  height: 60rpx;
-  background: chartreuse;
 }
 .btn1{
   width: 80rpx;

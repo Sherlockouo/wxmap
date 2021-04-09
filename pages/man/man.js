@@ -70,11 +70,36 @@ Page({
     console.log("获取到的结果信息！", app.globalData.userInfo);
   },
   goDetail: function (e) {
-    app.globalData.currentMarkerId = e.currentTarget.dataset.id
-    var pagid = 3;
-    wx.navigateTo({
-      url: '/pages/detail/detail?pageid=' + pagid,
-      // +'?userid='+userid
+    var that = this
+    var postid = e.currentTarget.dataset.id
+    var userid = 0;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/info',
+      method: "GET",
+      data: {
+        posterId: postid,
+      },
+      success(res) {
+        if (res.data.code == 0) {
+          new Promise((resolve, reject) => {
+            var marker = res.data.data;
+            userid = marker.userid;
+            resolve(userid)
+          }).then(() => {
+            app.globalData.currentMarkerId = e.currentTarget.dataset.id
+            var pagid = e.currentTarget.dataset.id; //用于文章返回 
+            if (app.globalData.token.length == 0) {
+              wx.navigateTo({
+                url: '/pages/login/login?pagetype=' + 3 + "&userid=" + userid,
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/detail/detail?pageid=' + pagid + "&userid=" + userid,
+              })
+            }
+          })
+        }
+      }
     })
   },
   gologin:function(e)

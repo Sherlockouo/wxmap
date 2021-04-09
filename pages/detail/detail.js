@@ -1,3 +1,5 @@
+const { log } = require("../../utils/consoleUtil")
+
 // pages/detail/detail.js
 const app = getApp()
 Page({
@@ -20,27 +22,15 @@ Page({
     // duration: 800, //滑动动画时长
     circular: true, //是否采用衔接滑动
     essayall: null,
-    // {
-    //     imgUrls: [
-    //       'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg',
-    //       'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio3.jpg',
-    //       'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio5.jpg',
-    //       'http://www.fjtbkyc.net/mywx/sunny5.jpg'
-    //     ],
-    //     essay_title:"这就是标题啦",
-    //     essay_text:"花香四溢的春天来了，我的家乡到处是一片欣欣向荣的景象。石川河的柳树开始发芽了，鸡子山的草儿也偷偷地钻了出来，各种各样的花儿也悄悄地开放 了。你看那河的沿岸和山脚下：粉红的桃花、雪白的梨花、娇艳的海棠花......都开得笑盈盈的。"
-    //     tabel:['西华','湖面','秋天','秋风落叶','自然','宁静','成都'],
-    //     sharetime:'2020-11-23',
-    //     like:'1208',
-    //     concern:'92'
-    //   },
     links: [
       '/pages/preview/preview',
     ],
     likeimg: '/img/like.png',
     hoardimg: '/img/hoard.png',
     shareimg: '/img/shareico_h.png',
-    isyouself: 0 //判断是不是本人
+    isyouself: 0 ,//判断是不是本人
+    isshow:0,//是否展示相关信息
+
   },
 
   // 点击图片进行预览函数
@@ -77,10 +67,18 @@ Page({
       vaHe: data.bottom + 10,
       inputHe: data.bottom - data.top,
       pageid: options.pageid,
+      // authorid:options.userid,
       // Sheight: (WH.windowHeight),
       // Swidth: (WH.windowWidth)
     })
-    console.log("页面的ID" + options.pageid);
+    if(options.userid==app.globalData.userInfo.id)
+     {
+       this.setData({
+         isyouself:1,
+       })
+     }
+     console.log("",app.globalData.userInfo.id)
+   
   },
   swiperChange: function (e) {
     this.setData({
@@ -89,6 +87,27 @@ Page({
     })
 
   },
+  //展示编辑操作
+  showedit:function(e)
+  {
+    if(this.data.isshow==1)
+    {
+      this.setData({
+        isshow:0
+      })
+    }
+    else{
+      this.setData({
+        isshow:1
+      })
+    }
+  },
+  hide:function(e)
+{
+  this.setData({
+    isshow:0
+  })
+},
 
   //点击指示点切换
 
@@ -135,7 +154,12 @@ Page({
       wx.navigateBack({
         url: '/pages/like/like'
       })
-    } else {
+      
+    } else if (this.data.pageid = 6) {
+      wx.navigateBack({
+        url: '/pages/message/message'
+      })
+    }else {
       wx.switchTab({
         url: '/pages/index/index'
       })
@@ -185,7 +209,6 @@ Page({
             var marker = res.data.data;
             essayall.id = marker.id;
             essayall.userid = marker.userid;
-            // if(marker.userid==app.globalData.userInfo)
             essayall.local = marker.address;
             essayall.essay_title = marker.title;
             essayall.essay_text = marker.message
@@ -202,18 +225,16 @@ Page({
             essayall.imgUrls = imgurls;
             console.log('after ', imgurls)
             var tags = marker.tags.split("#");
-
             for (var i = 0; i < tags.length; i++) {
               if (tags[i] == "") tags.splice(i, 1);
             }
             essayall.tabel = tags;
             essayall.like = marker.likes;
             essayall.sharetime = marker.createTime;
-            resolve(essayall)
+            resolve(essayall);
           }).then(() => {
-            console.log('ess ', essayall)
             that.setData({
-              essayall: essayall
+              essayall: essayall,
             })
           })
         }
