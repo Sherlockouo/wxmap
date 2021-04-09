@@ -7,29 +7,60 @@ Page({
    */
   data: {
     concern:[
-      {
-        id:1,
-        handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-        name:"喜羊羊",
-        introduce:"择一城终老，爱一人白首！"
-      },
-      {
-        id:2,
-        handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-        name:"灰太狼",
-        introduce:"择一城终老，爱一人白首！"
-      }
+      // {
+      //   id:1,
+      //   handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      //   name:"喜羊羊",
+      //   introduce:"择一城终老，爱一人白首！"
+      // },
+      // {
+      //   id:2,
+      //   handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
+      //   name:"灰太狼",
+      //   introduce:"择一城终老，爱一人白首！"
+      // }
     ]
   },
   concelConcern:function(e)
   {
-    console.log("点击")
+    var that = this
+    var token = app.globalData.token;
+    console.log("点击 ",e.currentTarget)
     wx.showModal({
       title: '提示',
       content: '是否取消关注: '+e.currentTarget.dataset.name,
       success (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          wx.request({
+            url: 'https://storymap.sherlockouo.com/follow/dofollow',
+            method: "POST",
+            header: {
+              'Authorization': token,
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              tofollow:e.currentTarget.dataset.id
+            },
+            success(res) {
+              console.log("unfollow",res)
+              if(res.code=='0'){
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'success',
+                  duration:1500
+                })
+              }else{
+                wx.showToast({
+                  title: "取关成功",
+                  icon: 'error',
+                  duration:1500
+                })
+              }
+                        
+            },
+            fail(res) {}
+          })
+
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -54,7 +85,7 @@ Page({
     var token = app.globalData.token;
 
     wx.request({
-      url: 'https://storymap.sherlockouo.com/like/list',
+      url: 'https://storymap.sherlockouo.com/follow/list',
       method: "GET",
       header: {
         'Authorization': token,
@@ -70,7 +101,7 @@ Page({
         for (var key in ls) {
           var marker = ls[key];
           marker.id = marker.userEntity.id
-          
+        
           //cover
           marker.handimg = marker.userEntity.avatar;
           marker.name = marker.userEntity.nickname
@@ -88,10 +119,6 @@ Page({
     
   },
 
-  // 取消关注
-  unfollow: function () {
-    
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
