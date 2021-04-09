@@ -92,9 +92,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    that.requestLocation()
-    // console.log('location ',app.globalData.location)
-    
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        var location = {}
+        location.lat = res.latitude
+        location.lng = res.longitude
+        app.globalData.location = location
+        
+      },
+    })
   },
 
   /**

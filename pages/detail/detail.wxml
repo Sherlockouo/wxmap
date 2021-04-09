@@ -64,7 +64,7 @@
           <!-- <view>联系客服</view> -->
         </button>
       </view>
-      <view class="boconcern">
+      <view class="boconcern" bindtap="docollect">
         <view class="inbconcern">
           <view class="conimg">
               <image src="{{hoardimg}}"></image>

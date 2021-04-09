@@ -1,4 +1,5 @@
 // pages/concern/concern.js
+const app = getApp()
 Page({
 
   /**
@@ -48,21 +49,45 @@ Page({
         timingFunc: 'easeIn'
       }
     })
+
+    var that = this
+    var token = app.globalData.token;
+
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/like/list',
+      method: "GET",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        // posterid: that.data.essayall.id,
+        // tolike: that.data.essayall.userid
+      },
+      success(res) {
+        console.log("collect list ", res)
+        var ls = res.data.data
+        for (var key in ls) {
+          var marker = ls[key];
+          marker.id = marker.userEntity.id
+          
+          //cover
+          marker.handimg = marker.userEntity.avatar;
+          marker.name = marker.userEntity.nickname
+          marker.introduce = marker.userEntity.motto
+          
+        
+          // console.log('marker',marker)
+        }
+        that.setData({
+          concern:res.data.data
+        })
+      },
+      fail(res) {}
+    })
+    
   },
 
-  //获取关注列表
-  getFollow: function(){
-    that = this
-    var concern=[]
-    var token = app.globalData.token;
-    wx.request({
-      url: 'https://volunteer.sherlockouo.com/follow/list',
-      method: 'GET',
-      header:{
-        Authorization:token
-      }
-    })
-  },
   // 取消关注
   unfollow: function () {
     
