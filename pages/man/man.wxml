@@ -2,12 +2,12 @@
   <view wx:if="{{islogin}}">
     <view class="outuserinfo">
       <view class="userinfo">
-        <image bindtap="goMessage" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" data-num="index" >
+        <image bindtap="goMessage" class="userinfo-avatar" src="{{userinfo.avatar}}" background-size="cover" data-num="index" >
         </image>
         <view class="userinfo2">
-          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-          <view class='message' bindtap="gomessgeinfo" data-headimg="{{userInfo.avatarUrl}}"
-            data-username="{{userInfo.nickName}}">
+          <text class="userinfo-nickname">{{userinfo.nickname}}</text>
+          <view class='message' bindtap="gomessgeinfo" data-headimg="{{userinfo.avatar}}"
+            data-username="{{userinfo.nickname}}">
             <!-- //bindtap="myinfopage" -->
             我的信息
             <!-- 我的信息 -->

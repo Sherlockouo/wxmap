@@ -68,16 +68,17 @@ Page({
             success: res => {
               // 获取到用户的信息了，打印到控制台上看下
               app.globalData.isHide = 1
-              that.goback();
-              console.log("用户的信息如下：");
-              console.log(e.detail.userInfo);
+              console.log('res ',res.data.userinfo)
+              // console.log("用户的信息如下：");
+              // console.log(e.detail.userInfo);
 
-              wx.setStorageSync('userInfo', e.detail.userInfo)
+              wx.setStorageSync('userInfo', res.data.userinfo)
+              var userinfo= res.data.userinfo;
               //获取用户信息进行保存
-              app.globalData.userInfo = e.detail.userInfo
+              app.globalData.userInfo = userinfo
 
 
-              console.log("用户的信息如下huoqu", app.globalData.userInfo)
+              // console.log("用户的信息如下huoqu", app.globalData.userInfo)
               // 获取到用户的 openid
               if (res.data.code == 0) {
                 app.globalData.token = res.data.token;
@@ -88,7 +89,7 @@ Page({
                 //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
                 that.setData({
                   isHide: false,
-                  userInfo: e.detail.userInfo
+                  userInfo: userinfo
                 });
                 // app.globalData.token = res.data.token;
                 console.log("用户的token " + app.globalData.token);
@@ -96,6 +97,7 @@ Page({
 
                 console.log(" something goes wrong msg ", res.data.msg);
               }
+              that.goback();
             },
             fail: res => {
               console.log("shit failed");

@@ -30,7 +30,7 @@ Page({
       // concern:10
       // },
     ],
-    userInfo: {},
+    userinfo: {},
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false,
@@ -65,9 +65,9 @@ Page({
       })
     }
     this.setData({
-      userInfo: app.globalData.userInfo
+      userinfo: app.globalData.userInfo
     })
-    console.log("获取到的结果信息！", this.data.userInfo);
+    console.log("获取到的结果信息！", app.globalData.userInfo);
   },
   goDetail: function (e) {
     app.globalData.currentMarkerId = e.currentTarget.dataset.id
@@ -202,7 +202,7 @@ Page({
   onShow: function () {
     var that = this
     var token = app.globalData.token;
-    console.log('token ', token.length)
+    // console.log('token ', token.length)
     if (token.length != 0) {
       wx.request({
         url: 'https://storymap.sherlockouo.com/poster/self',
@@ -217,7 +217,7 @@ Page({
 
         },
         success(res) {
-          console.log('res is  ', res)
+          // console.log('res is  ', res)
           var ls = res.data.data.list;
 
           for (var key in ls) {
@@ -229,7 +229,7 @@ Page({
             marker.like = marker.likes;
             //cover
             marker.imgurl = marker.files.substr(1, 83);
-            console.log('marker', marker)
+            // console.log('marker', marker)
           }
           that.setData({
             sharenavbar: res.data.data.list
@@ -249,7 +249,7 @@ Page({
 
         },
         success(res) {
-          console.log('res is lost  ', res.data.data.list)
+          // console.log('res is lost  ', res.data.data.list)
           var ls = res.data.data.list;
 
           for (var key in ls) {
@@ -261,7 +261,7 @@ Page({
             marker.like = marker.likes;
             //cover
             marker.imgurl = marker.files.substr(1, 82);
-            console.log('marker', marker)
+            // console.log('marker', marker)
           }
           that.setData({
             lostnavbar: res.data.data.list
