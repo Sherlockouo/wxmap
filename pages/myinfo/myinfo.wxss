@@ -67,6 +67,9 @@
 .weui-cell__bd picker{
   margin-left: 2vh;
 }
+.textplus{
+  margin-top: 4vh;
+}
 .inputbox {
   display: flex;
   flex-direction: row;
