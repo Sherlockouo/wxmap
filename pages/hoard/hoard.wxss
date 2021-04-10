@@ -7,6 +7,22 @@ page
   right: 0;
   color:black;
   font-size: 18px;
+  background: rgb(236, 249, 255);
+}
+.nohoard{
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 50rpx;
+}
+.nohoardimg{
+  text-align: center;
+}
+.nohoardimg image{
+  width: 400rpx;
+  height: 400rpx;
+}
+.notext{
+  text-align: center;
 }
 .hoard-item{
   width: 96%;

@@ -217,19 +217,16 @@ Page({
         })
         )
       }
-      tags=tgs.toString().replaceAll(",","");
-      // console.log("post tag: ",tags)
+      tags=tgs.toString();
+      tags=tags.replace(/,/g,"")
+      
+      console.log("post tag: ",tags)
 
     })
 
     Promise.all(iters).then((res) => {
       var fileurls = files.join("")
-      console.log("localyag", that.data.tags);
-      // var tagall=that.data.navigator;
-      // for (let td of tagall) {
-      //   tags.push(td);
-      // }
-      // console.log("localyag", that.data.tags);
+      console.log("localyag", tags);
       wx.request({
         url: 'https://storymap.sherlockouo.com/poster/post', 
         method: 'POST',
@@ -239,8 +236,8 @@ Page({
           message: that.data.shareText,
           type: that.data.title_type,
           address: that.data.shareLocal,
-          latitude: that.data.latitude,
-          longtitude: that.data.longtitude,
+          latitude: app.globalData.location.lat,
+          longtitude: app.globalData.location.lng,
           tags: tags,
           files: fileurls,
         },
@@ -277,10 +274,13 @@ Page({
   concelTag: function (e) {
     var key = e.currentTarget.dataset.idx;
     var newshareTag = []
+    var i=0;
     for (let td of this.data.tagvevtor) {
       // console.log(td);
+      i=i+1;
       newshareTag.push(td);
     }
+    key=i-key-1;
     newshareTag.splice(key, 1);
     // console.log("new",newshareTag);
     this.setData({

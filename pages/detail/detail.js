@@ -1,4 +1,6 @@
-const { log } = require("../../utils/consoleUtil")
+const {
+  log
+} = require("../../utils/consoleUtil")
 
 // pages/detail/detail.js
 const app = getApp()
@@ -13,10 +15,10 @@ Page({
     inputHe: 0, //输入框高度
     username: "",
     current: 0, //当前所在页面的 index
-    concernAc:0, //用户是否关注
+    concernAc: 0, //用户是否关注
     isconcern: '+关注', //按钮的文字内容
-    headimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog4.jpg", //头像信息
-   
+    headimg: "http://qwq.fjtbkyc.net/image/headimg/default.jpg", //默认头像信息
+
     circular: true, //是否采用衔接滑动
     essayall: null,
     links: [
@@ -25,10 +27,10 @@ Page({
     likeimg: '/img/like.png',
     hoardimg: '/img/hoard.png',
     shareimg: '/img/shareico_h.png',
-    isyouself: 0 ,//判断是不是本人
-    isshow:0,//是否展示相关信息
-    islike:0,  //是否点赞
-    ishoard:0,  //是否收藏
+    isyouself: 0, //判断是不是本人
+    isshow: 0, //是否展示相关信息
+    islike: 0, //是否点赞
+    ishoard: 0, //是否收藏
     authorid: 0,
   },
 
@@ -48,13 +50,14 @@ Page({
     this.setData({
       current: event.detail.current
     })
-
-
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '玩命加载中'
+      })
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -70,19 +73,18 @@ Page({
       // Sheight: (WH.windowHeight),
       // Swidth: (WH.windowWidth)
     })
-    if(options.userid==app.globalData.userInfo.id)
-     {
-       this.setData({
-         isyouself:1,
-       })
-     }
+    if (options.userid == app.globalData.userInfo.id) {
+      this.setData({
+        isyouself: 1,
+      })
+    }
     //  console.log("",app.globalData.userInfo.id)
     var that = this
     var token = app.globalData.token;
     wx.request({
       url: 'https://storymap.sherlockouo.com/like/didLike',
       method: "GET",
-      header:{
+      header: {
         'Authorization': token,
         'content-type': 'application/x-www-form-urlencoded'
       },
@@ -91,45 +93,42 @@ Page({
         // tofollow: that.data.essayall.userid
       },
       success(res) {
-        console.log("like ",res)
-        if(res.data.code=='0'){
-            if(res.data.data==true){
-     
-              that.setData({
-                islike: 1
-              })
-            }
+        console.log("like ", res)
+        if (res.data.code == '0') {
+          if (res.data.data == true) {
+            that.setData({
+              islike: 1
+            })
+          }
         }
-        
+      }
+
+    })
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/collect/didCollect',
+      method: "GET",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        posterId: app.globalData.currentMarkerId,
+        // tofollow: that.data.essayall.userid
+      },
+      success(res) {
+        // console.log("follow ",res)
+        if (res.data.code == '0') {
+          if (res.data.data == true) {
+            that.setData({
+              ishoard: 1
+            })
+          }
         }
 
-        })
-       
-            wx.request({
-              url: 'https://storymap.sherlockouo.com/collect/didCollect',
-              method: "GET",
-              header:{
-                'Authorization': token,
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              data: {
-                posterId: app.globalData.currentMarkerId,
-                // tofollow: that.data.essayall.userid
-              },
-              success(res) {
-                // console.log("follow ",res)
-                if(res.data.code=='0'){
-                    if(res.data.data==true){
-                      that.setData({
-                        ishoard: 1
-                      })
-                    }
-                }
-                
-                }
-                
-                })
-   
+      }
+
+    })
+
   },
   swiperChange: function (e) {
     this.setData({
@@ -138,38 +137,33 @@ Page({
     })
 
   },
-    //界面跳转
-    goMessage:function(e)
-    {
-      this.setData({
-        isshow:0
-      })
-       var userid=this.data.authorid
-       wx.navigateTo({
-        url: '/pages/message/message?userid='+ userid,
-      })
-    },
+  //界面跳转
+  goMessage: function (e) {
+    this.setData({
+      isshow: 0
+    })
+    var userid = this.data.authorid
+    wx.navigateTo({
+      url: '/pages/message/message?userid=' + userid,
+    })
+  },
   //展示编辑操作
-  showedit:function(e)
-  {
-    if(this.data.isshow==1)
-    {
+  showedit: function (e) {
+    if (this.data.isshow == 1) {
       this.setData({
-        isshow:0
+        isshow: 0
       })
-    }
-    else{
+    } else {
       this.setData({
-        isshow:1
+        isshow: 1
       })
     }
   },
-  hide:function(e)
-{
-  this.setData({
-    isshow:0
-  })
-},
+  hide: function (e) {
+    this.setData({
+      isshow: 0
+    })
+  },
 
   //点击指示点切换
 
@@ -216,12 +210,12 @@ Page({
       wx.navigateBack({
         url: '/pages/like/like'
       })
-      
+
     } else if (this.data.pageid = 6) {
       wx.navigateBack({
         url: '/pages/message/message'
       })
-    }else {
+    } else {
       wx.switchTab({
         url: '/pages/index/index'
       })
@@ -229,38 +223,37 @@ Page({
   },
   //点击关注按钮调用
   concern: function (e) {
-  var that = this
-  var token = app.globalData.token;
-  // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
-  wx.request({
-    url: 'https://storymap.sherlockouo.com/follow/dofollow',
-    method: "POST",
-    header:{
-      'Authorization': token,
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    data: {
-      // posterid: that.data.essayall.id,
-      tofollow: that.data.essayall.userid
-    },
-    success(res) {
-      // console.log("dolike ",res)
-      if(res.data.code=='0'){
-        console.log("shit ",res)
-        that.setData({
-          concernAc: !that.data.concernAc,
-      })
-      }
-      else{
+    var that = this
+    var token = app.globalData.token;
+    // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/follow/dofollow',
+      method: "POST",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        // posterid: that.data.essayall.id,
+        tofollow: that.data.essayall.userid
+      },
+      success(res) {
+        // console.log("dolike ",res)
+        if (res.data.code == '0') {
+          console.log("shit ", res)
+          that.setData({
+            concernAc: !that.data.concernAc,
+          })
+        } else {
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
-           duration: 2000
+            duration: 2000
           })
         }
       }
-      })
-    
+    })
+
 
   },
   /**
@@ -296,7 +289,7 @@ Page({
             essayall.essay_title = marker.title;
             essayall.essay_text = marker.message
             var imgurls = marker.files.split("#");
-            
+
             for (var i = 0; i < imgurls.length; i++) {
               if (imgurls[i] == "") imgurls.splice(i, 1);
             }
@@ -325,12 +318,12 @@ Page({
             that.setData({
               essayall: essayall,
             })
-            
-          }).then(()=>{
+
+          }).then(() => {
             wx.request({
               url: 'https://storymap.sherlockouo.com/follow/didFollow',
               method: "GET",
-              header:{
+              header: {
                 'Authorization': token,
                 'content-type': 'application/x-www-form-urlencoded'
               },
@@ -339,15 +332,18 @@ Page({
                 userId: that.data.essayall.userid
               },
               success(res) {
+                wx.hideLoading({
+                  success: (res) => {},
+                })
                 // console.log("detail ",res)
-                if(res.data.code=='0'){
+                if (res.data.code == '0') {
                   that.setData({
                     concernAc: res.data.data
                   })
                 }
-                }
-                
-                })
+              }
+
+            })
           })
         }
       }
@@ -367,7 +363,7 @@ Page({
     //   }
     return {
       title: '朋友圈看到的页面标题',
-      path: '/pages/detail/detail?id='+markid.userid,
+      path: '/pages/detail/detail?id=' + markid.userid,
       success: function (res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
@@ -385,129 +381,125 @@ Page({
         // 转发失败
       }
     }
-},
-// 分享到朋友圈 
-onShareTimeline: function () {
-  return {
-    title: '朋友圈看到的页面标题',
-    path: '/pages/detail/detail?id=' + markid,
-    imageUrl: 'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg', //分享链接图片
-    query: 'kjbfrom=pyq'
-  }
-},
+  },
+  // 分享到朋友圈 
+  onShareTimeline: function () {
+    return {
+      title: '朋友圈看到的页面标题',
+      path: '/pages/detail/detail?id=' + markid,
+      imageUrl: 'http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio6.jpg', //分享链接图片
+      query: 'kjbfrom=pyq'
+    }
+  },
 
-dolike: function () {
+  dolike: function () {
 
     var that = this
-  var token = app.globalData.token;
-  console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
-  wx.request({
-    url: 'https://storymap.sherlockouo.com/like/dolike',
-    method: "POST",
-    header:{
-      'Authorization': token,
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    data: {
-      posterid: that.data.essayall.id,
-      tolike: that.data.essayall.userid
-    },
-    success(res) {
-      // console.log("dolike ",res)
-      if(res.data.code=='0'){
-        wx.showToast({
-          title: '点赞成功',
-          icon: 'success',
-         duration: 2000
-        })
-         that.setData({
-           islike: !that.data.islike
-        })
-      }
-      else{
+    var token = app.globalData.token;
+    console.log("iddd ", that.data.essayall.userid, that.data.essayall.id)
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/like/dolike',
+      method: "POST",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        posterid: that.data.essayall.id,
+        tolike: that.data.essayall.userid
+      },
+      success(res) {
+        // console.log("dolike ",res)
+        if (res.data.code == '0') {
+          wx.showToast({
+            title: '点赞成功',
+            icon: 'success',
+            duration: 2000
+          })
+          that.setData({
+            islike: !that.data.islike
+          })
+        } else {
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
-           duration: 2000
+            duration: 2000
           })
         }
-    },
-    fail(res){
-    }
-  })
-  
-  
-},
-docollect: function () {
-  
-   var that=this
-   var token = app.globalData.token;
-  // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
-  wx.request({
-    url: 'https://storymap.sherlockouo.com/collect/docollect',
-    method: "POST",
-    header:{
-      'Authorization': token,
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    data: {
-      posterId: that.data.essayall.id,
-      userid: that.data.essayall.userid
-    },
-    success(res) {
-      // console.log("doCollect ",res)
-      if(res.data.code=='0'){
-       
-         that.setData({
-          ishoard: !that.data.ishoard
-      })
-      }
-      else{
+      },
+      fail(res) {}
+    })
+
+
+  },
+  docollect: function () {
+
+    var that = this
+    var token = app.globalData.token;
+    // console.log("iddd ",that.data.essayall.userid,that.data.essayall.id)
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/collect/docollect',
+      method: "POST",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        posterId: that.data.essayall.id,
+        userid: that.data.essayall.userid
+      },
+      success(res) {
+        // console.log("doCollect ",res)
+        if (res.data.code == '0') {
+
+          that.setData({
+            ishoard: !that.data.ishoard
+          })
+        } else {
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
-           duration: 2000
+            duration: 2000
           })
         }
-    },
-    fail(res){
-    }
-  })
+      },
+      fail(res) {}
+    })
 
-},
+  },
 
-/**
- * 生命周期函数--监听页面隐藏
- */
-onHide: function () {
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
 
-},
+  },
 
-/**
- * 生命周期函数--监听页面卸载
- */
-onUnload: function () {
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
 
-},
+  },
 
-/**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-onPullDownRefresh: function () {
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
 
-},
+  },
 
-/**
- * 页面上拉触底事件的处理函数
- */
-onReachBottom: function () {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
 
-},
+  },
 
-/**
- * 用户点击右上角分享
- */
-onShareAppMessage: function () {
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
 
-}
+  }
 })

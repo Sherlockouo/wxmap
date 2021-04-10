@@ -1,4 +1,12 @@
-<view class="contertain">
+<view wx:if="{{!navbar.length}}" class="nohoard">
+  <view class="nohoardimg"> 
+     <image src="/img/nohoard.png"></image>
+  </view>
+  <view class="notext">
+     还没有收藏过任何作品哦~
+  </view>
+</view>
+<view wx:else class="contertain">
   <block wx:for="{{navbar}}" data-idx="{{index}}" class="allitem" wx:key="idx">
     <view class="hoard-item"  bindtap="Tapgo" data-idx="{{index}}">
       <view class="hoardimage">

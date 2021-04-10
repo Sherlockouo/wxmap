@@ -16,56 +16,6 @@ Page({
     //     local: '四川省成都市高新区西源大道2006号',
     //     like: 1034,
     //     concern: 10
-    //   },
-    //   {
-    //     id: 2,
-    //     imgurl: "http://www.fjtbkyc.net/mywx/sunny5.jpg",
-    //     title: "湖边生活悠闲自得我悠",
-    //     handimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-    //     username: "Brank",
-    //     local: '成都市郫都区太双路与蜀新大道交叉路口',
-    //     like: 112,
-    //     concern: 10
-    //   },
-    //   {
-    //     id: 3,
-    //     imgurl: "http://www.fjtbkyc.net/mywx/sunny4.jpg",
-    //     title: "西华四舍",
-    //     handimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-    //     username: "Brank lighterty",
-    //     local: '四川省成都市高新区西源大道2006号',
-    //     like: 112,
-    //     concern: 10
-    //   },
-    //   {
-    //     id: 4,
-    //     imgurl: "http://qwq.fjtbkyc.net/public/personalBlog/images/zuopin/portfolio3.jpg",
-    //     title: "这是title4",
-    //     handimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-    //     username: "Brank",
-    //     local: '贵阳市观山湖区金阳新区观山大桥',
-    //     like: 112,
-    //     concern: 10
-    //   },
-    //   {
-    //     id: 5,
-    //     imgurl: "http://www.fjtbkyc.net/mywx/sunny.jpg",
-    //     title: "这是title5",
-    //     handimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-    //     username: "Brank",
-    //     local: '四川省成都市大邑县西岭镇',
-    //     like: 112,
-    //     concern: 10
-    //   },
-    //   {
-    //     id: 6,
-    //     imgurl: "http://www.fjtbkyc.net/mywx/sunny2.jpg",
-    //     title: "这是title6",
-    //     handimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-    //     username: "Brank",
-    //     local: '四川省成都市金牛区西华大道16号',
-    //     like: 112,
-    //     concern: 10
     //   }
     ],
     ac: [], //判断文字是行数
@@ -76,6 +26,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '玩命加载中'
+      })
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#1ba1f0',
@@ -101,6 +54,7 @@ Page({
       },
       success(res) {
         wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
+        wx.hideLoading();
         console.log("collect list ", res)
         var ls = res.data.data
         for (var key in ls) {
@@ -150,8 +104,8 @@ Page({
     var userid = that.data.navbar[idx].userid
     console.log("userid ",userid)
     app.globalData.currentMarkerId = that.data.navbar[idx].id
-      wx.navigateTo({
-        url: '/pages/detail/detail?pageid=' + 2 + "&userid=" + userid,
+      wx.redirectTo({
+        url: '/pages/detail/detail?pageid=' + 4+ "&userid=" + userid,
       })
   },
 

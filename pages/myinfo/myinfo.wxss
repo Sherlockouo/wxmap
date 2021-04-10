@@ -7,10 +7,7 @@
   background:url('http://www.fjtbkyc.net/mywx/bacimg.jpg') ;
   background-size: cover;
 }
-.mbody
-{
-  margin-top: 15%;
-}
+
 .setBac{
   width: 100%;
   display: flex;
@@ -20,8 +17,8 @@
   padding-top: 60rpx;
 }
 .headimg{
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 90px;
   overflow: hidden;
 }
 .box{
@@ -30,7 +27,7 @@
 .head{
   width: 80px;
   height: 80px;
-  border-radius: 40px;
+  border-radius: 20px;
   background: #a5a5a5;
   overflow: hidden;
 }

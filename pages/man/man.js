@@ -80,14 +80,13 @@ Page({
             resolve(userid)
           }).then(() => {
             app.globalData.currentMarkerId = e.currentTarget.dataset.id
-            var pagid = e.currentTarget.dataset.id; //用于文章返回 
             if (app.globalData.token.length == 0) {
               wx.navigateTo({
                 url: '/pages/login/login?pagetype=' + 3 + "&userid=" + userid,
               })
             } else {
               wx.navigateTo({
-                url: '/pages/detail/detail?pageid=' + pagid + "&userid=" + userid,
+                url: '/pages/detail/detail?pageid=' + 3 + "&userid=" + userid,
               })
             }
           })
@@ -279,7 +278,7 @@ Page({
         success(res) {
           // console.log('res is lost  ', res.data.data.list)
           var ls = res.data.data.list;
-
+  
           for (var key in ls) {
             var marker = ls[key];
             marker.id = marker.id;
@@ -287,9 +286,8 @@ Page({
             marker.local = marker.address;
             marker.headimg = marker.avator;
             marker.like = marker.likes;
-            //cover
             marker.imgurl = marker.files.substr(1, 82);
-            // console.log('marker', marker)
+            console.log('marker', marker)
           }
           that.setData({
             lostnavbar: res.data.data.list

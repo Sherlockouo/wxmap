@@ -44,8 +44,8 @@
 </view>
 
 <view class="container-layout" bindtap="hide">
-  <swiper class="container" indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" interval="{{interval}}"
-    duration="{{duration}}" bindchange='onSlideChange'>
+  <swiper class="container" indicator-dots="{{indicatordots}}" easing-function='linear' autoplay="{{autoplay}}" interval="{{interval}}"
+    duration="{{duration}}" bindchange='onSlideChange' circular='true'>
     <block wx:for="{{essayall.imgUrls}}" wx:key="index">
       <swiper-item class="vol-swiper-item" bindchange="">
         <view class="vol-card">

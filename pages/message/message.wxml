@@ -4,7 +4,7 @@
     <!-- 背景图片 -->
   </view>
   <view class="message">
-    <!-- 行成错位 -->
+    <!-- 形成错位 -->
     <view class="surface">
       <!-- 顶部的内容 -->
       <view class="mtop">
@@ -17,7 +17,8 @@
               <image src="/img/chat.png"></image>
             </view>
             <view class="concern">
-              <view class="inconcern {{concernAc==0?'active':''}}" bindtap="concern">{{isconcern}}</view>
+              <view wx:if="{{!concernAc}}" class="inconcern active" bindtap="concern">+关注</view>
+              <view wx:else class="inconcern" bindtap="concern" >已关注</view>
             </view>
           </view>
         </view>

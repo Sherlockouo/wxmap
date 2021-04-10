@@ -33,16 +33,6 @@ Page({
       currentTab: e.currentTarget.dataset.idx
     })
   },
-  //点击关注按钮调用
-  concern: function (e) {
-    if (this.data.concernAc == 0) {
-      this.setData({
-        concernAc: 1,
-        isconcern: '已关注'
-      })
-    }
-  },
-  // 获取图片宽高
   imageLoad: function (e) {
     var k = e.currentTarget.dataset.index;
     var newmodewidth = []
@@ -129,9 +119,7 @@ Page({
           pageSize: 100
         },
         success(res) {
-          // console.log('res is  ', res)
           var ls = res.data.data.list;
-
           for (var key in ls) {
             var marker = ls[key];
             marker.id = marker.id;
@@ -196,31 +184,82 @@ Page({
         var ls = res.data.data;
         var userinfo = res.data.data;
         if (res.data.code == 0) {
-          new Promise((resolve)=>{
-          userinfo.bacurl = userinfo.bgimg
-          userinfo.headimg = userinfo.avatar
-          userinfo.username = userinfo.nickname
-          userinfo.introduce = userinfo.motto
-          userinfo.like = Math.floor(Math.random(1000)+10)
-          userinfo.concern = Math.floor(Math.random(200)+10)
-          userinfo.local = userinfo.address
-          resolve()
-          }).then(()=>{
-
+          new Promise((resolve) => {
+            userinfo.bacurl = userinfo.bgimg
+            userinfo.headimg = userinfo.avatar
+            userinfo.username = userinfo.nickname
+            userinfo.introduce = userinfo.motto
+            userinfo.like = Math.floor(Math.random(1000) + 10)
+            userinfo.concern = Math.floor(Math.random(200) + 10)
+            userinfo.local = userinfo.address
+            resolve()
+          }).then(() => {
             that.setData({
               userInfo: userinfo
             })
+          }).then(() => {
+            // console.log("detasdasdasdasdaail ",res)
+            wx.request({
+              url: 'https://storymap.sherlockouo.com/follow/didFollow',
+              method: "GET",
+              header: {
+                'Authorization': token,
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                // posterId: app.globalData.currentMarkerId,
+                userId: that.data.userid
+              },
+              success(res) {
+                if (res.data.code == '0') {
+                  console.log("返回接轨",res.data.data);
+                  that.setData({
+                    concernAc: res.data.data
+                  })
+                }
+                 wx.hideLoading({
+                  success: (res) => {},
+                }) 
+              }
+            })
           })
-          
-
-        } else {
-
-        }
-
+        } 
       }
 
     })
+  },
 
+  //点击关注按钮调用
+  concern: function (e) {
+    var that = this
+    var token = app.globalData.token;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/follow/dofollow',
+      method: "POST",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        // posterid: that.data.essayall.id,
+        tofollow: that.data.userid
+      },
+      success(res) {
+        // console.log("dolike ",res)
+        if (res.data.code == '0') {
+          console.log("shit ", res)
+          that.setData({
+            concernAc: !that.data.concernAc,
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
   },
   goDetail: function (e) {
     var that = this
@@ -240,7 +279,6 @@ Page({
             resolve(userid)
           }).then(() => {
             app.globalData.currentMarkerId = e.currentTarget.dataset.id
-
             wx.navigateTo({
               url: '/pages/detail/detail?pageid=' + 6 + "&userid=" + userid,
             })
@@ -254,6 +292,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '玩命加载中'
+      })
     this.setData({
       userid: options.userid
     })
@@ -268,9 +309,9 @@ Page({
       })
       this.setData({
         navbar: ["我的分享", "失物招领"],
-
       })
     }
+
   },
 
   /**

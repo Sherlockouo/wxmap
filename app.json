@@ -6,12 +6,10 @@
     "pages/man/man",
     "pages/myinfo/myinfo",
     "pages/message/message",
-    "pages/test/test",
     "pages/detail/detail",
     "pages/hoard/hoard",
     "pages/like/like",
     "pages/concern/concern",
-    "pages/table/table",
     "pages/trends/trends",
     "pages/preview/preview",
     "pages/login/login"

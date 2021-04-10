@@ -1,4 +1,13 @@
-<view class="contertain">
+<view wx:if="{{!concern.length}}" class="noconcern">
+  <view class="noconcernimg">
+    <image src="/img/noconcern.png">
+
+  </image>
+</view>
+  <view class="notext">还没有关注任何人哦，快去逛逛吧！</view>
+
+</view>
+<view wx:else class="contertain">
   <view wx:for="{{concern}}" data-idx="{{index}}" class="allitem" wx:key="idx">
     <view class="outline">
       <view class="author" bindtap="goMessage" data-idx="{{index}}" >

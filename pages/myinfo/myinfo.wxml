@@ -3,7 +3,7 @@
     <view class="titleCss">
         <view class="setBac">
             <view class="head box">
-                <image src="{{userhead}}" mode="scaleToFill" class="headimg" bindtap="imgShow"></image>
+                <image src="{{userhead}}" mode="scaleToFill" class="headimg" bindtap="imgShow" data-url="{{userhead}}"></image>
             </view>
             <view class="btn box" bindtap="setbackground">设置背景</view>
         </view>
@@ -55,7 +55,7 @@
                 <text class="textCss">签名:</text>
             </view>
             <view class="weui-cell__bd">
-                <input class="weui-input inputCss" maxlength="55" placeholder-class="place-holder" value="{{info.motto}}" placeholder="说两句吧" />
+                <input class="weui-input inputCss" maxlength="55" placeholder-class="place-holder" value="{{introduce}}" placeholder="说两句吧" />
             </view>
         </view>
     </view>

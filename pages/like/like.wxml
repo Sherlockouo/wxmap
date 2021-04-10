@@ -1,4 +1,8 @@
-<view class="container">
+<view wx:if="{{!mylike.length}}" class="nolike">
+   <view class="nolikeimg"><image src="/img/nolike.png"></image></view>
+   <view class="liketext">暂时没有人点赞你的作品哦~</view>
+</view>
+<view wx:else class="container">
   <view wx:for="{{mylike}}" class="topitem" data-id="index" wx:key="{{id}}">
     <view class="like-item" bindtap="goDetail" data-id="item.id" data-num="5" >
      <view class="left"> 

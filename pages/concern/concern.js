@@ -14,12 +14,6 @@ Page({
       //   name:"喜羊羊",
       //   introduce:"择一城终老，爱一人白首！"
       // },
-      // {
-      //   id:2,
-      //   handimg:"http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg",
-      //   name:"灰太狼",
-      //   introduce:"择一城终老，爱一人白首！"
-      // }
     ]
   },
   concelConcern:function(e)
@@ -51,13 +45,14 @@ Page({
                   icon: 'success',
                   duration:1500
                 })
-                
               }else{
                 wx.showToast({
                   title: "取关成功",
-                  icon: 'error',
+                  icon: 'succes',
                   duration:1500
                 })
+                that.onLoad(),
+                that.onShow()
               }
                         
             },
@@ -75,6 +70,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '玩命加载中'
+      })
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#1ba1f0',
@@ -102,7 +100,6 @@ Page({
 
     var that = this
     var token = app.globalData.token;
-
     wx.request({
       url: 'https://storymap.sherlockouo.com/follow/list',
       method: "GET",
@@ -115,6 +112,7 @@ Page({
       },
       success(res) {
         wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
+        wx.hideLoading();
         console.log("collect list ", res)
         var ls = res.data.data
         for (var key in ls) {

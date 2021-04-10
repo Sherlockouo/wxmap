@@ -1,6 +1,24 @@
+page{
+  background: rgb(236, 249, 255);
+}
 .container{
   width: 97%;
   margin: 0 auto;
+}
+.nolike{
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 50rpx;
+}
+.nolikeimg{
+  text-align: center;
+}
+.nolikeimg image{
+  width: 500rpx;
+  height: 500rpx;
+}
+.liketext{
+  text-align: center;
 }
 .intitle{
   /* height: 150rpx; */

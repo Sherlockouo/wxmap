@@ -6,15 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    date: '2018-10-01',
+    date: "",
     titleInfo: "添加用户信息",
-    password: "",
-    password_check: "",
-    password_show: false,
     userhead:"",
     username:"",//用户默认名称
     // 省市区三级联动初始化
     region: ["四川省", "成都市", "郫都区"],
+    introduce:"留下你的足迹吧~"
   },
  
   //设置用户详情页的图片信息
@@ -28,18 +26,34 @@ Page({
   onLoad: function (options) {
     // this.data.sex[0].checked=true;
     this.setData({
-       userhead:options.userinfoimg,
-       username:options.username
+       userhead:app.globalData.userInfo.avatar,
+       username:app.globalData.userInfo.nickname,
+       date:app.globalData.userInfo.birthday,
+       head:app.globalData.userInfo.bgimg,
+       introduce:app.globalData.userInfo.motto
     })
-    
-    this.setData({
-      info: app.globalData.userInfo
-    })
+    var local=app.globalData.userInfo.addres;
+    local.split('.')
+    console.log( local.split('.'));
+  
     
   },
    // 选择省市区函数
    changeRegin(e){
     this.setData({ region: e.detail.value });
+  },
+  imgShow:function(event)
+  {
+   console.log("点击");
+   console.log(event.currentTarget.dataset.url)
+   var currentUrl=event.currentTarget.dataset.url
+   this.setData({
+     imgList:currentUrl
+   })
+   wx.previewImage({
+    current:currentUrl, // 当前显示图片的http链接
+    urls:[currentUrl]// 需要预览的图片http链接列表
+  })
   },
 
   changeDate(e){
@@ -97,14 +111,4 @@ Page({
     var that = this;
    
   },
-  passwordInput: function (e) {
-    this.setData({
-      password: e.detail.value
-    });
-  },
-  passwordCheckInput: function (e) {
-    this.setData({
-      password_check: e.detail.value
-    });
-  } 
 })

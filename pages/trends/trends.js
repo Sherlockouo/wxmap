@@ -106,17 +106,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var that = this
-    // wx.getLocation({
-    //   type: 'gcj02',
-    //   success: function (res) {
-    //     var location = {}
-    //     location.lat = res.latitude
-    //     location.lng = res.longitude
-    //     app.globalData.location = location
-        
-    //   },
-    // })
+    wx.showLoading({
+      title: '玩命加载中'
+      })
   },
 
   /**
@@ -152,9 +144,7 @@ Page({
 
       },
       success(res) {
-        // console.log('res is  ',res.data.data.list)
         var ls = res.data.data.list;
-
         for (var key in ls) {
           var marker = ls[key];
           marker.id = marker.id;
@@ -192,7 +182,7 @@ Page({
 
       },
       success(res) {
-        // console.log('res is  ',res.data.data.list)
+        wx.hideLoading();
         var ls = res.data.data.list;
 
         for (var key in ls) {
