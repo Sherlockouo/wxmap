@@ -261,6 +261,7 @@ Page({
           that.setData({
             sharenavbar: res.data.data.list
           })
+          console.log("查看一下数据：",that.data.sharenavbar);
         }
       })
       wx.request({

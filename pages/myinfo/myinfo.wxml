@@ -50,7 +50,7 @@
                 </picker>
             </view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-cell weui-cell_input signheigh">
             <view class="weui-label labelCss">
                 <text class="textCss">签名:</text>
             </view>

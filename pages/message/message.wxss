@@ -23,6 +23,13 @@ page{
   background: rgb(255, 255, 255);
   border-radius: 40rpx;
 }
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+  }
 .mtop{
   /* height: 400px; */
   width: 90%;

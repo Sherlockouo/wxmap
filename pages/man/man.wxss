@@ -120,7 +120,13 @@
 .userinfo-nickname {
   color: black;
 }
-
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+width: 0;
+height: 0;
+color: transparent;
+display: none;
+}
 .header {
   margin: 90rpx 0 90rpx 50rpx;
   border-bottom: 1px solid #ccc;
