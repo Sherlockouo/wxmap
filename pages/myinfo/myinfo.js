@@ -38,24 +38,31 @@ Page({
           name: 'files',
           filePath: imgs[0],
           success(res) {
-            res = JSON.parse(res.data)
-            console.log("upload result",res.files[0])
-            wx.request({
-              url: 'https://storymap.sherlockouo.com/user/updateBgimg', 
-              method: 'PUT',
-              header:{
-                Authorization: token
-              },
-              data: {
-                bgimg: res.files[0]
-              },
-              success(res){
-                  console.log("upload bgimg",res)
-              },
-              fail(){
-
-              }
+            new Promise((resolve=>{
+              res = JSON.parse(res.data)
+              console.log("upload result",res.files[0])
+              resolve(res.files[0])
+            })).then((res)=>{
+              console.log("shit ",res)
+              wx.request({
+                url: 'https://storymap.sherlockouo.com/user/updateBgimg', 
+                method: "PUT",
+                data: {
+                  bgimg: res
+                },
+                header:{
+                  Authorization: token,
+                },
+                success(res){
+                    console.log("upload bgimg",res)
+                },
+                fail(){
+  
+                }
+              })
             })
+           
+           
           },
           fail(res){
               console.log("上传失败",res)

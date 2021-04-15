@@ -60,7 +60,7 @@ Page({
             url: 'https://storymap.sherlockouo.com/user/login',
             method: "POST",
             header: {
-              'content-type': 'application/x-www-form-urlencoded' // 默认值
+              // 'content-type': 'application/x-www-form-urlencoded' // 默认值
             },
             data: {
               wxcode: res.code
