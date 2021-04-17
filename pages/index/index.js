@@ -97,6 +97,7 @@ Page({
     userNickname: '芜湖',
     uploadTime: '一分钟前',
     city: '',
+    authourid:0,//文章id    
   },
   onLoad: function (options) {
     this.selfLocationClick();
@@ -332,12 +333,8 @@ Page({
    */
   bindMakertap: function (e) {
     var that = this;
-
-
     var idx = e.detail.markerId;
- 
     app.globalData.currentMarkerId = idx;
-
     //重新设置点击marker为中心点
     for (var key in that.data.markers) {
       var marker = that.data.markers[key];
@@ -348,9 +345,38 @@ Page({
         })
       }
     }
-    var pagid = 1
-    wx.navigateTo({
-      url: '/pages/detail/detail?pageid=' + pagid,
+    this.goDetail();
+  },
+  goDetail:function(e)
+  {
+    var that = this
+    var postid = app.globalData.currentMarkerId
+    var userid = 0;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/info',
+      method: "GET",
+      data: {
+        posterId: postid,
+      },
+      success(res) {
+        if (res.data.code == 0) {
+          new Promise((resolve, reject) => {
+            var marker = res.data.data;
+            userid = marker.userid;
+            resolve(userid)
+          }).then(() => {
+            if (app.globalData.token.length == 0) {
+              wx.navigateTo({
+                url: '/pages/login/login?pagetype=' + 1 + "&userid=" + userid,
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/detail/detail?pageid=' + 1 + "&userid=" + userid,
+              })
+            }
+          })
+        }
+      }
     })
   },
 
