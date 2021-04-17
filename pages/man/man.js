@@ -43,7 +43,7 @@ Page({
     Smodeheight: [],
     Lmodewith: [],
     Lmodeheight: [],
-    islogin:true,  //判断用户是否登录
+    islogin: true, //判断用户是否登录
   },
   navbarTap: function (e) {
     this.setData({
@@ -59,8 +59,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    
-   
+
+
   },
   goDetail: function (e) {
     var that = this
@@ -94,18 +94,16 @@ Page({
       }
     })
   },
-  gologin:function(e)
-  {
-     wx.redirectTo({
-        url: '/pages/login/login?pagetype=' + 3,
-      })
+  gologin: function (e) {
+    wx.redirectTo({
+      url: '/pages/login/login?pagetype=' + 3,
+    })
   },
-  goMessage:function(e)
-  {
-    var userid=app.globalData.userInfo.id
+  goMessage: function (e) {
+    var userid = app.globalData.userInfo.id
     // console.log(app.globalData.userInfo.id);
     wx.navigateTo({
-      url:'/pages/message/message?mystyle='+1+'&userid='+userid,
+      url: '/pages/message/message?mystyle=' + 1 + '&userid=' + userid,
     })
   },
   /**
@@ -219,14 +217,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
-      this.setData({
-        islogin:app.globalData.token.length != 0,
-      })
-      this.setData({
-        userinfo: app.globalData.userInfo
-      })
-      // console.log("获取到的结果信息！", app.globalData.userInfo);
+
+    this.setData({
+      islogin: app.globalData.token.length != 0,
+    })
+    this.setData({
+      userinfo: app.globalData.userInfo
+    })
+    // console.log("获取到的结果信息！", app.globalData.userInfo);
     var that = this
     var token = app.globalData.token;
     // console.log('token ', token.length)
@@ -258,10 +256,13 @@ Page({
             marker.imgurl = marker.files.substr(1, 83);
             // console.log('marker', marker)
           }
+          var array;
+          array = res.data.data.list;
+          array.reverse();
           that.setData({
-            sharenavbar: res.data.data.list
+            sharenavbar: array
           })
-          console.log("查看一下数据：",that.data.sharenavbar);
+          console.log("查看一下数据：", that.data.sharenavbar);
         }
       })
       wx.request({
@@ -279,7 +280,7 @@ Page({
         success(res) {
           // console.log('res is lost  ', res.data.data.list)
           var ls = res.data.data.list;
-  
+
           for (var key in ls) {
             var marker = ls[key];
             marker.id = marker.id;
@@ -290,8 +291,11 @@ Page({
             marker.imgurl = marker.files.substr(1, 82);
             console.log('marker', marker)
           }
+          var array;
+          array = res.data.data.list;
+          array.reverse();
           that.setData({
-            lostnavbar: res.data.data.list
+            lostnavbar: array
           })
         }
       })

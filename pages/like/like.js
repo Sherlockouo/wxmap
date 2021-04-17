@@ -23,9 +23,10 @@ Page({
   goDetail:function(e)
   {
     var pagid=e.currentTarget.dataset.pageid; //用于文章返回 
-    var detailid=e.currentTarget.dataset.id;
+    var userid=e.currentTarget.dataset.id;
+    console.log("342342",userid);
     wx.navigateTo({
-      url: '/pages/detail/detail?pageid=&&datailid='+pagid+detailid,
+      url: '/pages/detail/detail?pageid='+pagid+"&userid="+userid,
     })
   },
   /**
@@ -43,6 +44,20 @@ Page({
         timingFunc: 'easeIn'
       }
     })
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     var that = this
     var token = app.globalData.token;
 
@@ -81,29 +96,17 @@ Page({
           marker.concern = Math.floor(Math.random() * (1000 - 10)) + 10;
           // console.log('marker',marker)
         }
+        var array;
+        array=res.data.data;
+        array.reverse();
         that.setData({
-          mylike:res.data.data
+          mylike:array
         })
       },
       fail(res) {}
     })
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -122,7 +125,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.onLoad(); //重新加载onLoad()
+    this.onShow(); //重新加载onLoad()
   },
 
   /**

@@ -131,8 +131,11 @@ Page({
             marker.imgurl = marker.files.substr(1, 83);
             // console.log('marker', marker)
           }
+          var array;
+          array = res.data.data.list;
+          array.reverse();
           that.setData({
-            sharenavbar: res.data.data.list
+            sharenavbar: array
           })
         }
       })
@@ -163,8 +166,11 @@ Page({
             marker.imgurl = marker.files.substr(1, 82);
             // console.log('marker', marker)
           }
+          var array;
+          array = res.data.data.list;
+          array.reverse();
           that.setData({
-            lostnavbar: res.data.data.list
+            lostnavbar: array
           })
         }
       })
@@ -212,18 +218,18 @@ Page({
               },
               success(res) {
                 if (res.data.code == '0') {
-                  console.log("返回接轨",res.data.data);
+                  console.log("返回接轨", res.data.data);
                   that.setData({
                     concernAc: res.data.data
                   })
                 }
-                 wx.hideLoading({
+                wx.hideLoading({
                   success: (res) => {},
-                }) 
+                })
               }
             })
           })
-        } 
+        }
       }
 
     })
@@ -294,7 +300,7 @@ Page({
   onLoad: function (options) {
     wx.showLoading({
       title: '玩命加载中'
-      })
+    })
     this.setData({
       userid: options.userid
     })

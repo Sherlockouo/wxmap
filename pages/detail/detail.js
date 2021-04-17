@@ -126,9 +126,7 @@ Page({
         }
 
       }
-
     })
-
   },
   swiperChange: function (e) {
     this.setData({

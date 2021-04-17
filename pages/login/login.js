@@ -49,7 +49,11 @@ Page({
   wxlogin: function (e) {
     if (e.detail.userInfo) {
       var that = this
+      wx.showLoading({
+        title: '玩命加载中'
+        })
       wx.login({
+        
         success: res => {
           // 获取到用户的 code 之后：res.code
           console.log("用户的code:" + res.code);
@@ -60,7 +64,7 @@ Page({
             url: 'https://storymap.sherlockouo.com/user/login',
             method: "POST",
             header: {
-              // 'content-type': 'application/x-www-form-urlencoded' // 默认值
+              'content-type': 'application/x-www-form-urlencoded' // 默认值a
             },
             data: {
               wxcode: res.code
@@ -72,7 +76,6 @@ Page({
               // console.log("用户的信息如下：");
               // console.log(e.detail.userInfo);
 
-              
               wx.setStorage({
                 data: res.data.userinfo,
                 key: 'userInfo',
@@ -80,8 +83,6 @@ Page({
               var userinfo= res.data.userinfo;
               //获取用户信息进行保存
               app.globalData.userInfo = userinfo
-
-
               // console.log("用户的信息如下huoqu", app.globalData.userInfo)
               // 获取到用户的 openid
               if (res.data.code == 0) {

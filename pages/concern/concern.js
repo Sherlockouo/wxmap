@@ -124,8 +124,11 @@ Page({
           marker.introduce = marker.userEntity.motto
           // console.log('marker',marker)
         }
+        var array;
+        array=res.data.data;
+        array.reverse();
         that.setData({
-          concern:res.data.data
+          concern:array
         })
       },
       fail(res) {}

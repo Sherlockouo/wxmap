@@ -125,6 +125,9 @@ Page({
     /**
      * 获取周围post
      */
+    wx.showLoading({
+      title: '玩命加载中'
+      })
     var that = this
     // console.log('location ', app.globalData.location)
     var location = app.globalData.location
@@ -162,8 +165,11 @@ Page({
           marker.imgurl = imgurls[0];
           // console.log('marker',marker)
         }
+        var array;
+        array=res.data.data.list;
+        array.reverse();
         that.setData({
-          navbar: res.data.data.list
+          navbar: array
         })
       }
     })
@@ -201,8 +207,11 @@ Page({
           marker.imgurl = imgurls[0]
           // console.log('marker',marker)
         }
+        var array;
+        array=res.data.data.list;
+        array.reverse();
         that.setData({
-          lostnavbar: res.data.data.list
+          lostnavbar: array
         })
       }
     })
@@ -220,7 +229,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.onShow();
   },
 
   /**

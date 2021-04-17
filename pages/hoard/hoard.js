@@ -38,53 +38,6 @@ Page({
       }
     })
 
-    var that = this
-    var token = app.globalData.token;
-
-    wx.request({
-      url: 'https://storymap.sherlockouo.com/collect/list',
-      method: "GET",
-      header: {
-        'Authorization': token,
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        // posterid: that.data.essayall.id,
-        // tolike: that.data.essayall.userid
-      },
-      success(res) {
-        wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
-        wx.hideLoading();
-        console.log("collect list ", res)
-        var ls = res.data.data
-        for (var key in ls) {
-          var marker = ls[key];
-          marker.id = marker.poster.id
-          var imgurls = marker.poster.files.split("#");
-
-          for (var i = 0; i < imgurls.length; i++) {
-            if (imgurls[i] == "") imgurls.splice(i, 1);
-          }
-          imgurls = Array.from(new Set(imgurls))
-          //cover
-          marker.handimg = marker.userEntity.avatar;
-          marker.username = marker.userEntity.nickname;
-          marker.userid = marker.userEntity.id
-          marker.like = marker.poster.likes;
-          marker.imgurl = imgurls[0];
-          marker.title = marker.poster.title
-          marker.local = marker.poster.address
-          marker.concern = Math.floor(Math.random() * (1000 - 10)) + 10;
-          // console.log('marker',marker)
-        }
-        that.setData({
-          navbar:res.data.data
-        })
-      },
-      fail(res) {}
-    })
-
-
     var arr = []
     for (let td of this.data.navbar) {
       if (td.title.length > 12) {
@@ -128,6 +81,53 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
+    var token = app.globalData.token;
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/collect/list',
+      method: "GET",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        // posterid: that.data.essayall.id,
+        // tolike: that.data.essayall.userid
+      },
+      success(res) {
+        wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
+        wx.hideLoading();
+        console.log("collect list ", res)
+        var ls = res.data.data
+        for (var key in ls) {
+          var marker = ls[key];
+          marker.id = marker.poster.id
+          var imgurls = marker.poster.files.split("#");
+
+          for (var i = 0; i < imgurls.length; i++) {
+            if (imgurls[i] == "") imgurls.splice(i, 1);
+          }
+          imgurls = Array.from(new Set(imgurls))
+          //cover
+          marker.handimg = marker.userEntity.avatar;
+          marker.username = marker.userEntity.nickname;
+          marker.userid = marker.userEntity.id
+          marker.like = marker.poster.likes;
+          marker.imgurl = imgurls[0];
+          marker.title = marker.poster.title
+          marker.local = marker.poster.address
+          marker.concern = Math.floor(Math.random() * (1000 - 10)) + 10;
+          // console.log('marker',marker)
+        }
+        var array;
+        array=res.data.data;
+        array.reverse();
+        that.setData({
+          navbar:array
+        })
+      },
+      fail(res) {}
+    })
 
   },
 
@@ -149,7 +149,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.onLoad();
+    this.onShow();
   },
 
   /**
