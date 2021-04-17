@@ -468,6 +468,39 @@ Page({
 
   },
 
+  delete: function(){
+    var that = this
+    console.log("woc",that.data.essayall.id)
+    var that = this
+    var token = app.globalData.token
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/poster/del',
+      method: "DELETE",
+      header: {
+        'Authorization': token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        posterId: that.data.essayall.id,
+      },
+      success(res) {
+        console.log("woc res",res)
+          if(res.data.code==0){
+            wx.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration:2000
+            })
+          }else{
+            wx.showToast({
+              title: '删除失败',
+              icon: 'error',
+              duration:2000
+            })
+          }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

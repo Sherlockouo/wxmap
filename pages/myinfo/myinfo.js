@@ -19,7 +19,59 @@ Page({
 
   //设置用户详情页的图片信息
   setbackground: function () {
+    var that = this
+    var token = app.globalData.token;
     console.log("点击设置图片")
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      count: 1,
+      success: function (res) {
+        var imgs = res.tempFilePaths;
+        console.log("imgs ")
+        wx.uploadFile({
+          url: 'https://storymap.sherlockouo.com/upload/files',
+          method: 'POST',
+          header: {
+            Authorization: token,
+          },
+          name: 'files',
+          filePath: imgs[0],
+          success(res) {
+            new Promise((resolve=>{
+              res = JSON.parse(res.data)
+              console.log("upload result",res.files[0])
+              resolve(res.files[0])
+            })).then((res)=>{
+              console.log("shit ",res)
+              wx.request({
+                url: 'https://storymap.sherlockouo.com/user/updateBgimg', 
+                method: "PUT",
+                data: {
+                  bgimg: res
+                },
+                header:{
+                  Authorization: token,
+                },
+                success(res){
+                    console.log("upload bgimg",res)
+                },
+                fail(){
+  
+                }
+              })
+            })
+           
+           
+          },
+          fail(res){
+              console.log("上传失败",res)
+          }
+        })
+        // console.log("fileupload ",res.tempFilePaths[0])
+        // that.adjustViewStatus(false, true, false);
+      },
+    })
   },
   /**
    * 生命周期函数--监听页面加载

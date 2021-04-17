@@ -1,147 +1,147 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": false,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"useMultiFrameRuntime": true,
-		"useApiHook": true,
-		"useApiHostProcess": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"enableEngineNative": false,
-		"bundle": false,
-		"useIsolateContext": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false,
-		"userConfirmedBundleSwitch": false,
-		"packNpmManually": false,
-		"packNpmRelationList": [],
-		"minifyWXSS": true
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.15.0",
-	"appid": "wx2a06bd1dea2c555c",
-	"projectname": "map",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"plugin": {
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"list": []
-		},
-		"miniprogram": {
-			"list": [
-				{
-					"id": -1,
-					"name": "分享",
-					"pathName": "pages/share/share",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "用户界面",
-					"pathName": "pages/man/man",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "xiangxi",
-					"pathName": "pages/trends/trends",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "收藏界面",
-					"pathName": "pages/hoard/hoard",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "关注的人",
-					"pathName": "pages/concern/concern",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "点赞",
-					"pathName": "pages/like/like",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "详细信息查看界面",
-					"pathName": "pages/detail/detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "个人信息界面",
-					"pathName": "pages/myinfo/myinfo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "登录界面",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "测试功能专用",
-					"pathName": "pages/test/test",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "登录",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "个人主页，用于别人查看",
-					"pathName": "pages/message/message",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.15.0",
+  "appid": "wx2a06bd1dea2c555c",
+  "projectname": "map",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "分享",
+          "pathName": "pages/share/share",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "用户界面",
+          "pathName": "pages/man/man",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "xiangxi",
+          "pathName": "pages/trends/trends",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "收藏界面",
+          "pathName": "pages/hoard/hoard",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "关注的人",
+          "pathName": "pages/concern/concern",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "点赞",
+          "pathName": "pages/like/like",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "详细信息查看界面",
+          "pathName": "pages/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "个人信息界面",
+          "pathName": "pages/myinfo/myinfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登录界面",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "测试功能专用",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登录",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "个人主页，用于别人查看",
+          "pathName": "pages/message/message",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

@@ -19,7 +19,7 @@
                 </view>
             </view>
             <view class="weui-cell__bd">
-                <input class="weui-input inputCss" placeholder-class="place-holder" disabled="true" value="{{username}}"
+                <input class="weui-input inputCss" placeholder-class="place-holder" disabled="false" value="{{username}}"
                     placeholder="请输入您的昵称" />
             </view>
         </view>
