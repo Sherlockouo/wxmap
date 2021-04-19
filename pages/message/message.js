@@ -26,6 +26,7 @@ Page({
     Lmodeheight: [],
     currentTab: 0,
     userid: 0,
+    ismystyle:0 //判断是不是自己
 
   },
   navbarTap: function (e) {
@@ -234,7 +235,21 @@ Page({
 
     })
   },
+  //进入聊天
+  gochat:function(e)
+  {
+    console.log("点击")
+    if (this.data.ismystyle == 1) {
+    wx.navigateTo({
+      url: '/pages/chatlist/chatlist?userid=' + 1,
+    })
+  }else{
+    wx.navigateTo({
+      url: '/pages/chat/chat?userid=' + 1,
+    })
+  }
 
+  },
   //点击关注按钮调用
   concern: function (e) {
     var that = this
@@ -302,7 +317,8 @@ Page({
       title: '玩命加载中'
     })
     this.setData({
-      userid: options.userid
+      userid: options.userid,
+      ismystyle:options.mystyle
     })
     if (options.mystyle == 1) {
       wx.setNavigationBarColor({

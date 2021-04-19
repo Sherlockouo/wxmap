@@ -139,6 +139,12 @@
         {
           "name": "个人主页，用于别人查看",
           "pathName": "pages/message/message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "消息列表",
+          "pathName": "pages/chatlist/chatlist",
           "scene": null
         }
       ]

@@ -50,10 +50,9 @@ Page({
     if (e.detail.userInfo) {
       var that = this
       wx.showLoading({
-        title: '玩命加载中'
+        title: '登录中'
         })
       wx.login({
-        
         success: res => {
           // 获取到用户的 code 之后：res.code
           console.log("用户的code:" + res.code);
@@ -70,6 +69,15 @@ Page({
               wxcode: res.code
             },
             success: res => {
+              wx.hideLoading({
+                success: (res) => {
+                  wx.showToast({
+                    title: '登录成功',
+                    icon: 'success',
+                    duration: 1000
+                  })
+                },
+              })
               // 获取到用户的信息了，打印到控制台上看下
               app.globalData.isHide = 1
               console.log('res ',res.data.userinfo)

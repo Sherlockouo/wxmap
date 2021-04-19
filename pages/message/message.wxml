@@ -14,7 +14,7 @@
         <view class="right">
           <view class="inright">
             <view class="chat">
-              <image src="/img/chat.png"></image>
+              <image src="/img/chat.png" bindtap="gochat"></image>
             </view>
             <view class="concern">
               <view wx:if="{{!concernAc}}" class="inconcern active" bindtap="concern">+关注</view>

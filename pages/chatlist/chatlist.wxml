@@ -1,0 +1,18 @@
+
+<view class="contain">
+	<view wx:for="{{ groupList }}" class="groupList" wx:key="">
+		<view class="nbr_header"></view>
+		<view class="info" bindtap="into_info">
+			<image src="{{item.headimg}}"  data-username="{{ item.name }}"></image>
+		</view>
+		<view class="nbr_body" data-username="{{ item.name }}" data-roomid="{{ item.id }}" bindtap="into_room">
+      <view class="username" data-username="{{ item.name }}">{{ item.name }}</view>
+			<view class="message" data-username="{{ item.lastmessage }}">{{ item.lastmessage }}</view>
+		</view>
+		<view class="edit" bind:tap="edit_group" data-username="{{ item.name }}" data-roomid="{{ item.id }}">
+      <view wx:if="{{item.countmessage!=0}}" class="point"><text>{{item.countmessage}}</text></view>
+		</view>
+	</view>
+</view>
+
+<view class="mask" bindtap="close_mask" wx:if="{{show_mask}}"></view>

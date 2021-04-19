@@ -12,7 +12,9 @@
     "pages/concern/concern",
     "pages/trends/trends",
     "pages/preview/preview",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/chatlist/chatlist",
+    "pages/chat/chat"
   ],
   "permission": {
     "scope.userLocation": {
