@@ -145,6 +145,12 @@
         {
           "name": "消息列表",
           "pathName": "pages/chatlist/chatlist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "聊天",
+          "pathName": "pages/chat/chat",
           "scene": null
         }
       ]

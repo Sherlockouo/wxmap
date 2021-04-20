@@ -45,6 +45,8 @@ Page({
   data: {
     scrollHeight: '100vh',
     inputBottom: 0,
+    inputValue:"",//输入的值
+    chatbackground:"http://qwq.fjtbkyc.net/image/bgimg/chatbac.jpg",
     user1: {
       id: 1,
       headimg: 'http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg',
@@ -113,8 +115,8 @@ Page({
     this.setData({
       toView: 'msg-' + (msgList.length - 1)
     })
-
   },
+
   //发送图片
   sendimg: function (e) {
     wx.chooseImage({
@@ -137,6 +139,25 @@ Page({
       content: e.detail.value
     })
     inputVal = '';
+    this.setData({
+      msgList,
+      inputVal
+    });
+  },
+
+  bindKeyInput:function(e){
+    this.setData({
+      inputValue: e.detail.value
+    })
+  },
+
+  bntSend: function (e) {
+    console.log(this.data.inputValue)
+    msgList.push({
+      speaker: 'customer',
+      contentType: 'text',
+      content: this.data.inputValue
+    })
     this.setData({
       msgList,
       inputVal
