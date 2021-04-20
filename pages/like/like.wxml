@@ -4,7 +4,7 @@
 </view>
 <view wx:else class="container">
   <view wx:for="{{mylike}}" class="topitem" data-id="index" wx:key="{{id}}">
-    <view class="like-item" bindtap="goDetail" data-id="item.id" data-num="5" >
+    <view class="like-item" bindtap="goDetail" data-id="{{item.userid}}" data-num="5" >
      <view class="left"> 
      <view class="handimg"><image src="{{item.handimg}}"></image></view>
     </view>     

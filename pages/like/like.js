@@ -20,15 +20,15 @@ Page({
     imageWidth: 0
   },
 
-  goDetail:function(e)
-  {
-    var pagid=e.currentTarget.dataset.pageid; //用于文章返回 
-    var userid=e.currentTarget.dataset.id;
-    console.log("342342",userid);
-    wx.navigateTo({
-      url: '/pages/detail/detail?pageid='+pagid+"&userid="+userid,
-    })
-  },
+  //暂时先不实现页面的跳转
+  // goDetail:function(e)
+  // {
+  //   var pagid=e.currentTarget.dataset.pageid; //用于文章返回 
+  //   var userid=e.currentTarget.dataset.id;
+  //   wx.navigateTo({
+  //     url: '/pages/detail/detail?pageid=' + pagid + "&userid=" + userid,
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -81,7 +81,6 @@ Page({
           var marker = ls[key];
           marker.id = marker.poster.id
           var imgurls = marker.poster.files.split("#");
-
           for (var i = 0; i < imgurls.length; i++) {
             if (imgurls[i] == "") imgurls.splice(i, 1);
           }
@@ -92,6 +91,7 @@ Page({
           marker.like = marker.poster.likes;
           marker.imgurl = imgurls[0];
           marker.title = marker.poster.title
+          marker.userid = marker.poster.userid
           marker.local = marker.poster.address
           marker.concern = Math.floor(Math.random() * (1000 - 10)) + 10;
           // console.log('marker',marker)
