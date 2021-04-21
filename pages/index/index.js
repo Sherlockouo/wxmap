@@ -588,10 +588,10 @@ Page({
       marker.height = 40;
       if (marker.type == 1) {
         // share
-        marker.iconPath = '/img/dog-select.png';
+        marker.iconPath = '/img/markshare.png';
       } else {
         // lost
-        marker.iconPath = '/img/dog-yellow.png';
+        marker.iconPath = '/img/markslect.png';
       }
     }
     currentMarker = currentMarker.concat(markers);
