@@ -141,8 +141,9 @@ Page({
       isshow: 0
     })
     var userid = this.data.authorid
+    var youself=this.data.isyouself
     wx.navigateTo({
-      url: '/pages/message/message?userid=' + userid,
+      url: '/pages/message/message?userid=' + userid+"&ismystyle="+youself,
     })
   },
   //展示编辑操作

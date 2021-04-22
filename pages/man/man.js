@@ -103,7 +103,7 @@ Page({
     var userid = app.globalData.userInfo.id
     // console.log(app.globalData.userInfo.id);
     wx.navigateTo({
-      url: '/pages/message/message?mystyle=' + 1 + '&userid=' + userid,
+      url: '/pages/message/message?ismystyle=' + 1 + '&userid=' + userid,
     })
   },
   /**

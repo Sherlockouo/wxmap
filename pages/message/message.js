@@ -26,7 +26,7 @@ Page({
     Lmodeheight: [],
     currentTab: 0,
     userid: 0,
-    ismystyle:0 //判断是不是自己
+    ismystyle:0 ,//判断是不是自己
 
   },
   navbarTap: function (e) {
@@ -318,7 +318,7 @@ Page({
     })
     this.setData({
       userid: options.userid,
-      ismystyle:options.mystyle
+      ismystyle:options.ismystyle
     })
     if (options.mystyle == 1) {
       wx.setNavigationBarColor({
@@ -329,6 +329,9 @@ Page({
           timingFunc: 'easeIn'
         }
       })
+    }
+    if(options.ismystyle)
+    {
       this.setData({
         navbar: ["我的分享", "失物招领"],
       })

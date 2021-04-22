@@ -68,7 +68,9 @@
       </view>
     </scroll-view>
     <view class="divLine"></view>
-    <view class="essay">{{essayall.essay_text}}</view>
+    <view class="essay">
+      <text>{{essayall.essay_text}}</text>
+    </view>
     <view class="data"><text>发布时间：</text>{{essayall.sharetime}}</view>
   </view>
   <view class="empty"></view>
