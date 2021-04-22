@@ -33,6 +33,7 @@ App({
     baseUrl: "https://storymap.sherlockouo.com",
     chatUrl: "ws://storymap.sherlockouo.com",
     userInfo: {},
+    wxinfo: {},
     currentMarkerId:0,
     token:'',
     isHide:0,//登录状态
