@@ -11,11 +11,11 @@ var socketUrl = 'wss://storymap.sherlockouo.com'
 /**
  * 计算msg总高度
  */
-// function calScrollHeight(that, keyHeight) {
-//   var query = wx.createSelectorQuery();
-//   query.select('.scrollMsg').boundingClientRect(function(rect) {
-//   }).exec();
-// }
+function calScrollHeight(that, keyHeight) {
+  var query = wx.createSelectorQuery();
+  query.select('.scrollMsg').boundingClientRect(function(rect) {
+  }).exec();
+}
 
 Page({
 

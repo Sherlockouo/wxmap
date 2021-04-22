@@ -33,8 +33,9 @@
           <view class="likebox bn3"> {{userInfo.like}}<text>粉丝</text></view>
         </view>
       </view>
-      <view class="bottom">
-        <view class="introduce"><text>{{userInfo.introduce}}</text></view>
+      <view class="bottom"> 
+       <view wx:if='{{!userInfo.introduce.length}}'>这个用户有点懒，还没发布任何东西哦~</view>
+        <view wx:else class="introduce"><text>{{userInfo.introduce}}</text></view>
       </view>
       <view class="bottombox">
         <!--导航条-->
