@@ -102,6 +102,12 @@
         {
           "name": "pages/chatlist/chatlist",
           "pathName": "pages/chatlist/chatlist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
           "scene": null
         }
       ]

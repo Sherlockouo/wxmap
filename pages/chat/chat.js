@@ -46,18 +46,7 @@ initData: function(that) {
   inputVal = '';
   var baseUrl = app.globalData.baseUrl;
   var token = app.globalData.token;
-  msgList = [
-    // {
-  //     speaker: 'server',
-  //     contentType: 'text',
-  //     content: '欢迎来到我的世界，向着前方，带着责任感，'
-  //   },
-  //   {
-  //     speaker: 'customer',
-  //     contentType: 'text',
-  //     content: '对待每一件事情找到自己的位置以及该有的责任感'
-  //   }
-  ]
+  console.log("userid ",that.data.toUserid)
   wx.request({
     url: baseUrl+"/chatlog/one",
     method: "GET",
@@ -66,9 +55,9 @@ initData: function(that) {
     },
     data: {
       pageNum: 1,
-      pageSize: 50,
-      // toUserid: that.data.toUserid
-      toUserId: 3
+      pageSize: 100,
+      toUserId: that.data.toUserid
+      // toUserId: 3
     },
     success(res) {
         var chatlog = res.data.data.list;
@@ -197,7 +186,7 @@ initData: function(that) {
       count: 1,
       success: function (res) {
         var imgs = res.tempFilePaths;
-        console.log("imgs ")
+        
         wx.uploadFile({
           url: 'https://storymap.sherlockouo.com/upload/files',
           method: 'POST',
@@ -273,7 +262,7 @@ initData: function(that) {
     }
     if(socket.readyState!=1){
       new Promise((resolve)=>{
-        socket= wx.connectSocket({
+        socket = wx.connectSocket({
           url: socketUrl+"/chat/"+that.data.sendUserid,
         })
         resolve()
@@ -308,6 +297,8 @@ initData: function(that) {
           inputVal,
           inputValue: ''
         });
+      }).catch((res)=>{
+        console.log("catching bugs",res)
       })
         
         
