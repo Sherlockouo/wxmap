@@ -84,6 +84,24 @@
         {
           "name": "pages/detail/detail",
           "pathName": "pages/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chat/chat",
+          "pathName": "pages/chat/chat",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chat/chat",
+          "pathName": "pages/chat/chat",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chatlist/chatlist",
+          "pathName": "pages/chatlist/chatlist",
           "scene": null
         }
       ]

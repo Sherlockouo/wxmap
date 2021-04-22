@@ -5,28 +5,8 @@ var msgList = [];
 var windowWidth = wx.getSystemInfoSync().windowWidth;
 var windowHeight = wx.getSystemInfoSync().windowHeight;
 var keyHeight = 0;
-
-/**
- * 初始化数据
- */
-function initData(that) {
-  inputVal = '';
-  msgList = [{
-      speaker: 'server',
-      contentType: 'text',
-      content: '欢迎来到我的世界，向着前方，带着责任感，'
-    },
-    {
-      speaker: 'customer',
-      contentType: 'text',
-      content: '对待每一件事情找到自己的位置以及该有的责任感'
-    }
-  ]
-  that.setData({
-    msgList,
-    inputVal
-  })
-}
+var socket = {};
+var socketUrl = 'wss://storymap.sherlockouo.com'
 
 /**
  * 计算msg总高度
@@ -43,6 +23,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    toUserid: 0,
+    sendUserid: 0,
     scrollHeight: '100vh',
     inputBottom: 0,
     inputValue:"",//输入的值
@@ -54,25 +36,111 @@ Page({
     user2: {
       id: 1,
       headimg: 'http://www.fjtbkyc.net/mywx/dog.jpg',
-
     }
   },
+  /**
+ * 初始化数据
+ */
+initData: function(that) {
+  inputVal = '';
+  var baseUrl = app.globalData.baseUrl;
+  var token = app.globalData.token;
+  msgList = [
+    // {
+  //     speaker: 'server',
+  //     contentType: 'text',
+  //     content: '欢迎来到我的世界，向着前方，带着责任感，'
+  //   },
+  //   {
+  //     speaker: 'customer',
+  //     contentType: 'text',
+  //     content: '对待每一件事情找到自己的位置以及该有的责任感'
+  //   }
+  ]
+  wx.request({
+    url: baseUrl+"/chatlog/one",
+    method: "GET",
+    header:{
+      "Authorization": token
+    },
+    data: {
+      pageNum: 1,
+      pageSize: 50,
+      // toUserid: that.data.toUserid
+      toUserId: 3
+    },
+    success(res) {
+        var chatlog = res.data.data.list;
+        console.log("chatlog ",chatlog)
+        for(let key in chatlog){
+          let log = chatlog[key];
+          if(log.senduserid==app.globalData.userInfo.id)
+            log.speaker = "customer";
+          else 
+            log.speaker = "server"
+          log.contentType=log.msgtype
+          log.content = log.sendtext
+        }
+        
+        console.log("chatlog ",chatlog)
+
+        that.setData({
+          msgList: chatlog
+        })
+    },
+    fail:{
+
+    }
+  })
+
+  that.setData({
+    inputVal
+  })
+},
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    initData(this);
+  
+    var senduserid = app.globalData.userInfo.id;
+    this.data.sendUserid = senduserid
+    this.data.toUserid = options.userid
+    this.initData(this);
     this.setData({
       cusHeadIcon: app.globalData.userInfo.avatarUrl,
     });
+    
+     socket = wx.connectSocket({
+      url: socketUrl+"/chat/"+senduserid,
+    })
+    
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    console.log("onshow ",socket)
+    socket.onMessage((result) => {
+      console.log("on message ",that.data.msgList)
+      new Promise((resolve)=>{
+        var ls = that.data.msgList
+        ls.push({
+          speaker: 'server',
+          contentType: 'text',
+          content: result.data
+        })
+        resolve(ls)
+      }).then((res)=>{
+        that.setData({
+          msgList: res
+        })
+      })
+      
+    })
   },
 
   /**
@@ -119,13 +187,50 @@ Page({
 
   //发送图片
   sendimg: function (e) {
+    var token = app.globalData.token;
+    var msgList = this.data.msgList;
+    var that = this
     wx.chooseImage({
-      count: 1,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
-      success(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
+      count: 1,
+      success: function (res) {
+        var imgs = res.tempFilePaths;
+        console.log("imgs ")
+        wx.uploadFile({
+          url: 'https://storymap.sherlockouo.com/upload/files',
+          method: 'POST',
+          header: {
+            Authorization: token,
+          },
+          name: 'files',
+          filePath: imgs[0],
+          success(res) {
+            new Promise((resolve=>{
+              res = JSON.parse(res.data)
+              console.log("upload result",res.files[0])
+              resolve(res.files[0])
+            })).then((res)=>{
+            var msg = {
+              senduserid: that.data.sendUserid,
+              // senduserid: 2,
+              reciveuserid: that.data.toUserid,
+              // reciveuserid: 3,
+              msgtype: 'img',
+              sendtext: res,
+              sendtime: new Date()
+            };
+            msgList.push({
+              speaker: 'customer',
+              contentType: 'img',
+              content: res
+            })
+            socket.send({
+              data: JSON.stringify(msg)
+            })
+          })
+        }
+        })
       }
     })
   },
@@ -152,16 +257,91 @@ Page({
   },
 
   bntSend: function (e) {
-    console.log(this.data.inputValue)
+    var that = this
+    console.log("state ",socket.readyState)
+    
+    console.log("input value is ",this.data.inputValue)
+    var that =  this
+    if(this.data.inputValue==null||this.data.inputValue==""){
+      wx.showToast({
+        title: '输入字符不能为空',
+        icon: 'error',
+        duration: 1000,
+      })
+      return;
+    }
+    if(socket.readyState!=1){
+      new Promise((resolve)=>{
+        socket= wx.connectSocket({
+          url: socketUrl+"/chat/"+that.data.sendUserid,
+        })
+        resolve()
+      }).then(()=>{
+        var msg = {
+          senduserid: that.data.sendUserid,
+          // senduserid: 2,
+          reciveuserid: that.data.toUserid,
+          // reciveuserid: 3,
+          msgtype: 'text',
+          sendtext: this.data.inputValue,
+          sendtime: new Date()
+        };
+        
+        let msgList = that.data.msgList
+        msgList.push({
+          speaker: 'customer',
+          contentType: 'text',
+          content: this.data.inputValue
+        })
+    
+        socket.send({
+          data: JSON.stringify(msg)
+        })
+    
+        console.log("json ",JSON.stringify(msg))
+    
+        
+        console.log("msglist ",msgList)
+        this.setData({
+          msgList,
+          inputVal,
+          inputValue: ''
+        });
+      })
+        
+        
+    }else{
+    var msg = {
+      senduserid: that.data.sendUserid,
+      // senduserid: 2,
+      reciveuserid: that.data.toUserid,
+      // reciveuserid: 3,
+      msgtype: 'text',
+      sendtext: this.data.inputValue,
+      sendtime: new Date()
+    };
+    
+    let msgList = that.data.msgList
     msgList.push({
       speaker: 'customer',
       contentType: 'text',
       content: this.data.inputValue
     })
+
+    socket.send({
+      data: JSON.stringify(msg)
+    })
+
+    console.log("json ",JSON.stringify(msg))
+
+    
+    console.log("msglist ",msgList)
     this.setData({
       msgList,
-      inputVal
+      inputVal,
+      inputValue: ''
     });
+  }
   },
 
   /**

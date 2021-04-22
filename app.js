@@ -30,6 +30,8 @@ App({
     })
   },
   globalData: {
+    baseUrl: "https://storymap.sherlockouo.com",
+    chatUrl: "ws://storymap.sherlockouo.com",
     userInfo: {},
     currentMarkerId:0,
     token:'',

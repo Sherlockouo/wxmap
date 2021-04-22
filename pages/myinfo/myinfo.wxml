@@ -1,6 +1,6 @@
 <!-- 用户信息界面 -->
 <view>
-    <view class="titleCss">
+    <view class="titleCss" >
         <view class="setBac">
             <view class="head box">
                 <image src="{{userhead}}" mode="scaleToFill" class="headimg" bindtap="imgShow" data-url="{{userhead}}"></image>

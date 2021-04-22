@@ -245,7 +245,7 @@ Page({
     })
   }else{
     wx.navigateTo({
-      url: '/pages/chat/chat?userid=' + 1,
+      url: '/pages/chat/chat?userid=' + this.data.userInfo.id,
     })
   }
 

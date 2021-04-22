@@ -4,7 +4,7 @@
   width: 100%;
   height: 400rpx;
   text-align: center;
-  background: url('http://www.fjtbkyc.net/mywx/bacimg.jpg');
+  
   background-size: cover;
 }
 

@@ -86,8 +86,42 @@ Page({
   },
 
   onShow: function () {
+    var that = this
+    var baseUrl = app.globalData.baseUrl;
+  var token = app.globalData.token;
     // this.listGroups();
     this.listChatrooms();
+    wx.request({
+      url: baseUrl+"/chatlog/all",
+      method: "GET",
+      header:{
+        "Authorization": token
+      },
+      data: {
+        pageNum: 1,
+        pageSize: 100,
+        // toUserId: 3
+      },
+      success(res) {
+          console.log("list ",res)
+          // console.log("chatlog ",chatlog)
+          // for(let key in chatlog){
+          //   let log = chatlog[key];
+          //   if(log.senduserid==app.globalData.userInfo.id)
+          //     log.speaker = "customer";
+          //   else 
+          //     log.speaker = "server"
+          //   log.contentType=log.msgtype
+          //   log.content = log.sendtext
+          // }
+          
+          // console.log("chatlog ",chatlog)
+  
+      },
+      fail:{
+  
+      }
+    })
   },
 
   //列出所有聊天室

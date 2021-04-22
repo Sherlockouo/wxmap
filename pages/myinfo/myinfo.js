@@ -142,7 +142,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var token = app.globalData.userInfo
 
+    wx.request({
+      url: 'https://storymap.sherlockouo.com/user/getInfo/'+app.globalData.userInfo.id, 
+      method: "GET",
+      data: {
+      },
+      header:{
+        Authorization: token,
+      },
+      success(res){
+        wx.setStorage({
+          data: res.data.userinfo,
+          key: 'userInfo',
+        })
+      },
+      fail(){
+
+      }
+    })
   },
 
   /**
