@@ -10,52 +10,52 @@ Page({
     groupList: [{
         headimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg", //用户头像
         name: "晴空一线",
-        lastmessage: "明天有空吗，可以约你出来", //代表最后的一条消息
+        lastmessage: "我找到了你的无人机!", //代表最后的一条消息
         id: 2,
         countmessage: 6, //未读消息数量,
       },
       {
         headimg: "http://www.fjtbkyc.net/mywx/dog.jpg", //用户头像
         name: "Another Dersion",
-        lastmessage: "明天有空哦，等你！",
+        lastmessage: "明天有空哦，你来找我拿吧！",
         id: 34,
         countmessage: 0 //是否存在未读消息
       },
       {
         headimg: "http://qwq.fjtbkyc.net/image/headimg/003.jpg", //用户头像
-        name: "Another Dersion",
-        lastmessage: "明天有空哦，等你！",
+        name: "明天有空",
+        lastmessage: "我在成都市郫都区！",
         id: 34,
         countmessage: 0 //是否存在未读消息
       },
-      {
-        headimg: "http://qwq.fjtbkyc.net/image/headimg/004.jpg", //用户头像
-        name: "Another Dersion",
-        lastmessage: "明天有空哦，等你！",
-        id: 34,
-        countmessage: 0 //是否存在未读消息
-      },
-      {
-        headimg: "http://qwq.fjtbkyc.net/image/headimg/007.jpg", //用户头像
-        name: "一骑绝尘",
-        lastmessage: "明天有空哦，等你！",
-        id: 34,
-        countmessage: 0 //是否存在未读消息
-      },
-      {
-        headimg: "http://qwq.fjtbkyc.net/image/headimg/008.jpg", //用户头像
-        name: "Fubure",
-        lastmessage: "明天有空哦，等你！",
-        id: 34,
-        countmessage: 0 //是否存在未读消息
-      },
-      {
-        headimg: "http://qwq.fjtbkyc.net/image/headimg/009.jpg", //用户头像
-        name: "空",
-        lastmessage: "明天有空哦，等你！",
-        id: 34,
-        countmessage: 0 //是否存在未读消息
-      }
+      // {
+      //   headimg: "http://qwq.fjtbkyc.net/image/headimg/004.jpg", //用户头像
+      //   name: "Another Dersion",
+      //   lastmessage: "明天有空哦，等你！",
+      //   id: 34,
+      //   countmessage: 0 //是否存在未读消息
+      // },
+      // {
+      //   headimg: "http://qwq.fjtbkyc.net/image/headimg/007.jpg", //用户头像
+      //   name: "一骑绝尘",
+      //   lastmessage: "明天有空哦，等你！",
+      //   id: 34,
+      //   countmessage: 0 //是否存在未读消息
+      // },
+      // {
+      //   headimg: "http://qwq.fjtbkyc.net/image/headimg/008.jpg", //用户头像
+      //   name: "Fubure",
+      //   lastmessage: "明天有空哦，等你！",
+      //   id: 34,
+      //   countmessage: 0 //是否存在未读消息
+      // },
+      // {
+      //   headimg: "http://qwq.fjtbkyc.net/image/headimg/009.jpg", //用户头像
+      //   name: "空",
+      //   lastmessage: "明天有空哦，等你！",
+      //   id: 34,
+      //   countmessage: 0 //是否存在未读消息
+      // }
 
     ], // 聊天室列表
     userid: "" //根据用户id渲染消息列表

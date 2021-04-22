@@ -31,7 +31,8 @@ Page({
     chatbackground:"http://qwq.fjtbkyc.net/image/bgimg/chatbac.jpg",
     user1: {
       id: 1,
-      headimg: 'http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg',
+      headimg:'http://qwq.fjtbkyc.net/image/headimg/010.jpg'
+      // headimg: 'http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg',
     },
     user2: {
       id: 1,
