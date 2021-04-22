@@ -128,11 +128,13 @@ Page({
       success: function (res) {
         
         console.log("auth ",res)
-        new Promise(()=>{
+        new Promise((resolve)=>{
           that.setData({
-            userInfo: res.rawData,
+            userInfo: res = JSON.parse(res.rawData),
           })
-        }).then(()=>{
+          resolve(res.rawData)
+        }).then((result)=>{
+          
           wx.login({
             success: res => {
               
@@ -146,13 +148,9 @@ Page({
                 data: {
                   wxcode: res.code,
                   nickname: that.data.userInfo.nickName,
-                  // nickname: "username",
-                  avatarUrl: that.data.userInfo.nickName.avatarUrl
+                  avatarUrl: that.data.userInfo.avatarUrl
                 },
                 success: res => {
-  
-                console.log("ssss ",that.data.userInfo.nickName)
-  
                   // 获取到用户的信息了，打印到控制台上看下
                   app.globalData.isHide = 1
                   that.goback();
