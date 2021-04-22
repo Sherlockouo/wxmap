@@ -11,11 +11,11 @@ var socketUrl = 'wss://storymap.sherlockouo.com'
 /**
  * 计算msg总高度
  */
-function calScrollHeight(that, keyHeight) {
-  var query = wx.createSelectorQuery();
-  query.select('.scrollMsg').boundingClientRect(function(rect) {
-  }).exec();
-}
+// function calScrollHeight(that, keyHeight) {
+//   var query = wx.createSelectorQuery();
+//   query.select('.scrollMsg').boundingClientRect(function(rect) {
+//   }).exec();
+// }
 
 Page({
 
@@ -99,11 +99,13 @@ initData: function(that) {
     this.initData(this);
     this.setData({
       cusHeadIcon: app.globalData.userInfo.avatarUrl,
+      toView: 'msg-' + (msgList.length - 1)
     });
     
      socket = wx.connectSocket({
       url: socketUrl+"/chat/"+senduserid,
     })
+   
     
   
   },
@@ -159,8 +161,8 @@ initData: function(that) {
       toView: 'msg-' + (msgList.length - 1),
       inputBottom: keyHeight + 'px'
     })
-    //计算msg高度
-    // calScrollHeight(this, keyHeight);
+  //  // 计算msg高度
+  //   calScrollHeight(this, keyHeight);
 
   },
 
@@ -228,6 +230,7 @@ initData: function(that) {
    * 发送点击监听
    */
   sendClick: function (e) {
+    this.bntSend();
     msgList.push({
       speaker: 'customer',
       contentType: 'text',
@@ -249,7 +252,6 @@ initData: function(that) {
   bntSend: function (e) {
     var that = this
     console.log("state ",socket.readyState)
-    
     console.log("input value is ",this.data.inputValue)
     var that =  this
     if(this.data.inputValue==null||this.data.inputValue==""){
