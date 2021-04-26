@@ -2,7 +2,7 @@
 
 .titleCss {
   width: 100%;
-  height: 400rpx;
+  height: 420rpx;
   text-align: center;
   background-size: cover;
 }
@@ -13,7 +13,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 60rpx;
+  /* padding-top: 60rpx; */
+
 }
 
 .headimg {

@@ -2,7 +2,7 @@
 
 <view>
   <image class='background' src="{{chatbackground}}" mode="aspectFill"></image>
-  <scroll-view scroll-y scroll-into-view='{{toView}}' style='height: {{scrollHeight}};'>
+  <scroll-view scroll-y scroll-into-view='{{toView }}' style='height: {{scrollHeight}};'>
     <!-- <view class='scrollMsg'> -->
     <block wx:key wx:for='{{msgList}}' wx:for-index="index">
 

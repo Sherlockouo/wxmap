@@ -62,6 +62,7 @@ Page({
     this.setData({
       userinfo: app.globalData.userInfo
     })
+    console.log("用户信息",app.globalData.userInfo)
   },
   goDetail: function (e) {
     var that = this

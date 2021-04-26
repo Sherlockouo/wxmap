@@ -166,6 +166,10 @@ Page({
                       data: res.data.token,
                       key: 'token',
                     })
+                    wx.setStorage({
+                      data: res.data.userinfo,
+                      key: 'userInfo',
+                    })
                     //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
                     that.setData({
                       isHide: false,

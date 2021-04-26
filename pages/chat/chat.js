@@ -37,7 +37,8 @@ Page({
     user2: {
       id: 1,
       headimg: 'http://www.fjtbkyc.net/mywx/dog.jpg',
-    }
+    },
+    toView: 'msg-1' //聊天列表长度
   },
   /**
  * 初始化数据
@@ -71,18 +72,16 @@ initData: function(that) {
           log.contentType=log.msgtype
           log.content = log.sendtext
         }
-        
-        console.log("chatlog ",chatlog)
-
+        var s=
         that.setData({
-          msgList: chatlog
+          msgList: chatlog,
+          toView:'msg-'+(chatlog.length-1)
         })
+        console.log("RERE",that.data.toView)
     },
     fail:{
-
     }
   })
-
   that.setData({
     inputVal
   })
@@ -99,9 +98,7 @@ initData: function(that) {
     this.initData(this);
     this.setData({
       cusHeadIcon: app.globalData.userInfo.avatarUrl,
-      toView: 'msg-' + (msgList.length - 1)
     });
-    
      socket = wx.connectSocket({
       url: socketUrl+"/chat/"+senduserid,
     })
@@ -173,7 +170,7 @@ initData: function(that) {
       inputBottom: 0
     })
     this.setData({
-      toView: 'msg-' + (msgList.length - 1)
+      toView: this.data.toView
     })
   },
 
@@ -220,6 +217,9 @@ initData: function(that) {
             socket.send({
               data: JSON.stringify(msg)
             })
+            that.setData({
+              toView: 'msg-' + (msgList.length - 1),
+            })
           })
         }
         })
@@ -230,17 +230,7 @@ initData: function(that) {
    * 发送点击监听
    */
   sendClick: function (e) {
-    this.bntSend();
-    msgList.push({
-      speaker: 'customer',
-      contentType: 'text',
-      content: e.detail.value
-    })
-    inputVal = '';
-    this.setData({
-      msgList,
-      inputVal
-    });
+   this.bntSend();
   },
 
   bindKeyInput:function(e){
@@ -321,17 +311,12 @@ initData: function(that) {
       contentType: 'text',
       content: this.data.inputValue
     })
-
     socket.send({
       data: JSON.stringify(msg)
     })
-
-    console.log("json ",JSON.stringify(msg))
-
-    
-    console.log("msglist ",msgList)
     this.setData({
       msgList,
+      toView: 'msg-' + (msgList.length - 1),
       inputVal,
       inputValue: ''
     });

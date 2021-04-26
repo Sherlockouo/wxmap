@@ -7,6 +7,7 @@ Page({
    */
   data: {
     date: "",
+    bgimg:"http://qwq.fjtbkyc.net/image/bgimg/bg1.jpg",
     titleInfo: "添加用户信息",
     userhead: "",
     username: "", //用户默认名称
@@ -43,7 +44,9 @@ Page({
               console.log("upload result",res.files[0])
               resolve(res.files[0])
             })).then((res)=>{
-              console.log("shit ",res)
+             that.setData({
+               bgimg:res
+             })
               wx.request({
                 url: 'https://storymap.sherlockouo.com/user/updateBgimg', 
                 method: "PUT",
@@ -90,7 +93,8 @@ Page({
       username: app.globalData.userInfo.nickname,
       date: app.globalData.userInfo.birthday,
       head: app.globalData.userInfo.bgimg,
-      introduce: app.globalData.userInfo.motto
+      introduce: app.globalData.userInfo.motto,
+      bgimg:app.globalData.userInfo.bgimg
     })
     var local = app.globalData.userInfo.address; //获得地址
     var address = [];
