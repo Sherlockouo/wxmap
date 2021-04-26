@@ -59,8 +59,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-
-
+    this.setData({
+      userinfo: app.globalData.userInfo
+    })
   },
   goDetail: function (e) {
     var that = this
@@ -217,8 +218,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
     this.setData({
+      userinfo: app.globalData.userInfo,
       islogin: app.globalData.token.length != 0,
     })
     this.setData({

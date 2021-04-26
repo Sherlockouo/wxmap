@@ -29,100 +29,92 @@ Page({
     }
    
   },
-  wxlogin: function (e) {
-    if (e.detail.userInfo) {
-      var that = this
-      wx.showLoading({
-        title: '登录中'
-        })
-      wx.login({
-        success: res => {
-          console.log("用户的code:" + res);
-          // 获取到用户的 code 之后：res.code
-          console.log("用户的code:" + res.code);
-          // 可以传给后台，再经过解析获取用户的 openid
-          // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
-          wx.request({
-            // 自行补上自己的 APPID 和 SECRET
-            url: 'https://storymap.sherlockouo.com/user/login',
-            method: "POST",
-            header: {
-              'content-type': 'application/x-www-form-urlencoded' // 默认值a
-            },
-            data: {
-              wxcode: res.code
-            },
-            success: res => {
-              wx.hideLoading({
-                success: (res) => {
-                  wx.showToast({
-                    title: '登录成功',
-                    icon: 'success',
-                    duration: 1000
-                  })
-                },
-              })
-              // 获取到用户的信息了，打印到控制台上看下
-              app.globalData.isHide = 1
-              console.log('res ',res.data.userinfo)
-              // console.log("用户的信息如下：");
-              // console.log(e.detail.userInfo);
+  // wxlogin: function (e) {
+  //   if (e.detail.userInfo) {
+  //     var that = this
+  //     wx.showLoading({
+  //       title: '登录中'
+  //       })
+  //     wx.login({
+  //       success: res => {
+  //         console.log("用户的code:" + res);
+  //         // 获取到用户的 code 之后：res.code
+  //         console.log("用户的code:" + res.code);
+  //         // 可以传给后台，再经过解析获取用户的 openid
+  //         // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
+  //         wx.request({
+  //           // 自行补上自己的 APPID 和 SECRET
+  //           url: 'https://storymap.sherlockouo.com/user/login',
+  //           method: "POST",
+  //           header: {
+  //             'content-type': 'application/x-www-form-urlencoded' // 默认值a
+  //           },
+  //           data: {
+  //             wxcode: res.code
+  //           },
+  //           success: res => {
+              
+  //             // 获取到用户的信息了，打印到控制台上看下
+  //             app.globalData.isHide = 1
+  //             console.log(res.data);
+  //             // var userinfo= res.data.userinfo;
+  //             // //获取用户信息进行保存
+  //             // app.globalData.userInfo = userinfo
+  //             // console.log("用户的信息如下huoqu", app.globalData.userInfo)
+  //             // 获取到用户的 openid
+  //             if (res.data.code == 0) {
+  //               app.globalData.token = res.data.token;
+  //               app.globalData.userInfo=res.data.userinfo
+  //               wx.setStorage({
+  //                 data: res.data.token,
+  //                 key: 'token',
+  //               })
+  //               console.log("RRRR",res.data)
+  //               wx.setStorage({
+  //                 data: res.data.userinfo,
+  //                 key: 'userInfo',
+  //               })
+  //               //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+  //               that.setData({
+  //                 isHide: false,
+  //                 userInfo: userinfo
+  //               });
+  //             } else {
 
-              wx.setStorage({
-                data: res.data.userinfo,
-                key: 'userInfo',
-              })
-              var userinfo= res.data.userinfo;
-              //获取用户信息进行保存
-              app.globalData.userInfo = userinfo
-              // console.log("用户的信息如下huoqu", app.globalData.userInfo)
-              // 获取到用户的 openid
-              if (res.data.code == 0) {
-                app.globalData.token = res.data.token;
-                wx.setStorage({
-                  data: res.data.token,
-                  key: 'token',
-                })
-                //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-                that.setData({
-                  isHide: false,
-                  userInfo: userinfo
-                });
-                // app.globalData.token = res.data.token;
-                console.log("用户的token " + app.globalData.token);
-              } else {
+  //               console.log(" something goes wrong msg ", res.data.msg);
+  //             }
+  //             that.goback();
+  //           },
+  //           fail: res => {
+  //             console.log("shit failed");
+  //           }
+  //         });
 
-                console.log(" something goes wrong msg ", res.data.msg);
-              }
-              that.goback();
-            },
-            fail: res => {
-              console.log("shit failed");
-            }
-          });
+  //       }
+  //     });
 
-        }
-      });
+  //   } else {
+  //     //用户按了拒绝按钮
+  //     wx.showModal({
+  //       title: '警告',
+  //       content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+  //       showCancel: false,
+  //       confirmText: '返回授权',
+  //       success: function (res) {
+  //         // 用户没有授权成功，不需要改变 isHide 的值
+  //         if (res.confirm) {
+  //           console.log('用户点击了“返回授权”');
+  //         }
+  //       }
+  //     });
+  //   }
+  // },
 
-    } else {
-      //用户按了拒绝按钮
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-        showCancel: false,
-        confirmText: '返回授权',
-        success: function (res) {
-          // 用户没有授权成功，不需要改变 isHide 的值
-          if (res.confirm) {
-            console.log('用户点击了“返回授权”');
-          }
-        }
-      });
-    }
-  },
   getUserProfile: function (e) {
-    
     var that = this
+    wx.showLoading({
+      title: '登录中'
+      })
     wx.getUserProfile({
       desc: '用于完善用户资料',
       success: function (res) {
@@ -137,7 +129,15 @@ Page({
           
           wx.login({
             success: res => {
-              
+              wx.hideLoading({
+                success: (res) => {
+                  wx.showToast({
+                    title: '登录成功',
+                    icon: 'success',
+                    duration: 1000
+                  })
+                },
+              })
               wx.request({
                 // 自行补上自己的 APPID 和 SECRET
                 url: 'https://storymap.sherlockouo.com/user/register',
@@ -158,10 +158,10 @@ Page({
                     data: res.data.userinfo,
                     key: 'userInfo',
                   })
-                  
                   // 获取到用户的 openid
                   if (res.data.code == 0) {
                     app.globalData.token = res.data.token;
+                    app.globalData.userInfo=res.data.userinfo
                     wx.setStorage({
                       data: res.data.token,
                       key: 'token',
@@ -171,8 +171,6 @@ Page({
                       isHide: false,
                       userInfo: res.data.userinfo
                     });
-                    // app.globalData.token = res.data.token;
-                    console.log("用户的token " + app.globalData.token);
                   } else {
       
                     console.log(" something goes wrong msg ", res.data.msg);
@@ -188,8 +186,6 @@ Page({
           
         })
         
-       
-       
         // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
         // 根据自己的需求有其他操作再补充
         // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
