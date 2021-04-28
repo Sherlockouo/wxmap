@@ -150,16 +150,18 @@ initData: function(that) {
    * 获取聚焦
    */
   focus: function (e) {
-    keyHeight = e.detail.height;
+    var keyHeight = e.detail.height;
+    // console.log("屏幕高度ER", windowHeight)
+    // console.log("键盘高度DD", e.detail.height)
     this.setData({
       scrollHeight: (windowHeight - keyHeight) + 'px'
     });
     this.setData({
-      toView: 'msg-' + (msgList.length - 1),
-      inputBottom: keyHeight + 'px'
+      inputBottom: keyHeight + 'px',
+      toView: this.data.toView
     })
   //  // 计算msg高度
-  //   calScrollHeight(this, keyHeight);
+  // console.log("显示高度",this.data.scrollHeight)
 
   },
 

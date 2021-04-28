@@ -1,21 +1,28 @@
 <view class="container">
-	<view class="shareTop">
-		<view class="shareBtn2 btn" bindtap="post"> 发布</view>
-		<view class="shareBnt1 inbtn">
-			<view class="btn text-over {{ac2==1 ? 'active' : ''}}" data-id="1" bindtap="parameterTap">故事分享</view>
-			<view class="btn text-over {{ac2==0 ? 'active' : ''}}" data-id="2" bindtap="parameterTap">失物招领</view>
-		</view>
-	</view>
-	<!-- 分享，带标题，内容，图片 -->
-	<view class="shareBody">
-		<view class="shareBB">
-			<view class="shareTitle">
-				<input class="shareTT" maxlength="24" focus placeholder="标题" model:value="{{shareTitle}}" />
-			</view>
-			<view class="divLine"></view>
-			<view class="shareText">
-				<textarea bindblur="bindTextAreaBlur" style="width:98%" auto-height maxlength="400" placeholder="分享你在这个地方的故事..." model:value="{{shareText}}" />
-				</view>
+  <view class="shareTop">
+    <view class="shareBtn2 btn" bindtap="post"> 发布</view>
+    <view class="shareBnt1 inbtn">
+      <view class="btn text-over {{ac2==1 ? 'active' : ''}}" data-id="1" bindtap="parameterTap">故事分享</view>
+      <view class="btn text-over {{ac2==0 ? 'active' : ''}}" data-id="2" bindtap="parameterTap">失物招领</view>
+    </view>
+  </view>
+  <!-- 分享，带标题，内容，图片 -->
+  <view class="shareBody">
+    <view class="shareBB">
+      <view class="shareTitle">
+        <input class="shareTT" maxlength="24" focus placeholder="标题" model:value="{{shareTitle}}" />
+      </view>
+      <view class="divLine"></view>
+
+      <view class="shareText">
+        <scroll-view class="textShare" scroll-y="true">
+    
+            <textarea bindblur="bindTextAreaBlur" fixed style="width:98%" auto-height maxlength="800"
+            placeholder="分享你在这个地方的故事..." model:value="{{shareText}}" />
+    
+          </scroll-view> 
+        </view>
+   
      <view class="shareImg">
       <scroll-view class="scroll-view" scroll-x="true">
        <view class="banner" scroll-x="true">

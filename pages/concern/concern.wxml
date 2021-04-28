@@ -18,7 +18,10 @@
         </view>
         <view class="right">
           <view class="name">{{item.name}}</view>
-          <view class="introduce">{{item.introduce}}</view>
+          <view class="introduce">
+           <block wx:if='{{!item.introduce.length}}'>还没有填写介绍......</block>
+           <block wx:else>{{item.introduce}}</block>
+          </view>
         </view>
       </view>
       <view class="concel">
