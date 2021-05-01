@@ -7,27 +7,28 @@ Page({
     show_mask: false,
     chatbackground:"http://qwq.fjtbkyc.net/image/bgimg/chatbac2.jpg",
     //消息列表
-    groupList: [{
-        headimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg", //用户头像
-        name: "晴空一线",
-        lastmessage: "我找到了你的无人机!", //代表最后的一条消息
-        id: 2,
-        countmessage: 6, //未读消息数量,
-      },
-      {
-        headimg: "http://www.fjtbkyc.net/mywx/dog.jpg", //用户头像
-        name: "Another Dersion",
-        lastmessage: "明天有空哦，你来找我拿吧！",
-        id: 34,
-        countmessage: 0 //是否存在未读消息
-      },
-      {
-        headimg: "http://qwq.fjtbkyc.net/image/headimg/003.jpg", //用户头像
-        name: "明天有空",
-        lastmessage: "我在成都市郫都区！",
-        id: 34,
-        countmessage: 0 //是否存在未读消息
-      },
+    groupList: [
+      // {
+      //   headimg: "http://qwq.fjtbkyc.net/public/personalBlog/images/blog/blog11.jpg", //用户头像
+      //   name: "晴空一线",
+      //   lastmessage: "我找到了你的无人机!", //代表最后的一条消息
+      //   id: 2,
+      //   countmessage: 6, //未读消息数量,
+      // },
+      // {
+      //   headimg: "http://www.fjtbkyc.net/mywx/dog.jpg", //用户头像
+      //   name: "Another Dersion",
+      //   lastmessage: "明天有空哦，你来找我拿吧！",
+      //   id: 34,
+      //   countmessage: 0 //是否存在未读消息
+      // },
+      // {
+      //   headimg: "http://qwq.fjtbkyc.net/image/headimg/003.jpg", //用户头像
+      //   name: "明天有空",
+      //   lastmessage: "我在成都市郫都区！",
+      //   id: 34,
+      //   countmessage: 0 //是否存在未读消息
+      // },
       // {
       //   headimg: "http://qwq.fjtbkyc.net/image/headimg/004.jpg", //用户头像
       //   name: "Another Dersion",
@@ -103,20 +104,22 @@ Page({
         // toUserId: 3
       },
       success(res) {
-          console.log("list ",res)
-          // console.log("chatlog ",chatlog)
-          // for(let key in chatlog){
-          //   let log = chatlog[key];
-          //   if(log.senduserid==app.globalData.userInfo.id)
-          //     log.speaker = "customer";
-          //   else 
-          //     log.speaker = "server"
-          //   log.contentType=log.msgtype
-          //   log.content = log.sendtext
-          // }
           
-          // console.log("chatlog ",chatlog)
-  
+        
+         var ls = res.data.data;
+         console.log("list ",ls)
+        for (var t in ls) {
+          var key = ls[t];
+          console.log("msg ",key);
+          key.headimg = key.senduser.avatar;
+          key.name = key.senduser.nickname;
+          key.lastmessage=key.sendtext;
+          key.countmessage = 0;
+        }
+        console.log("ls ",ls)
+        that.setData({
+          groupList: ls
+        })
       },
       fail:{
   

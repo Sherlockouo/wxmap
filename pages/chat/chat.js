@@ -160,9 +160,7 @@ initData: function(that) {
       inputBottom: keyHeight + 'px',
       toView: this.data.toView
     })
-  //  // 计算msg高度
-  // console.log("显示高度",this.data.scrollHeight)
-
+ 
   },
 
   //失去聚焦(软键盘消失)
