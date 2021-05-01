@@ -115,6 +115,7 @@ Page({
           key.name = key.senduser.nickname;
           key.lastmessage=key.sendtext;
           key.countmessage = 0;
+          key.id = key.senduser.id
         }
         console.log("ls ",ls)
         that.setData({
@@ -159,6 +160,7 @@ Page({
   // },
   //进入聊天页面
   into_room: function (e) {
+    console.log("clicked ",e)
     wx.navigateTo({
       url: '/pages/chat/chat?userid=' + 1,
     })
