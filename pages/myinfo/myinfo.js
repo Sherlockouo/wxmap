@@ -49,13 +49,15 @@ Page({
              })
               wx.request({
                 url: 'https://storymap.sherlockouo.com/user/updateBgimg', 
-                method: "PUT",
-                data: {
-                  bgimg: res
-                },
                 header:{
                   Authorization: token,
+                  'content-type': 'application/x-www-form-urlencoded'
                 },
+                method: "PUT",
+                data: {
+                  "bgimg": res
+                },
+                
                 success(res){
                     console.log("upload bgimg",res)
                 },
@@ -146,26 +148,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var token = app.globalData.userInfo
-
+    var that = this
+    var token = app.globalData.token
+    console.log("token ",app.globalData.userInfo)
+    if(token!=null){
     wx.request({
       url: 'https://storymap.sherlockouo.com/user/getInfo/'+app.globalData.userInfo.id, 
       method: "GET",
       data: {
       },
       header:{
-        Authorization: token,
+        'Authorization': token,
       },
       success(res){
+        console.log("myinfo showup ",res.data.data)
+        that.setData({
+          bgimg:res.data.data.bgimg
+        })
+        if(res.data.code==0){
         wx.setStorage({
-          data: res.data.userinfo,
+          data: res.data.data,
           key: 'userInfo',
         })
+      }
       },
       fail(){
 
       }
     })
+  }
   },
 
   /**
