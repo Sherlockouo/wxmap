@@ -114,6 +114,13 @@
         {
           "name": "pages/chatlist/chatlist",
           "pathName": "pages/chatlist/chatlist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chatlist/chatlist",
+          "pathName": "pages/chatlist/chatlist",
+          "query": "userid=1",
           "scene": null
         }
       ]

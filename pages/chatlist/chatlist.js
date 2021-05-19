@@ -160,9 +160,10 @@ Page({
   // },
   //进入聊天页面
   into_room: function (e) {
-    console.log("clicked ",e)
+    //获取点击的用户的id 进入聊天界面
+    var userid = e.currentTarget.dataset.roomid
     wx.navigateTo({
-      url: '/pages/chat/chat?userid=' + 1,
+      url: '/pages/chat/chat?userid=' + userid,
     })
   },
 
